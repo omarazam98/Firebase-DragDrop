@@ -1,3 +1,10 @@
+# Client
+
+Client for winwin_homesharing, built in react for the time being. 
+
+####"Looking forward to expanding care the world over"
+#
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
