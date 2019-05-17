@@ -11,6 +11,7 @@ Git is the most popular version control software in the world. It allows for ver
 
 ### Workflows
 We are using the GitFlow workflow. In order to understand git flow please read the sections on Centralized Workflow, Feature Branch Workflow, and Git Flow Workflow at the link below.
+
 * [Atlassian Git Workflows Guide](https://www.atlassian.com/git/tutorials/comparing-workflows/)
 
 ### Installing Git 
@@ -38,6 +39,7 @@ If this results in an error you can use homebrew to install it. If you don't hav
 
 #### Windows
 Unfortunately package managers on windows are lacking. Instead follow the link to the git installer below. And follow the wizard.
+
 * [Windows Git Installer](https://git-scm.com/download/win)
 
  
@@ -100,16 +102,19 @@ Webstorm is the main IDE we will be using for development. It is a popular tool 
 
 ### Getting Webstorm for free
 If you are currently a student, you are eligible for a free jetbrains account with access to the pro version of all of their IDEs. In order to redeem this, fill out the form at
+
 * [Free Webstorm Application](https://www.jetbrains.com/shop/eform/students)
 
 When you have installed WebStorm you will be able to login with the same account and gain access for free.
 
 ### Installing Webstorm
 Full instructions are available at the link below. OS specific instructions are also available in the subheadings.
+
 * [Webstorms installation instruction page](https://www.jetbrains.com/help/webstorm/install-and-set-up-product.html)
 
 #### Linux
 Download the installer below
+
 * [Linux Installer](https://www.jetbrains.com/webstorm/download/#section=linux)    
 
 Unpack the tarball
@@ -126,12 +131,14 @@ Run with
 
 #### MacOS
 Download the installer below
+
 * [Mac Installer](https://www.jetbrains.com/webstorm/download/#section=mac)    
 
 Open the .dmg package that you downloaded then drag Webstorm to the Application folder.
 
 #### Windows
 Download the installer below
+
 * [Windows Installer](https://www.jetbrains.com/webstorm/download/#section=windows)    
 
 Run the Webstorm-*.exe file that you downloaded and follow the installation instructions
@@ -160,6 +167,7 @@ React dev tools allow you to interact with JSX in your browser rather than the c
 React-redux developer tools are an amazing browser plugin that lets you see the activity and interact with redux store in real time in your browser. It helps in development, test creation, and debugging, and should be considered an essential plugin as well.
 
 Install at
+
 * [Firefox Install]( https://addons.mozilla.org/en-CA/firefox/addon/reduxdevtools/ )
 * [Chrome Install](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 * [Github Repo](https://github.com/zalmoxisus/redux-devtools-extension)
@@ -175,10 +183,12 @@ In order to use it with a redux store, you need to add one line of code to your 
     
 ## Atlassian
 We use two main atlassian services.
+
 * Bitbucket
 * Jira
 
 As such an atlassian account is required. Sign up using your company email at 
+
 * [Atlassian Signup](https://id.atlassian.com/signup)
 
 Ensure that you are both part of the WinWin Jira board, and the WinWin Bitbucket team. If you aren't, contact Brendan Lucas at brendan.lucas@winwinhomesharing.com
@@ -192,6 +202,7 @@ You will need an account for our Jenkins server, however, at the moment the serv
 Firebase provides our Backend as a Service (BaaS) through the Firestore database. As such you need to ensure that you have access to a firebase account, and that that account is added to our project.
 
 Login with your google account at and make sure that you have access to firebase services
+
 * [Firebase](https://firebase.google.com)
 
 At the moment there is no main project database, but as soon as the GSuite is available, you will be added as a collaborator by the admin.
