@@ -1,0 +1,19 @@
+#dropGuide{
+    border: dashed grey 4px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#dropHelpLabel {
+    textAlign: center;
+    color: grey;
+    fontSize: 36;
+}
+
+#dropZone {
+    display: inline-block;
+    position: relative;
+}
