@@ -19,9 +19,10 @@ class UploadBase extends React.Component<any, any> {
 
     constructor(props: Firebase) {
         super(props);
-        this.PRCpathDB = "users/user1/Files/PRC/";
+        this.PRCpathDB = "Files/PRC/";
         this.PRCpathStorage = "test/PRCs/";
         this.state = {
+            userName: 'Julia',
             uploading: false,
             uploaded: false,
             percent: 0,
@@ -45,6 +46,7 @@ class UploadBase extends React.Component<any, any> {
     uploadFile = () => {
         this.setState({uploading: true});
         const file = this.state.file;
+
         const storageRef = this.props.firebase.storage.ref(this.PRCpathStorage + file.name);
         const task = storageRef.put(file);
         task.on('state_changed',
@@ -59,7 +61,7 @@ class UploadBase extends React.Component<any, any> {
                 this.setState({uploaded: true});
                 this.setState({uploading: false});
                 task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
-                    this.props.firebase.db.doc(this.PRCpathDB).set(
+                    this.props.firebase.db.doc('users/'+ this.state.userName + '/' + this.PRCpathDB).set(
                         {
                             URL: downloadURL
                         }
