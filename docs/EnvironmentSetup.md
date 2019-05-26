@@ -155,6 +155,18 @@ vim emulator for your ide to allow
 #### Material UI (if you want a VSCode like theme)
 Material ui is a user interface skin for webstorm that makes it feel a lot more like VSCode. It comes with nice icons for your folders as well.
 
+## Visual Studio Code
+TODO
+### Installation
+TODO
+#### Linux
+#### Mac
+#### Windows
+
+## ESLint
+TODO
+ESLint is our linter
+
 
 ## Browser Plugins
 ### React dev-tools 
@@ -206,5 +218,6 @@ Login with your google account at and make sure that you have access to firebase
 * [Firebase](https://firebase.google.com)
 
 At the moment there is no main project database, but as soon as the GSuite is available, you will be added as a collaborator by the admin.
+
 ### Firebase api keys
 Each developer will need a special set of API keys to interact with the test firestore database. Once these become available this section will be expanded uppon.
