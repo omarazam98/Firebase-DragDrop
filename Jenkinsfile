@@ -6,9 +6,11 @@ node {
     commit_id = readFile('.git/commit-id').trim()
   }
   stage('test'){
-    nodejs(nodeJSInstallationName: 'nodejs'){
+    def myTestContainer = docker.image('node:10.15.3')
+    myTestContainer.pull()
+    myTestContainer.inside(
       sh 'npm install'
       sh 'npm test -- --watchAll=false'
-    }
+    )
   }
 }
