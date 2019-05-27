@@ -7,8 +7,8 @@ node {
   }
   stage('test'){
     nodejs(nodeJSInstallationName: 'nodejs'){
-      sh 'npm install -- --watchAll=false'
-      sh 'npm test'
+      sh 'npm install'
+      sh 'npm test -- --watchAll=false'
     }
   }
 }
