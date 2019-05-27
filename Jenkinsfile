@@ -8,9 +8,9 @@ node {
   stage('test'){
     def myTestContainer = docker.image('node:10.15.3')
     myTestContainer.pull()
-    myTestContainer.inside(
+    myTestContainer.inside{
       sh 'npm install'
       sh 'npm test -- --watchAll=false'
-    )
+    }
   }
 }
