@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logoSvg from './logo.svg';
 import './App.css';
 
 class App extends Component {
   state = {
-    data: null
+    data: null,
   };
   componentDidMount() {
     // Call our fetch function below once the component mounts
@@ -21,13 +21,13 @@ class App extends Component {
       throw Error(body.message)
     }
     return body;
-  };
+  }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logoSvg} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
