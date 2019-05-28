@@ -31,6 +31,7 @@
   ],
   "proxy": "http://localhost:5000/",
   "devDependencies": {
+    "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1"
   }
 }
