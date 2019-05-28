@@ -14,15 +14,15 @@ const UploadPage = () => (
 );
 
 class UploadBase extends React.Component<any, any> {
-    PRCpathDB: String;
-    PRCpathStorage: String;
+    docPathDB: String;
+    docPathStorage: String;
 
     constructor(props: Firebase) {
         super(props);
-        this.PRCpathDB = "Files/PRC/";
-        this.PRCpathStorage = "test/PRCs/";
+        this.docPathDB = "Files/documentTest/";
+        this.docPathStorage = "test/documents/";
         this.state = {
-            userName: 'Julia',
+            userName: 'userX',
             uploading: false,
             uploaded: false,
             percent: 0,
@@ -47,7 +47,7 @@ class UploadBase extends React.Component<any, any> {
         this.setState({uploading: true});
         const file = this.state.file;
 
-        const storageRef = this.props.firebase.storage.ref(this.PRCpathStorage + file.name);
+        const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name);
         const task = storageRef.put(file);
         task.on('state_changed',
             function progress(snapshot: firebase.storage.UploadTaskSnapshot) {
@@ -60,8 +60,9 @@ class UploadBase extends React.Component<any, any> {
             }, () => {
                 this.setState({uploaded: true});
                 this.setState({uploading: false});
+                console.log("Uploaded file to " + 'users/'+ this.state.userName + '/' + this.docPathDB);
                 task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
-                    this.props.firebase.db.doc('users/'+ this.state.userName + '/' + this.PRCpathDB).set(
+                    this.props.firebase.db.doc('users/'+ this.state.userName + '/' + this.docPathDB).set(
                         {
                             URL: downloadURL
                         }
@@ -69,7 +70,6 @@ class UploadBase extends React.Component<any, any> {
                 });
             });
     }
-
 
     render() {
         return (
