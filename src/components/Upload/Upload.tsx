@@ -3,15 +3,9 @@ import Firebase, {withFirebase} from '../Firebase';
 import {ChangeEvent} from "react";
 import * as firebase from 'firebase'
 import Dragdrop from "./Dragdrop";
-import './index.css';
+import './Upload.css';
+import CheckboxWithLabel from "../CheckboxTest/checkboxTest";
 
-const UploadPage = () => (
-    <div>
-        <h1>Uploading Page</h1>
-        <p>This page is to test uploading</p>
-        <Upload/>
-    </div>
-);
 
 class UploadBase extends React.Component<any, any> {
     docPathDB: String;
@@ -74,6 +68,9 @@ class UploadBase extends React.Component<any, any> {
     render() {
         return (
             <div>
+                <h1>Uploading Page</h1>
+                <p>This page is to test uploading</p>
+
                 <Dragdrop handleDrop={this.handleDropSelect}>
                 <div className='container'>
                     <div className='form'>
@@ -86,7 +83,7 @@ class UploadBase extends React.Component<any, any> {
                             {this.state.uploaded && <p id='checkmark' style={{display: "inline"}}>&#9989;</p>}
                         </div>
                         {this.state.file && <p>{this.state.file.name}</p>}
-                        {this.state.file && <button onClick={this.uploadFile}>Upload</button>}
+                        {this.state.file && <button id ="uploadButton" onClick={this.uploadFile}>Upload</button>}
                     </div>
                     <code>
                         {this.state.error ? <span className='error'>this.state.error</span> : null}
@@ -100,4 +97,4 @@ class UploadBase extends React.Component<any, any> {
 
 const Upload = withFirebase(UploadBase);
 
-export default UploadPage;
+export default Upload;
