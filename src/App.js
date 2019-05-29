@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import * as Router from 'react-router-dom';
 import * as ROUTES from './constants/routes';
-import UploadPage from './components/Upload';
+import Upload from './components/Upload/Upload';
 
 class App extends Component {
   state = {
@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router.BrowserRouter>
-          <Router.Route path={ROUTES.UPLOAD} component={UploadPage} />
+          <Router.Route path={ROUTES.UPLOAD} component={Upload} />
 
         </Router.BrowserRouter>
         <header className="App-header">
