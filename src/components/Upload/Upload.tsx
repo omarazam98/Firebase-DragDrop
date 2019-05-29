@@ -149,7 +149,7 @@ export class Upload extends React.Component<any, UploadState> {
                         {this.state.file && <button id ="uploadButton" onClick={this.uploadFile}>Upload</button>}
                     </div>
                     <code>
-                        {this.state.error ? <span className='error'>{this.state.error.message}</span> : null}
+                        {this.state.error ? <span className='error'>this.state.error</span> : null}
                     </code>
             </Dragdrop>
             </div>
@@ -158,3 +158,5 @@ export class Upload extends React.Component<any, UploadState> {
 }
 
 export default withAPI(Upload);
+
+export default Upload;
