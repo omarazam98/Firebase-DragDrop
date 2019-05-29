@@ -4,6 +4,7 @@ import {ChangeEvent} from "react";
 import * as firebase from 'firebase'
 import Dragdrop from "./Dragdrop";
 import './Upload.css';
+import CheckboxWithLabel from "../CheckboxTest/checkboxTest";
 
 
 class UploadBase extends React.Component<any, any> {
@@ -19,7 +20,7 @@ class UploadBase extends React.Component<any, any> {
             uploading: false,
             uploaded: false,
             percent: 0,
-            file: null,
+            file: '',
             error: null
         }
     }
@@ -37,36 +38,31 @@ class UploadBase extends React.Component<any, any> {
 
 
     uploadFile = () => {
-        if(this.state.file) {
-            const file = this.state.file;
-            try {
-                const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name);
-                const task = storageRef.put(file);
-                this.setState({uploading: true});
-                task.on('state_changed',
-                    function progress(snapshot: firebase.storage.UploadTaskSnapshot) {
-                        const uploader = document.getElementById("uploader") as HTMLProgressElement;
-                        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        uploader.value = percentage;
-                        console.log(percentage);
-                    }, function error(err: Error) {
-                        console.log(err);
-                    }, () => {
-                        this.setState({uploaded: true});
-                        console.log("Uploaded file to " + 'users/' + this.state.userName + '/' + this.docPathDB);
-                        task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
-                            this.props.firebase.db.doc('users/' + this.state.userName + '/' + this.docPathDB).set(
-                                {
-                                    URL: downloadURL
-                                }
-                            );
-                        });
-                    });
-            }catch(err){
-                this.setState({error:err});
-            }
-            this.setState({uploading: false});
-        }
+        this.setState({uploading: true});
+        const file = this.state.file;
+
+        const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name);
+        const task = storageRef.put(file);
+        task.on('state_changed',
+            function progress(snapshot: firebase.storage.UploadTaskSnapshot) {
+                const uploader = document.getElementById("uploader") as HTMLProgressElement;
+                const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                uploader.value = percentage;
+                console.log(percentage);
+            }, function error(err: Error) {
+                console.log(err);
+            }, () => {
+                this.setState({uploaded: true});
+                this.setState({uploading: false});
+                console.log("Uploaded file to " + 'users/'+ this.state.userName + '/' + this.docPathDB);
+                task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
+                    this.props.firebase.db.doc('users/'+ this.state.userName + '/' + this.docPathDB).set(
+                        {
+                            URL: downloadURL
+                        }
+                    );
+                });
+            });
     }
 
     render() {
@@ -90,7 +86,7 @@ class UploadBase extends React.Component<any, any> {
                         {this.state.file && <button id ="uploadButton" onClick={this.uploadFile}>Upload</button>}
                     </div>
                     <code>
-                        {this.state.error ? <span className='error'>{this.state.error.message}</span> : null}
+                        {this.state.error ? <span className='error'>this.state.error</span> : null}
                     </code>
                 </div>
             </Dragdrop>
@@ -100,5 +96,5 @@ class UploadBase extends React.Component<any, any> {
 }
 
 const Upload = withFirebase(UploadBase);
-export {Upload};
-export default UploadBase;
+
+export default Upload;
