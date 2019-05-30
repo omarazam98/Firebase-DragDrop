@@ -23,36 +23,48 @@ class UploadBase extends React.Component<any, any> {
             error: null
         }
     }
-
+    /**
+     * Gets file from browse button and sets file state
+     * @param {ChangeEvent<HTMLInputElement>} e : event from file browse button
+     */
     handleFileSelect = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({uploaded: false})
         this.setState({file: e.target.files![0]})
 
     }
-
+    /**
+     * Gets file from Dragdrop component and sets file state
+     * @param {FileList} files : files from Dragdrop
+     */
     handleDropSelect = (files: FileList) => {
         this.setState({uploaded: false})
         this.setState({file: files[0]})
     }
 
-
+    /**
+     * Uploads file from file state and sends to firebase
+     * stored in cloud storage at this.docPathStorage + filename
+     * stored in firestore database as URL to storage under username (default userX)
+     * also updates a progress bar as file is uploaded
+     */
     uploadFile = () => {
         if(this.state.file) {
             const file = this.state.file;
+            this.setState({uploading: true});
             try {
-                const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name);
-                const task = storageRef.put(file);
-                this.setState({uploading: true});
+                const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name); //Creates a storage reference at filepath
+                const task = storageRef.put(file); //puts file in that reference
                 task.on('state_changed',
                     function progress(snapshot: firebase.storage.UploadTaskSnapshot) {
                         const uploader = document.getElementById("uploader") as HTMLProgressElement;
                         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                         uploader.value = percentage;
-                        console.log(percentage);
                     }, function error(err: Error) {
                         console.log(err);
                     }, () => {
+                    console.log(this.state.uploading)
                         this.setState({uploaded: true});
+                        this.setState({uploading: false});
                         console.log("Uploaded file to " + 'users/' + this.state.userName + '/' + this.docPathDB);
                         task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
                             this.props.firebase.db.doc('users/' + this.state.userName + '/' + this.docPathDB).set(
@@ -64,9 +76,10 @@ class UploadBase extends React.Component<any, any> {
                     });
             }catch(err){
                 this.setState({error:err});
+                this.setState({uploading: false});
             }
-            this.setState({uploading: false});
         }
+
     }
 
     render() {
@@ -100,5 +113,4 @@ class UploadBase extends React.Component<any, any> {
 }
 
 const Upload = withFirebase(UploadBase);
-export {Upload};
-export default UploadBase;
+export {Upload, UploadBase};
