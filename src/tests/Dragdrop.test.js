@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow, default as wrapper} from "enzyme/build";
-import Dragdrop from "./Dragdrop";
+import Dragdrop from "../components/Upload/Dragdrop";
 import {configure} from "enzyme/build";
 import Adapter from "enzyme-adapter-react-16/build";
 
