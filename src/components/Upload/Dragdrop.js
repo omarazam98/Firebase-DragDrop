@@ -74,7 +74,7 @@ export class Dragdrop extends React.Component {
     }
 
     componentWillUnmount() {
-        let div = this.dropRef.current;
+        let div = this.dropRef.current
         div.removeEventListener('dragenter', this.handleDragIn);
         div.removeEventListener('dragleave', this.handleDragOut);
         div.removeEventListener('dragover', this.handleDrag);
