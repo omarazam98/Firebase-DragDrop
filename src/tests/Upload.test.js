@@ -11,12 +11,11 @@ test('has a valid snapshot', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-
-it('Select file renders more buttons', () => {
+it('Select file changes state', () => {
   const wrapper = shallow(<UploadBase/>);
   const f = new File(["Hello World"], "file.txt");
   wrapper.setState({file: f});
   expect(wrapper.state('file')).toBeDefined();
+  expect(wrapper.find('#uploadButton').simulate('click')).toBeDefined();
+  expect (wrapper.state('error').name).toBe("TypeError");
 });
-
-
