@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import * as Router from 'react-router-dom';
 import * as ROUTES from './constants/routes';
-import Upload from './components/Upload/Upload';
+import {Upload} from './components/Upload/Upload';
 
 class App extends Component {
   state = {
