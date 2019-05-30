@@ -4,7 +4,6 @@ import {ChangeEvent} from "react";
 import * as firebase from 'firebase'
 import Dragdrop from "./Dragdrop";
 import './Upload.css';
-import CheckboxWithLabel from "../CheckboxTest/checkboxTest";
 
 
 class UploadBase extends React.Component<any, any> {
@@ -20,7 +19,7 @@ class UploadBase extends React.Component<any, any> {
             uploading: false,
             uploaded: false,
             percent: 0,
-            file: '',
+            file: null,
             error: null
         }
     }
@@ -38,31 +37,33 @@ class UploadBase extends React.Component<any, any> {
 
 
     uploadFile = () => {
-        this.setState({uploading: true});
-        const file = this.state.file;
+        if(this.state.file) {
+            this.setState({uploading: true});
+            const file = this.state.file;
 
-        const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name);
-        const task = storageRef.put(file);
-        task.on('state_changed',
-            function progress(snapshot: firebase.storage.UploadTaskSnapshot) {
-                const uploader = document.getElementById("uploader") as HTMLProgressElement;
-                const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                uploader.value = percentage;
-                console.log(percentage);
-            }, function error(err: Error) {
-                console.log(err);
-            }, () => {
-                this.setState({uploaded: true});
-                this.setState({uploading: false});
-                console.log("Uploaded file to " + 'users/'+ this.state.userName + '/' + this.docPathDB);
-                task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
-                    this.props.firebase.db.doc('users/'+ this.state.userName + '/' + this.docPathDB).set(
-                        {
-                            URL: downloadURL
-                        }
-                    );
+            const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name);
+            const task = storageRef.put(file);
+            task.on('state_changed',
+                function progress(snapshot: firebase.storage.UploadTaskSnapshot) {
+                    const uploader = document.getElementById("uploader") as HTMLProgressElement;
+                    const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    uploader.value = percentage;
+                    console.log(percentage);
+                }, function error(err: Error) {
+                    console.log(err);
+                }, () => {
+                    this.setState({uploaded: true});
+                    this.setState({uploading: false});
+                    console.log("Uploaded file to " + 'users/' + this.state.userName + '/' + this.docPathDB);
+                    task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
+                        this.props.firebase.db.doc('users/' + this.state.userName + '/' + this.docPathDB).set(
+                            {
+                                URL: downloadURL
+                            }
+                        );
+                    });
                 });
-            });
+        }
     }
 
     render() {
@@ -96,5 +97,5 @@ class UploadBase extends React.Component<any, any> {
 }
 
 const Upload = withFirebase(UploadBase);
-
-export default Upload;
+export {Upload};
+export default UploadBase;
