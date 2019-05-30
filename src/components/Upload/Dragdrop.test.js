@@ -6,17 +6,29 @@ import Adapter from "enzyme-adapter-react-16/build";
 
 configure({adapter: new Adapter()});
 
-describe("Check if Dragdrop div's are rendered", () => {
-    it("should render passed child components", ()=>{
+test('has a valid snapshot', () => {
+    const options = {
+        lifecycleExperimental: false,
+        disableLifecycleMethods: true
+    };
+    const wrapper = shallow(
+        <Dragdrop/>, options);
+    expect(wrapper).toMatchSnapshot();
+});
+
+describe("Dragdrop child components test", () => {
+    it("should render passed child component", () => {
         const options = {
             lifecycleExperimental: false,
             disableLifecycleMethods: true
         };
-        const wrapper = shallow(<Dragdrop><div id={"DragdropForm"}/></Dragdrop>, options);
-        expect(wrapper.contains(<div id="DragdropForm" />)).toEqual(true);
+        const wrapper = shallow(<Dragdrop>
+            <div id={"DragdropForm"}/>
+        </Dragdrop>, options);
+        expect(wrapper.contains(<div id="DragdropForm"/>)).toEqual(true);
 
     });
-    });
+});
 
 describe("handleDragIn and handleDragOut", () => {
     let wrapper;
@@ -25,7 +37,9 @@ describe("handleDragIn and handleDragOut", () => {
             lifecycleExperimental: false,
             disableLifecycleMethods: true
         };
-        wrapper = shallow(<Dragdrop><div/></Dragdrop>, options);
+        wrapper = shallow(<Dragdrop>
+            <div/>
+        </Dragdrop>, options);
         const mockEvent = {
             preventDefault: () => {
             },
@@ -94,4 +108,3 @@ describe("handleDrop", () => {
 
     });
 });
-
