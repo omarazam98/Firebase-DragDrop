@@ -29,8 +29,20 @@ class UploadBase extends React.Component<any, any> {
      */
     handleFileSelect = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({uploaded: false})
-        this.setState({file: e.target.files![0]})
-
+        this.setState({error: null})
+        const file = e.target.files![0];
+        const ext = file.type
+        console.log(file.type)
+        switch (ext.toLowerCase()) {
+            case 'image/jpg':
+            case 'image/jpeg':
+            case 'application/pdf':
+            case 'image/png':
+                console.log("valid")
+                this.setState({file: file})
+                return;
+        }
+        this.setState({error: new Error("File type not accepted")})
     }
     /**
      * Gets file from Dragdrop component and sets file state
@@ -38,7 +50,21 @@ class UploadBase extends React.Component<any, any> {
      */
     handleDropSelect = (files: FileList) => {
         this.setState({uploaded: false})
-        this.setState({file: files[0]})
+        this.setState({error: null})
+
+        const file = files[0];
+        const ext = file.type
+        console.log(file.type)
+
+        switch (ext.toLowerCase()) {
+            case 'image/jpg':
+            case 'image/jpeg':
+            case 'application/pdf':
+            case 'image/png':
+                this.setState({file: file})
+                return;
+        }
+        this.setState({error: new Error("File type not accepted")})
     }
 
     /**
