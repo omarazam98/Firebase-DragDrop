@@ -4,8 +4,6 @@ import Dragdrop from "../components/Upload/Dragdrop";
 import {configure} from "enzyme/build";
 import Adapter from "enzyme-adapter-react-16/build";
 
-configure({adapter: new Adapter()});
-
 test('has a valid snapshot', () => {
     const options = {
         lifecycleExperimental: false,

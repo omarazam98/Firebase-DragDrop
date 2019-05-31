@@ -65,7 +65,7 @@ class UploadBase extends React.Component<any, any> {
                     console.log(this.state.uploading)
                         this.setState({uploaded: true});
                         this.setState({uploading: false});
-                        console.log("Uploaded file to " + 'users/' + this.state.userName + '/' + this.docPathDB);
+                        //console.log("Uploaded file to " + 'users/' + this.state.userName + '/' + this.docPathDB);
                         task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
                             this.props.firebase.db.doc('users/' + this.state.userName + '/' + this.docPathDB).set(
                                 {
