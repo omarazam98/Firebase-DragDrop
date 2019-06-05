@@ -21,8 +21,10 @@ export const matchesReducer = (
 
 // Helper method that changes the match_state field of a specific match
 const changeMatchStateById = (matches:MatchType[], id:string, matchState:string) => {
-  return matches.map((match:MatchType) => {
+  let matchFound = false;
+  const newMatches = matches.map((match:MatchType) => {
     if (match.id === id) {
+      matchFound = true;
       return {
         ...match,
         match_state: matchState,
@@ -30,6 +32,11 @@ const changeMatchStateById = (matches:MatchType[], id:string, matchState:string)
     }
     return match;
   });
+
+  if (!matchFound) {
+    throw 'Match Id does not exist';
+  }
+  return newMatches;
 };
 
 export default matchesReducer;
