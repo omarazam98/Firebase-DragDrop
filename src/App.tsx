@@ -1,47 +1,18 @@
 import React, { Component } from 'react';
 const logoSvg = require('./logo.svg');
 import './styles/App.css';
+import { Provider } from 'react-redux';
+import { store } from './store/createStore';
 
 class App extends Component {
-  state = {
-    data: null,
-  };
-  componentDidMount() {
-    // Call our fetch function below once the component mounts
-    this.callBackendAPI()
-        .then(res => this.setState({data: res.express}))
-        .catch(err => console.log(err));
-  }
-
-  callBackendAPI = async () => {
-    const response = await fetch('/winwin_homesharing');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message)
-    }
-    return body;
-  }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logoSvg} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <p className="App-intro">{this.state.data}</p>
-      </div>
+      // The provider allows all of its decendant elements to access the redux store through
+      // the connect function from react-redux
+      <Provider store={store}>
+        { /*Put the main application in here. Probably the app router*/ }
+      </Provider>
     );
   }
 }
