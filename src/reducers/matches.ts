@@ -1,11 +1,3 @@
-// This defines the fields that can be contained by match interface
-// This is defined within the reducers file as it is the only place where it is used
-// In the future all typedefintions may be moved to the typedefs folder as .d.ts files
-type Action =
-  | { type: 'DECLINE_MATCH'; id: string; }
-  | { type: 'ACCEPT_MATCH'; id: string; }
-  | { type: 'SET_MATCHES'; matches: MatchType[]; };
-
 // The initial state of the matches is an empty array
 const matchesReducersDefaultState: MatchType[] = [];
 
@@ -13,7 +5,7 @@ const matchesReducersDefaultState: MatchType[] = [];
 // matches section of the redux store and what those actions do
 export const matchesReducer = (
     state:MatchType[] = matchesReducersDefaultState,
-    action:Action,
+    action:MatchesActionType,
     ) => {
   switch (action.type){
     case 'ACCEPT_MATCH':
