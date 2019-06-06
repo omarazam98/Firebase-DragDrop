@@ -19,6 +19,7 @@ test('setMatches should set matches from empty state', () => {
 });
 
 test('setMatches should set state from non-empty state', () => {
+  // Slice is used here to create a slightly different array that we can set the state to
   const expectedMatches = matches.slice(0, -1);
   const action = setMatches(expectedMatches);
 
