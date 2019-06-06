@@ -1,10 +1,29 @@
-type MatchType = {
-  id: string;
+type MatchType = 
+  StudentMatchType 
+  | SeniorMatchType;
+
+type StudentMatchType = {
+  person_id: string;
   name: string;
   tasks: any[];
+  bio: string;
+  location: string;
+  photo: string;
+  match_state: 'pending' | 'accepted' | 'rejected';
+  school: string;
+  program: string;
+}
+
+type SeniorMatchType = {
+  person_id: string;
+  name: string;
+  tasks: any[];
+  bio: string;
+  location: string;
+  photo: string;
+  match_state: 'pending' | 'accepted' | 'rejected';
   rent: number;
-  match_state: string;
-};
+}
 
 type MatchesActionType =
   { type: '@@INIT' }

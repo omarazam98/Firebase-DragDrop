@@ -6,12 +6,12 @@ const matchesReducersDefaultState: MatchType[] = [];
 export const matchesReducer = (
     state:MatchType[] = matchesReducersDefaultState,
     action:MatchesActionType,
-    ) => {
+    ):MatchType[] => {
   switch (action.type){
     case 'ACCEPT_MATCH':
-      return changeMatchStateById(state, action.id, 'accepted');
+      return changeMatchStateByPersonId(state, action.id, 'accepted');
     case 'DECLINE_MATCH':
-      return changeMatchStateById(state, action.id, 'rejected');
+      return changeMatchStateByPersonId(state, action.id, 'rejected');
     case 'SET_MATCHES':
       return action.matches;
     default:
@@ -20,10 +20,14 @@ export const matchesReducer = (
 };
 
 // Helper method that changes the match_state field of a specific match
-const changeMatchStateById = (matches:MatchType[], id:string, matchState:string) => {
+const changeMatchStateByPersonId = (
+  matches:MatchType[],
+  personId:string,
+  matchState: 'accepted' | 'rejected' | 'pending',
+):MatchType[] => {
   let matchFound = false;
-  const newMatches = matches.map((match:MatchType) => {
-    if (match.id === id) {
+  const newMatches:MatchType[] = matches.map((match:MatchType) => {
+    if (match.person_id === personId) {
       matchFound = true;
       return {
         ...match,
@@ -34,7 +38,7 @@ const changeMatchStateById = (matches:MatchType[], id:string, matchState:string)
   });
 
   if (!matchFound) {
-    throw 'Match Id does not exist';
+    throw 'Person ID does not exist as a match';
   }
   return newMatches;
 };
