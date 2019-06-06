@@ -1,5 +1,3 @@
-import { fetchMatchesByStudent, updateMatchByStudentAndId } from '../api/matches';
-
 export const ACCEPT_MATCH_NAME = 'ACCEPT_MATCH';
 export const DECLINE_MATCH_NAME = 'DECLINE_MATCH';
 export const SET_MATCHES_NAME = 'SET_MATCHES';
