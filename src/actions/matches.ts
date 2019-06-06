@@ -29,29 +29,66 @@ export const setMatches = (matches:MatchType[]) => {
 // START_SET_MATCHES
 // This is an asynchronous thunk action
 // it fetches the matches of a certain student and then call set matches with those matches
-export const startSetMatches = (api, studentId:string) => {
+export const startSetMatches = (api, type:'student' | 'senior', id:string) => {
   return (dispatch) => {
     // This return is required in order to use the promise in the calling dispatch
-    return api.fetchMatchesByStudent(studentId).then((matches) => {
-      dispatch(setMatches(matches));
-    });
+    if (type === 'student') {
+      return api.fetchMatchesByStudent(id).then((matches) => {
+        dispatch(setMatches(matches));
+      });
+    } else if (type === 'senior') {
+      return api.fetchMatchesBySenior(id).then((matches) => {
+        dispatch(setMatches(matches));
+      });
+    } else {
+      throw `${type} type of match search is invalid`;
+    }
   };
 };
 
-export const startAcceptMatch = (api, studentId:string, matchId:string) => {
+export const startAcceptMatch = (
+  api,
+  type:'student' | 'senior',
+  accountId:string,
+  matchId:string,
+) => {
   return (dispatch) => {
-    return api.updateMatchByStudentAndId(studentId, matchId, { match_state: 'accepted' })
+    let studentId;
+    let seniorId;
+    if (type === 'student') {
+      studentId = accountId;
+      seniorId = matchId;
+    } else if (type === 'senior') {
+      studentId = matchId;
+      seniorId = accountId;
+    } else {
+      throw `${type} type of match is invalid`;
+    }
+    return api.updateMatchByStudentAndSenior(studentId, seniorId, { match_state: 'accepted' })
       .then((result) => {
         dispatch(acceptMatch(matchId));
       });
   };
 };
 
-export const startDeclineMatch = (api, studentId:string, matchId:string) => {
+export const startDeclineMatch = (
+  api,
+  type: 'student' | 'senior',
+  studentId:string,
+  seniorId:string,
+) => {
   return (dispatch) => {
-    return api.updateMatchByStudentAndId(studentId, matchId, { match_state: 'declined' })
+    return api.updateMatchByStudentAndSenior(studentId, seniorId, { match_state: 'declined' })
       .then((result) => {
-        dispatch(declineMatch(matchId));
+        let id;
+        if (type === 'student') {
+          id = seniorId;
+        } else if (type === 'senior') {
+          id = studentId;
+        } else {
+          throw `${type} type of match is invalid`;
+        }
+        dispatch(declineMatch(id));
       });
   };
 };

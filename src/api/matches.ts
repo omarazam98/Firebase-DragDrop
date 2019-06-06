@@ -1,8 +1,8 @@
 export const MATCHES_COLLECTION_NAME = 'matches';
 
-export const addMatchToStudent = (
+export const addMatch = (
   studentId:string,
-  match:MatchType,
+  seniorId:string,
 ):Promise<void> => {
   throw 'Method not implemented';
 };

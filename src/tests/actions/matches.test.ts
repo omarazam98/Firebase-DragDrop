@@ -12,7 +12,6 @@ import {
 import matches from '../fixtures/matches';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { fetchMatchByStudentAndId, updateMatchByStudentAndId, addMatchToStudent } from '../../api/matches';
 
 let mockAPI;
 
@@ -21,10 +20,12 @@ beforeEach(() => {
   // we need to be able to simulate database actions by mocking the matches api
   // we can simulate different returns from the api, as well as call failures
   mockAPI = {
+    addMatch: jest.fn(),
+    fetchSeniorMatchByStudentAndSenior: jest.fn(),
+    fetchStudentMatchByStudentAndSenior: jest.fn(),
     fetchMatchesByStudent: jest.fn(),
-    fetchMatchByStudentAndId: jest.fn(),
-    updateMatchByStudentAndId: jest.fn(),
-    addMatchToStudent: jest.fn(),
+    fetchMatchesBySenior: jest.fn(),
+    updateMatchByStudentAndSenior: jest.fn(),
   };
 });
 
@@ -59,8 +60,9 @@ const createMockStore = configureMockStore([thunk]);
 test('startSetMatches should dispatch a set objects matches with api call return', () => {
   mockAPI.fetchMatchesByStudent.mockResolvedValue(matches);
   const store = createMockStore({});
+  const type = 'student';
 
-  store.dispatch(startSetMatches(mockAPI, 'anyId')).then(() => {
+  store.dispatch(startSetMatches(mockAPI, type, 'anyId')).then(() => {
     const actions = store.getActions();
     expect(actions[0]).toEqual({
       matches,
@@ -69,39 +71,72 @@ test('startSetMatches should dispatch a set objects matches with api call return
   });
 });
 
-test('startAcceptMatch should dispatch an accept match on successful api call', () => {
-  mockAPI.updateMatchByStudentAndId.mockResolvedValue(undefined);
+test('startAcceptMatch from student should dispatch an accept match on successful api call', () => {
+  mockAPI.updateMatchByStudentAndSenior.mockResolvedValue(undefined);
   const store = createMockStore({});
   const match = matches[0];
+  const type = 'student';
 
-  store.dispatch(startAcceptMatch(mockAPI, 'anyId', match.id)).then(() => {
+  store.dispatch(startAcceptMatch(mockAPI, type, 'anyId', match.person_id)).then(() => {
     const actions = store.getActions();
     expect(actions[0]).toEqual({
       type: ACCEPT_MATCH_NAME,
-      id: match.id,
+      id: match.person_id,
+    });
+  });
+});
+
+test('startAcceptMatch from senior should dispatch an accept match on successful api call', () => {
+  mockAPI.updateMatchByStudentAndSenior.mockResolvedValue(undefined);
+  const store = createMockStore({});
+  const match = matches[0];
+  const type = 'student';
+
+  store.dispatch(startAcceptMatch(mockAPI, type, 'anyId', match.person_id)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: ACCEPT_MATCH_NAME,
+      id: match.person_id,
     });
   });
 });
 
 test('startDeclineMatch should dispatch a decline on successful api call', () => {
-  mockAPI.updateMatchByStudentAndId.mockResolvedValue(undefined);
+  mockAPI.updateMatchByStudentAndSenior.mockResolvedValue(undefined);
   const store = createMockStore({});
   const match = matches[0];
+  const type = 'student';
 
-  store.dispatch(startDeclineMatch(mockAPI, 'anyId', match.id)).then(() => {
+  store.dispatch(startDeclineMatch(mockAPI, type, 'anyId', match.person_id)).then(() => {
     const actions = store.getActions();
     expect(actions[0]).toEqual({
       type: DECLINE_MATCH_NAME,
-      id: match.id,
+      id: match.person_id,
+    });
+  });
+});
+
+test('startDeclineMatch should dispatch a decline on successful api call', () => {
+  mockAPI.updateMatchByStudentAndSenior.mockResolvedValue(undefined);
+  const store = createMockStore({});
+  const match = matches[0];
+  const type = 'student';
+
+  store.dispatch(startDeclineMatch(mockAPI, type, 'anyId', match.person_id)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: DECLINE_MATCH_NAME,
+      id: match.person_id,
     });
   });
 });
 
 test('startSetMatches should reject promise on failed api call', (done) => {
-  mockAPI.fetchMatchesByStudent.mockRejectedValue('Failed api call');
+  mockAPI.fetchMatchesBySenior.mockRejectedValue('Failed api call');
   const store = createMockStore({});
+  const type = 'senior';
 
-  expect(store.dispatch(startSetMatches(mockAPI, 'anyId')))
+  expect(store.dispatch(startSetMatches(mockAPI, type, 'anyId')))
     .rejects
     .toMatch('Failed api call')
     .then(() => {
@@ -114,10 +149,11 @@ test('startSetMatches should reject promise on failed api call', (done) => {
 });
 
 test('startAcceptMatch should reject promise on failed api call', (done) => {
-  mockAPI.updateMatchByStudentAndId.mockRejectedValue('Failed api call');
+  mockAPI.updateMatchByStudentAndSenior.mockRejectedValue('Failed api call');
+  const type = 'student';
 
   const store = createMockStore({});
-  expect(store.dispatch(startAcceptMatch(mockAPI, 'eh', 'more')))
+  expect(store.dispatch(startAcceptMatch(mockAPI, type, 'eh', 'more')))
     .rejects
     .toMatch('Failed api call').then(() => {
       const actions = store.getActions();
@@ -129,11 +165,12 @@ test('startAcceptMatch should reject promise on failed api call', (done) => {
 });
 
 test('startDeclineMatch should reject promise on failed api call', (done) => {
-  mockAPI.updateMatchByStudentAndId.mockRejectedValue('Failed api call');
+  mockAPI.updateMatchByStudentAndSenior.mockRejectedValue('Failed api call');
+  const type = 'senior';
 
   const store = createMockStore({});
   expect(
-    store.dispatch(startDeclineMatch(mockAPI, 'eh', 'more')),
+    store.dispatch(startDeclineMatch(mockAPI, type, 'eh', 'more')),
   ).rejects.toMatch('Failed api call').then(() => {
     const actions = store.getActions();
     expect(
