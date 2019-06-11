@@ -1,0 +1,26 @@
+#phoneNumber {
+    background-color: orange
+}
+
+#email {
+    background-color: red
+
+}
+
+#passwordOne {
+    background-color: green;
+
+}
+
+#passwordTwo {
+    background-color: blue
+
+}
+
+#phoneNumber p.ws-errormessage::after {
+    content:"Please enter the phone number in the form (xxx) xxx-xxxx";
+}
+
+.error { border: 1px solid red; }
+
+.form-control:valid~.invalid-feedback {display: none;}
