@@ -28,7 +28,7 @@ function navigation(props) {
 // iterate over all routes from routes.ts
 // return a jsx expression containing links to all routes
 function links() {
-  const allLinks = [<p>Links:</p>];
+  const allLinks = [<br />];
   Routes.forEach(route => allLinks.push(<Link to={route.path}>{route.name}</Link>, <br />));
   return allLinks;
 }
