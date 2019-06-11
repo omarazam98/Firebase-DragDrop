@@ -8,25 +8,35 @@ import React from 'react';
 // exact is if the route is to the exact path
 // name will be the label of the link
 // component should be the page/component to be shown
+// To add a componenet page to the routes table/nav bar, you should import it here at the top of the file and add it to the routes object:
+/*** Example: 
+ * import App from '../../App'
+ *
+ * const ROUTES = [
+ *  {
+ *     path:'/',
+ *     exact:true,
+ *     name:'Home',
+ *     component: App,
+ *  }, 
+/* Example routes with basic JSX elements as components
+ *  {
+ *     path:'/example1',
+ *     name:'Primary',
+ *     component: () => <div>Hello world!</div>,
+ *  },
+ *  {
+ *     path:'/example2',
+ *     exact:true,
+ *     name:'Secondary',
+ *     component: () => <div>Goodbye, world!</div>,
+ *  },
+ * ];
+ *
+**/
+
 const ROUTES = [
-  /* Example routes with basic JSX elements as components
-  {
-    path:'/',
-    exact:true,
-    name:'Home',
-    component: () => <div>Home</div>,
-  },
-  {
-    path:'/example1',
-    name:'Primary',
-    component: () => <div>Hello world!</div>,
-  },
-  {
-    path:'/example2',
-    name:'Secondary',
-    component: () => <div>Goodbye, world!</div>,
-  },
-  */
+  
 ];
 
 export default ROUTES;
