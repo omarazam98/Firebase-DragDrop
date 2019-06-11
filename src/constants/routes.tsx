@@ -9,6 +9,7 @@ import React from 'react';
 // name will be the label of the link
 // component should be the page/component to be shown
 const ROUTES = [
+  /* Example routes with basic JSX elements as components
   {
     path:'/',
     exact:true,
@@ -25,6 +26,7 @@ const ROUTES = [
     name:'Secondary',
     component: () => <div>Goodbye, world!</div>,
   },
+  */
 ];
 
 export default ROUTES;
