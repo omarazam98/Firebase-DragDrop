@@ -1,4 +1,4 @@
-#phoneNumber {
+/*#phoneNumber {
     background-color: orange
 }
 
@@ -15,12 +15,9 @@
 #passwordTwo {
     background-color: blue
 
+}*/
+
+
+span {
+    color: firebrick;
 }
-
-#phoneNumber p.ws-errormessage::after {
-    content:"Please enter the phone number in the form (xxx) xxx-xxxx";
-}
-
-.error { border: 1px solid red; }
-
-.form-control:valid~.invalid-feedback {display: none;}
