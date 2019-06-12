@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './SignUp.css';
-import { fireauth, firestore} from '../firebase/firebase'
+import { fireauth, firestore} from '../../firebase/firebase';
 
 interface SignUpState {
     name: {
