@@ -2,6 +2,7 @@
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import React from 'react';
+import SignUp from '../components/SignUp/SignUp'
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
@@ -36,7 +37,12 @@ import React from 'react';
 **/
 
 const ROUTES = [
-  
+    {
+        path: '/signup',
+        exact: false,
+        name: 'Sign Up',
+        component: SignUp
+    }
 ];
 
 export default ROUTES;
