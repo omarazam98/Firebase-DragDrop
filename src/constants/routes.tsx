@@ -44,6 +44,12 @@ const ROUTES = [
         name: 'Sign Up',
         component: SignUp
     },
+    {
+        path: '/email',
+        exact: false,
+        name: 'Email Link',
+        component: EmailRedirect,
+    },
 ];
 
 export default ROUTES;
