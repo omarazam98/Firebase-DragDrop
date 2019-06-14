@@ -37,6 +37,8 @@
   ],
   "proxy": "http://localhost:5000/",
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.2",
     "redux-mock-store": "^1.5.3",
     "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1"
