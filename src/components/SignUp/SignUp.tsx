@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import './SignUp.css';
-import {firestore} from '../../firebase/firebase';
+import '../../styles/SignUp.css';
 import {withAPI} from '@winwin/api-firebase';
 import {
     withRouter
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 interface SignUpState {
     name: {
@@ -91,8 +90,7 @@ export class SignUp extends Component<any, SignUpState> {
             }, () => {
                 this.validateInputs(e);
             });
-        }
-        ;
+        };
     };
 
     validateInputs = e => {
@@ -132,8 +130,7 @@ export class SignUp extends Component<any, SignUpState> {
                     }
                 } as Pick<SignUpState, keyof SignUpState>
             });
-        }
-        ;
+        };
     };
 
     submit = e => {
@@ -188,8 +185,8 @@ export class SignUp extends Component<any, SignUpState> {
                 } as Pick<SignUpState, keyof SignUpState>
             });
         }
-        ;
-    };
+
+    }
 
     render() {
         const disableButton = this.hasErrors();
@@ -237,6 +234,6 @@ export class SignUp extends Component<any, SignUpState> {
             </div>
         );
     };
-};
+}
 
 export default withAPI(withRouter(SignUp))
