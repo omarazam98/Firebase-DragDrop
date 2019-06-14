@@ -34,7 +34,7 @@ export class Login extends Component<any, LoginState> {
 
     submit = e => {
         e.preventDefault();
-        this.props.api.api.auth.login.signIn(this.state.email, this.state.password)
+        return this.props.api.api.auth.login.signIn(this.state.email, this.state.password)
             .then((userCredential)=>{
                 if(userCredential.user.emailVerified){
                     this.props.history.push('/dashboard');
@@ -48,7 +48,6 @@ export class Login extends Component<any, LoginState> {
 
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 <h1> Login Page </h1>
