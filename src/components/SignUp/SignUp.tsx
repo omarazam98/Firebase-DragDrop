@@ -145,12 +145,12 @@ export class SignUp extends Component<any, SignUpState> {
                         user.sendEmailVerification();
                         this.props.history.push('/email'); //redirects to a new page saying that an email has been sent, and the account needs to be verified
                         user.updateProfile({displayName: this.state.name.value}).then(() => { //after creating the user in firebase auth, this also starts a user profile in the DB that will add the extra info (name, phonenumber, student or senior)
-                            firestore.collection('users').doc(user.uid).set({
+                            this.props.api.api.data.users.create({
                                 email: user.email,
                                 phoneNumber: this.state.phoneNumber.value,
                                 name: user.displayName,
                                 class: this.state.class.value
-                            });
+                            }, user.uid);
                         });
                     }
                 }).catch(function (error) { //these error messages are coming from firestore and include anything we aren't already catching
