@@ -3,6 +3,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Routes from '../../constants/routes';
+import {withAPI} from '@winwin/api-firebase';
 import SplitPane from 'react-split-pane';
 
 function navigation(props) {
@@ -38,4 +39,4 @@ function links() {
   return allLinks;
 }
 
-export default navigation;
+export default withAPI(navigation);
