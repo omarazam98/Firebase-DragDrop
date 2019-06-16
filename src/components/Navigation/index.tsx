@@ -3,6 +3,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Routes from '../../constants/routes';
+import {withAPI} from '@winwin/api-firebase';
 
 function navigation(props) {
   return (
@@ -10,7 +11,8 @@ function navigation(props) {
       <Router>
         {/* Link creates the object that a user can click on to go to another page */}
         {links()}
-        <hr/>
+          <button onClick = {() => {props.api.api.auth.firebaseAuth.signOut()}}>Log Out</button>
+          <hr/>
         {/* Route indicates what component should be shown, based on what is linked */}
         {/* Map routes from links to their components */}
         {Routes.map((route, index) => (
@@ -33,4 +35,4 @@ function links() {
   return allLinks;
 }
 
-export default navigation;
+export default withAPI(navigation);
