@@ -13,7 +13,7 @@ function navigation(props) {
         <hr/>
         {/* Route indicates what component should be shown, based on what is linked */}
         {/* Map routes from links to their components */}
-        {Routes.map((route, index) => (
+        {Routes.map((route:any , index) => (
           <Route
             key={index}
             path={route.path}
@@ -29,7 +29,7 @@ function navigation(props) {
 // return a jsx expression containing links to all routes
 function links() {
   const allLinks = [<br />];
-  Routes.forEach(route => allLinks.push(<Link to={route.path}>{route.name}</Link>, <br />));
+  Routes.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}</Link>, <br />));
   return allLinks;
 }
 
