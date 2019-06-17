@@ -4,26 +4,28 @@ import { shallow } from 'enzyme'
 
 
 let wrapper;
+let mockEvent;
 
 beforeEach(() => {
     wrapper = shallow(
         <Upload/>);
 });
 
-test('has a valid snapshot', () => {
+it('has a valid snapshot', () => {
     expect(wrapper).toMatchSnapshot();
 });
 
-it('Select file changes state', () => {
+it('File not added to state if invalid type', () => {
     const file = new File(["Hello World"], "file.txt");
-    expect(wrapper.state('file')).toBeDefined();
-    const mockEvent = {
+    mockEvent = {
         target: {
             files: [
                 file
             ]
         }};
-    expect(wrapper.state.file).toBeUndefined();
+    wrapper.instance().handleFileSelect(mockEvent);
+    expect(wrapper.state('file')).toBeNull();
+    expect(wrapper.state('error').message).toBe('File type not accepted')
 });
 
 it('Clicking upload button calls uploadFile', () => {
