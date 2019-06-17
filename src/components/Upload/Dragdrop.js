@@ -11,7 +11,7 @@ const INITIAL_STATE: DragdropState = {
     dragCounter: 0,
 };
 
-class Dragdrop extends React.Component {
+export class Dragdrop extends React.Component {
 
     constructor(props) {
         super(props);
