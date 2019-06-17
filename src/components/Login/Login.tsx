@@ -4,14 +4,17 @@ import {
     withRouter
 } from 'react-router-dom';
 
+
 interface LoginState {
     email: string;
     password: string;
+    persistAuth: boolean;
 }
 
 const INITIAL_STATE: LoginState = {
     email: '',
     password: '',
+    persistAuth: false,
 };
 
 export class Login extends Component<any, LoginState> {
@@ -23,9 +26,10 @@ export class Login extends Component<any, LoginState> {
     onChange = e => {
         e.persist()
         if (Object.keys(this.state).includes(e.target.name)) {
+            const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
             this.setState(function (prevState, props) {
                 return {
-                    [e.target.name]: e.target.value
+                    [e.target.name]: value
                 } as Pick<LoginState, keyof LoginState>
             });
         }
@@ -34,15 +38,17 @@ export class Login extends Component<any, LoginState> {
 
     submit = e => {
         e.preventDefault();
-        return this.props.api.api.auth.login.signIn(this.state.email, this.state.password)
-            .then((userCredential)=>{
-                if(userCredential.user.emailVerified){
-                    this.props.history.push('/dashboard');
-                }else{
-                    this.props.history.push('/emailverificationrequired');
-                }
-            }).catch((error)=>{
-            alert(error.message)
+        return this.props.api.api.auth.firebaseAuth.setPersistence(this.state.persistAuth ? 'local' : 'session').then(() => {
+            return this.props.api.api.auth.login.signIn(this.state.email, this.state.password)
+                .then((userCredential) => {
+                    if (userCredential.user.emailVerified) {
+                        this.props.history.push('/dashboard');
+                    } else {
+                        this.props.history.push('/emailverificationrequired');
+                    }
+                }).catch((error) => {
+                    alert(error.message)
+                });
         });
     }
 
@@ -62,6 +68,11 @@ export class Login extends Component<any, LoginState> {
                     <input name="password" id="password"
                            value={this.state.password} onChange={this.onChange} type="password"
                            placeholder="Password"/><br/>
+                    Stay Logged In?
+                    <input
+                        name="persistAuth"
+                        type="checkbox"
+                        onChange={this.onChange} /><br/>
 
                     <input id={'submitButton'} type="submit"
                            value={'Log In'}></input>
