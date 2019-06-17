@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import {
-    withRouter
-} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 class EmailRedirect extends Component<any, any> {
     constructor(props){
         super(props);
+        this.handleClick = this.handleClick.bind(this);
     }
-    onClick = e =>{
+    handleClick(e){
         this.props.history.push('/login');
     }
     render(){
@@ -16,7 +15,7 @@ class EmailRedirect extends Component<any, any> {
             <div>
             Email has been sent to verify account. <br/>
                 Already verified?
-                <button onClick={this.onClick}> Log In</button>
+                <button onClick={this.handleClick}> Log In</button>
             </div>
         );
     }
