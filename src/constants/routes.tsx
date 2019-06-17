@@ -2,7 +2,7 @@
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import React from 'react';
-import Login from '../components/Login/Login'
+import Login from '../components/Login/Login';
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
