@@ -37,12 +37,7 @@ import Upload from '../components/Upload/Upload';
 **/
 
 const ROUTES = [
-    {
-        path: '/upload',
-        exact: true,
-        name: 'Upload document',
-        component: Upload
-    }
+
 ];
 
 export default ROUTES;
