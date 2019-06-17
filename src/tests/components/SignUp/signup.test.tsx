@@ -74,7 +74,7 @@ test('redirects to login after submit', () => {
     const firebaseMock = { }
     const historyWrapper = shallow(<SignUp history={historyMock} api={fakeAPI}/>)
     historyWrapper.setState(mockState);
-    historyWrapper.instance().submit(fakeEvent).then(()=>{
+    historyWrapper.instance().handleSubmit(fakeEvent).then(()=>{
         expect(historyMock.push.mock.calls[0]).toEqual([ '/email' ]);
     })
 });

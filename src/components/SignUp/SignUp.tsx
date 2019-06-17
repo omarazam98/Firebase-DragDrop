@@ -1,41 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../../styles/SignUp.css';
-import {withAPI} from '@winwin/api-firebase';
-import {
-    withRouter
-} from 'react-router-dom';
+import { withAPI } from '@winwin/api-firebase';
+import { withRouter } from 'react-router-dom';
 
+interface FormField {
+    value: string,
+    touched: boolean,
+    errors: string,
+}
 interface SignUpState {
-    name: {
-        value: string,
-        touched: boolean,
-        errors: string,
-    };
-    phoneNumber: {
-        value: string,
-        touched: boolean,
-        errors: string,
-    };
-    class: {
-        value: string,
-        touched: boolean,
-        errors: string,
-    };
-    email: {
-        value: string,
-        touched: boolean,
-        errors: string,
-    };
-    passwordOne: {
-        value: string,
-        touched: boolean,
-        errors: string,
-    };
-    passwordTwo: {
-        value: string,
-        touched: boolean,
-        errors: string,
-    };
+    name: FormField;
+    phoneNumber: FormField;
+    class: FormField;
+    email: FormField;
+    passwordOne: FormField;
+    passwordTwo: FormField;
 }
 
 const INITIAL_STATE: SignUpState = {
@@ -75,25 +54,34 @@ export class SignUp extends Component<any, SignUpState> {
     constructor(props) {
         super(props);
         this.state = INITIAL_STATE;
+        this.handleChange = this.handleChange.bind(this);
+        this.validateInputs = this.validateInputs.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+        this.hasErrors = this.hasErrors.bind(this);
+        this.updateField = this.updateField.bind(this);
     }
 
-    onChange = e => {
+    handleChange(e) {
         e.persist()
         if (Object.keys(this.state).includes(e.target.name)) {
-            this.setState(function (prevState, props) {
-                return {
-                    [e.target.name]: {
-                        ...prevState[e.target.name],
-                        value: e.target.value
-                    }
-                } as Pick<SignUpState, keyof SignUpState>
-            }, () => {
-                this.validateInputs(e);
-            });
-        };
+            this.updateField(e.target.name, e.target.value)
+            this.validateInputs(e);
+        }
     };
 
-    validateInputs = e => {
+    updateField(name, value) {
+        this.setState(function (prevState, props) {
+            return {
+                [name]: {
+                    ...prevState[name],
+                    value
+                }
+            } as Pick<SignUpState, keyof SignUpState>
+        });
+    }
+
+    validateInputs(e) {
         if (e.target.value === '') {
             this.setState(function (prevState, props) {
                 return {
@@ -133,7 +121,7 @@ export class SignUp extends Component<any, SignUpState> {
         };
     };
 
-    submit = e => {
+    handleSubmit(e) {
         e.preventDefault();
         return this.props.api.api.auth.signup.createUserWithEmailAndPassword(this.state.email.value, this.state.passwordOne.value)
                 .then((userCredential) => {
@@ -161,7 +149,7 @@ export class SignUp extends Component<any, SignUpState> {
                 });
     }
 
-    hasErrors = (): boolean => {
+    hasErrors(): boolean {
         for (const key in this.state) {
             if (this.state[key].errors || this.state[key].value === '') {
                 return true;
@@ -173,7 +161,7 @@ export class SignUp extends Component<any, SignUpState> {
     /*
         handleBlur is essentially an onUnFocus method so that errors aren't rendered right away, just after the user goes away from the input box
      */
-    handleBlur = e => { //
+    handleBlur(e) { //
         e.persist();
         if (Object.keys(this.state).includes(e.target.name)) {
             this.setState(function (prevState, props) {
@@ -193,38 +181,38 @@ export class SignUp extends Component<any, SignUpState> {
         return (
             <div>
                 <h1> Sign Up Page </h1>
-                <form onSubmit={this.submit}>
+                <form onSubmit={this.handleSubmit}>
                     <label htmlFor="name">Name: </label> <br/>
                     <input name="name" id="name" onBlur={this.handleBlur} value={this.state.name.value}
-                           onChange={this.onChange} type="text" placeholder="Full Name"/> {this.state.name.touched &&
+                           onChange={this.handleChange} type="text" placeholder="Full Name"/> {this.state.name.touched &&
                 <span> {this.state.name.errors} </span>} <br/>
 
                     <input type="radio" name="class" value="senior" checked={this.state.class.value === "senior"}
-                           onChange={this.onChange}/>Senior
+                           onChange={this.handleChange}/>Senior
                     <input type="radio" name="class" value="student" checked={this.state.class.value === "student"}
-                           onChange={this.onChange}/>Student <br/>
+                           onChange={this.handleChange}/>Student <br/>
 
                     <label htmlFor="email">Email: </label> <br/>
                     <input name="email" id="email" onBlur={this.handleBlur} value={this.state.email.value}
-                           onChange={this.onChange} type="email"
+                           onChange={this.handleChange} type="email"
                            placeholder="Email Address"/> {this.state.email.touched &&
                 <span> {this.state.email.errors} </span>}<br/>
 
                     <label htmlFor="phoneNumber">Phone Number: </label><br/>
-                    <input name="phoneNumber" id='phoneNumber' onBlur={this.handleBlur} onChange={this.onChange}
+                    <input name="phoneNumber" id='phoneNumber' onBlur={this.handleBlur} onChange={this.handleChange}
                            type="tel" placeholder="Phone Number"
                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>{this.state.phoneNumber.touched &&
                 <span> {this.state.phoneNumber.errors} </span>}<br/>
 
                     <label htmlFor="passwordOne">Password: </label><br/>
                     <input name="passwordOne" id="passwordOne" onBlur={this.handleBlur}
-                           value={this.state.passwordOne.value} onChange={this.onChange} type="password"
+                           value={this.state.passwordOne.value} onChange={this.handleChange} type="password"
                            placeholder="Password"/>{this.state.passwordOne.touched &&
                 <span> {this.state.passwordOne.errors} </span>} <br/>
 
                     <label htmlFor="passwordTwo">Confirm Password: </label> <br/>
                     <input name="passwordTwo" id="passwordTwo" onBlur={this.handleBlur}
-                           value={this.state.passwordTwo.value} onChange={this.onChange} type="password"
+                           value={this.state.passwordTwo.value} onChange={this.handleChange} type="password"
                            placeholder="Confirm Password"/>{this.state.passwordTwo.touched &&
                 <span> {this.state.passwordTwo.errors} </span>} <br/>
 

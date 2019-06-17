@@ -40,13 +40,13 @@ import EmailRedirect from '../components/SignUp/EmailRedirect';
 const ROUTES = [
     {
         path: '/signup',
-        exact: false,
+        exact: true,
         name: 'Sign Up',
         component: SignUp
     },
     {
         path: '/email',
-        exact: false,
+        exact: true,
         name: 'Email Link',
         component: EmailRedirect,
     },
