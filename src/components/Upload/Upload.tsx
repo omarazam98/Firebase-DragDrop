@@ -78,7 +78,6 @@ export class Upload extends React.Component<any, UploadState> {
                 });
                 return;
         }
-        console.log('bad file');
         this.setState(function(prevState, props){
             return {error: new Error("File type not accepted")}
         });
