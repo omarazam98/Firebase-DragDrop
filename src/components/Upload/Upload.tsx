@@ -8,8 +8,8 @@ interface UploadState {
     uploading: boolean;
     uploaded: boolean;
     percent: number;
-    file: File;
-    error: Error;
+    file: File | null;
+    error: Error | null;
 }
 const INITIALSTATE = {
     uploading: false,
@@ -18,7 +18,7 @@ const INITIALSTATE = {
     file: null,
     error: null,
 }
-export class Upload extends React.Component<any, any> {
+export class Upload extends React.Component<any, UploadState> {
     docPathStorage: String;
     constructor(props) {
         super(props);
