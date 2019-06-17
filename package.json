@@ -26,7 +26,9 @@
     "test:coverage": "jest --coverage"
   },
   "jest": {
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
