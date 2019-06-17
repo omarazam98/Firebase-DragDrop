@@ -3,24 +3,28 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Routes from '../../constants/routes';
+import SplitPane from 'react-split-pane';
 
 function navigation(props) {
   return (
     <div>
       <Router>
-        {/* Link creates the object that a user can click on to go to another page */}
-        {links()}
-        <hr/>
-        {/* Route indicates what component should be shown, based on what is linked */}
-        {/* Map routes from links to their components */}
-        {Routes.map((route:any , index) => (
-          <Route
-            key={index}
-            path={route.path}
-            exact={route.exact}
-            component={route.component}
-          />
-        ))}
+        <SplitPane split="vertical" minSize={50} defaultSize={100}>
+          {/* Link creates the object that a user can click on to go to another page */}
+          <div>{links()}</div>
+          {/* Route indicates what component should be shown, based on what is linked */}
+          {/* Map routes from links to their components */}
+          <div>
+          {Routes.map((route:any, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={route.component}
+            />
+          ))}
+          </div>
+        </SplitPane>
       </Router>
     </div>
   );
@@ -28,8 +32,9 @@ function navigation(props) {
 // iterate over all routes from routes.ts
 // return a jsx expression containing links to all routes
 function links() {
-  const allLinks = [<br />];
-  Routes.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}</Link>, <br />));
+  // can't push JSX on an empty array, so init with a div
+  const allLinks = [<div />];
+  Routes.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
   return allLinks;
 }
 
