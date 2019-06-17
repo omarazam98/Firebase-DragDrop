@@ -1,16 +1,14 @@
 import * as React from 'react';
-import Firebase, {withFirebase} from '../Firebase';
 import {ChangeEvent} from "react";
-import * as firebase from 'firebase'
 import Dragdrop from "./Dragdrop";
 import './Upload.css';
+import { withAPI } from '@winwin/api-firebase';
 
-
-class UploadBase extends React.Component<any, any> {
+export class Upload extends React.Component<any, any> {
     docPathDB: String;
     docPathStorage: String;
 
-    constructor(props: Firebase) {
+    constructor(props) {
         super(props);
         this.docPathDB = "Files/documentTest/";
         this.docPathStorage = "test/documents/";
@@ -78,22 +76,21 @@ class UploadBase extends React.Component<any, any> {
             const file = this.state.file;
             this.setState({uploading: true});
             try {
-                const storageRef = this.props.firebase.storage.ref(this.docPathStorage + file.name); //Creates a storage reference at filepath
-                const task = storageRef.put(file); //puts file in that reference
+                const storageRef = this.props.api.api.data.storage.ref(this.docPathStorage + file.name);
+                const task = storageRef.put(file);
+                this.setState({uploading: true});
                 task.on('state_changed',
-                    function progress(snapshot: firebase.storage.UploadTaskSnapshot) {
+                    function progress(snapshot) {
                         const uploader = document.getElementById("uploader") as HTMLProgressElement;
                         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                         uploader.value = percentage;
                     }, function error(err: Error) {
                         console.log(err);
-                    }, () => {
-                    console.log(this.state.uploading)
+                    }, function complete() {
                         this.setState({uploaded: true});
                         this.setState({uploading: false});
-                        //console.log("Uploaded file to " + 'users/' + this.state.userName + '/' + this.docPathDB);
                         task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
-                            this.props.firebase.db.doc('users/' + this.state.userName + '/' + this.docPathDB).set(
+                            this.props.api.api.data.users.updateUserById(this.state.userName + '/' + this.docPathDB).set(
                                 {
                                     URL: downloadURL
                                 }
@@ -107,8 +104,8 @@ class UploadBase extends React.Component<any, any> {
         }
 
     }
-
     render() {
+        console.log(this.props.api.api.firebaseStorage)
         return (
             <div>
                 <h1>Uploading Page</h1>
@@ -138,5 +135,4 @@ class UploadBase extends React.Component<any, any> {
     }
 }
 
-const Upload = withFirebase(UploadBase);
-export {Upload, UploadBase};
+export default withAPI(Upload);
