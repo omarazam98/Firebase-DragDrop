@@ -11,6 +11,7 @@ interface UploadState {
     file: File | null;
     error: Error | null;
 }
+
 const INITIALSTATE = {
     uploading: false,
     uploaded: false,
@@ -18,11 +19,10 @@ const INITIALSTATE = {
     file: null,
     error: null,
 }
+
 export class Upload extends React.Component<any, UploadState> {
-    docPathStorage: String;
     constructor(props) {
         super(props);
-        this.docPathStorage = "photos/";
         this.state = INITIALSTATE
         this.handleDropSelect = this.handleDropSelect.bind(this);
         this.handleFileSelect = this.handleFileSelect.bind(this);
@@ -40,7 +40,7 @@ export class Upload extends React.Component<any, UploadState> {
                 error: null
             }
         });
-        const file = e.target.files![0];
+        const file = e.target.files[0];
         const ext = file.type //MIME type
         switch (ext.toLowerCase()) {
             case 'image/jpg':
@@ -78,6 +78,7 @@ export class Upload extends React.Component<any, UploadState> {
                 });
                 return;
         }
+        console.log('bad file');
         this.setState(function(prevState, props){
             return {error: new Error("File type not accepted")}
         });
@@ -85,7 +86,6 @@ export class Upload extends React.Component<any, UploadState> {
 
     /**
      * Uploads file from file state and sends to firebase
-     * stored in cloud storage at this.docPathStorage + filename
      * stored in firestore database as URL to storage under username (default userX)
      * also updates a progress bar as file is uploaded
      */
@@ -94,7 +94,7 @@ export class Upload extends React.Component<any, UploadState> {
             const file = this.state.file;
             this.setState({uploading: true});
             try {
-                const storageRef = this.props.api.api.data.storage.ref(this.docPathStorage + file.name);
+                const storageRef = this.props.api.api.data.storage.ref(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
                 const task = storageRef.put(file);
                 this.setState(function(prevState, props){
                     return {
@@ -116,6 +116,7 @@ export class Upload extends React.Component<any, UploadState> {
                             }
                         });
                         task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
+                            //for now this is just putting a photo URL in the firestore entry for that user, but using firebase auth to update the current user's profile image should be implemented later
                             this.props.api.api.data.users.updateById(this.props.userID, {
                                 photoURL: downloadURL
                             });
@@ -133,7 +134,6 @@ export class Upload extends React.Component<any, UploadState> {
     };
 
     render(){
-        console.log(this.props.userID);
         return (
             <div>
                 <Dragdrop handleDrop={this.handleDropSelect}>
