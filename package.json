@@ -7,6 +7,7 @@
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
     "package.json": "^2.0.1",
+    "eslint": "^5.16",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
@@ -27,7 +28,7 @@
   },
   "jest": {
     "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
+      "client/node_modules/enzyme-to-json/serializer"
     ]
   },
   "eslintConfig": {
