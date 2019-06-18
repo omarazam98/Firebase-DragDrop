@@ -7,7 +7,6 @@ import Adapter from 'enzyme-adapter-react-16';
 let wrapper;
 
 const fakeAPI = {
-    api: {
         auth: {
             signup: {
                 createUserWithEmailAndPassword: () => {
@@ -23,7 +22,6 @@ const fakeAPI = {
                 }
             }
         }
-    }
 };
 
 const mockState = {

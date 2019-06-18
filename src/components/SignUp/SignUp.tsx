@@ -65,12 +65,11 @@ export class SignUp extends Component<any, SignUpState> {
     handleChange(e) {
         e.persist()
         if (Object.keys(this.state).includes(e.target.name)) {
-            this.updateField(e.target.name, e.target.value)
-            this.validateInputs(e);
+            this.updateField(e.target.name, e.target.value, e.target.checkValidity())
         }
     };
 
-    updateField(name, value) {
+    updateField(name, value, valid) {
         this.setState(function (prevState, props) {
             return {
                 [name]: {
@@ -78,20 +77,22 @@ export class SignUp extends Component<any, SignUpState> {
                     value
                 }
             } as Pick<SignUpState, keyof SignUpState>
+        }, () => {
+            this.validateInputs(name, value, valid)
         });
     }
 
-    validateInputs(e) {
-        if (e.target.value === '') {
+    validateInputs(name, value, valid) {
+        if (value === '') {
             this.setState(function (prevState, props) {
                 return {
-                    [e.target.name]: {
-                        ...prevState[e.target.name],
+                    [name]: {
+                        ...prevState[name],
                         errors: 'field cannot be empty'
                     }
                 } as Pick<SignUpState, keyof SignUpState>
             });
-        } else if (e.target.name === 'passwordTwo' && this.state.passwordOne.value !== this.state.passwordTwo.value) {
+        } else if (name === 'passwordTwo' && this.state.passwordOne.value !== this.state.passwordTwo.value) {
             this.setState(function (prevState, props) {
                 return {
                     passwordTwo: {
@@ -100,11 +101,11 @@ export class SignUp extends Component<any, SignUpState> {
                     }
                 } as Pick<SignUpState, keyof SignUpState>
             });
-        } else if (!e.target.checkValidity()) {
+        } else if (!valid) {
             this.setState(function (prevState, props) {
                 return {
-                    [e.target.name]: {
-                        ...prevState[e.target.name],
+                    [name]: {
+                        ...prevState[name],
                         errors: 'invalid format'
                     }
                 } as Pick<SignUpState, keyof SignUpState>
@@ -112,8 +113,8 @@ export class SignUp extends Component<any, SignUpState> {
         } else {
             this.setState(function (prevState, props) {
                 return {
-                    [e.target.name]: {
-                        ...prevState[e.target.name],
+                    [name]: {
+                        ...prevState[name],
                         errors: ''
                     }
                 } as Pick<SignUpState, keyof SignUpState>
@@ -123,14 +124,14 @@ export class SignUp extends Component<any, SignUpState> {
 
     handleSubmit(e) {
         e.preventDefault();
-        return this.props.api.api.auth.signup.createUserWithEmailAndPassword(this.state.email.value, this.state.passwordOne.value)
+        return this.props.api.auth.signup.createUserWithEmailAndPassword(this.state.email.value, this.state.passwordOne.value)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     if (user) {
                         user.sendEmailVerification();
                         this.props.history.push('/email'); //redirects to a new page saying that an email has been sent, and the account needs to be verified
                         user.updateProfile({displayName: this.state.name.value}).then(() => { //after creating the user in firebase auth, this also starts a user profile in the DB that will add the extra info (name, phonenumber, student or senior)
-                            this.props.api.api.data.users.create({
+                            this.props.api.data.users.create({
                                 email: user.email,
                                 phoneNumber: this.state.phoneNumber.value,
                                 name: user.displayName,
@@ -177,6 +178,7 @@ export class SignUp extends Component<any, SignUpState> {
     }
 
     render() {
+        console.log(this.state);
         const disableButton = this.hasErrors();
         return (
             <div>
