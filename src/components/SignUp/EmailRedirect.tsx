@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 
-
-class EmailRedirect extends Component<any, any> {
-    constructor(props){
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-    handleClick(e){
-        this.props.history.push('/login');
-    }
-    render(){
-        return (
-            <div>
+export function EmailRedirect(props) {
+    const handleClick = (e) => props.dispatch(props.history.push('/login'));
+    return (
+        <div>
             Email has been sent to verify account. <br/>
-                Already verified?
-                <button onClick={this.handleClick}> Log In</button>
-            </div>
-        );
-    }
+            Already verified?
+            <button onClick={handleClick}> Log In</button>
+        </div>    );
 }
 export default withRouter(EmailRedirect);
