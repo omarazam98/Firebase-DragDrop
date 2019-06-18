@@ -190,7 +190,7 @@ export class SignUp extends Component<any, SignUpState> {
         const disableButton = this.hasErrors();
         return (
             <div>
-                <h1> Sign Up Page </h1>
+                <h1> Sign Up </h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="name">Name: </label> <br/>
                     <input name="name" id="name" onBlur={this.handleBlur} value={this.state.name.value}
