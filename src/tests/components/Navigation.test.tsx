@@ -10,6 +10,5 @@ const options = {
 test('Render the navigation', () => {
   const test = <Navigation />;
   const wrapper = shallow(test, options);
-  console.log(wrapper);
   expect(wrapper).toMatchSnapshot();
 });

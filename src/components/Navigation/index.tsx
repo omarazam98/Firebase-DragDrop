@@ -12,7 +12,10 @@ export function Navigation(props) {
       <Router>
         <SplitPane split="vertical" minSize={50} defaultSize={100}>
           {/* Link creates the object that a user can click on to go to another page */}
-          <div>{links()}</div>
+          <div>
+            {links()}
+            <button onClick = {() => {props.api.auth.firebaseAuth.signOut()}}>Log Out</button>
+          </div>
           {/* Route indicates what component should be shown, based on what is linked */}
           {/* Map routes from links to their components */}
           <div>

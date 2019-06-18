@@ -3,6 +3,7 @@
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import React from 'react';
 import Login from '../components/Login/Login';
+import Dashboard from '../components/Dashboard/Dashboard';
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
@@ -42,6 +43,12 @@ const ROUTES = [
              exact:true,
              name:'Log In',
              component: Login,
+    },
+    {
+        path:'/dashboard',
+        exact:true,
+        name:'Dashboard',
+        component: Dashboard,
     },
 ];
 

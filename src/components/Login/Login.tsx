@@ -7,12 +7,14 @@ interface LoginState {
     email: string;
     password: string;
     persistAuth: boolean;
+    error: Error | undefined
 }
 
 const INITIAL_STATE: LoginState = {
     email: '',
     password: '',
     persistAuth: false,
+    error: undefined,
 };
 
 export class Login extends Component<any, LoginState> {
@@ -47,6 +49,9 @@ export class Login extends Component<any, LoginState> {
                         this.props.history.push('/emailverificationrequired');
                     }
                 }).catch((error) => {
+                    this.setState(function(){
+                        return {error}
+                    });
                     alert(error.message)
                 });
         });
