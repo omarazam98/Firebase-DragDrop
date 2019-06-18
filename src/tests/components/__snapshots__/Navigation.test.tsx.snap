@@ -28,6 +28,7 @@ exports[`Render the navigation 1`] = `
           <br />
         </Link>
         <button
+          id="signOut"
           onClick={[Function]}
         >
           Log Out
