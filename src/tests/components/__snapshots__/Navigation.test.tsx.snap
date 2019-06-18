@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render the navigation 1`] = `
+<div>
+  <BrowserRouter>
+    <SplitPane
+      allowResize={true}
+      defaultSize={100}
+      minSize={50}
+      pane1ClassName=""
+      pane2ClassName=""
+      paneClassName=""
+      primary="first"
+      split="vertical"
+    >
+      <div>
+        <div />
+      </div>
+      <div>
+        <Route
+          name="Upload document"
+          path="/upload"
+          render={[Function]}
+        />
+      </div>
+    </SplitPane>
+  </BrowserRouter>
+</div>
+`;

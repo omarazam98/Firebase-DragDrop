@@ -1,5 +1,4 @@
-import * as React from 'react';
-import {ChangeEvent} from "react";
+import React, { Component } from 'react';
 import Dragdrop from "./Dragdrop";
 import './Upload.css';
 import { withAPI } from '@winwin/api-firebase';
@@ -20,7 +19,7 @@ const INITIALSTATE = {
     error: null,
 }
 
-export class Upload extends React.Component<any, UploadState> {
+export class Upload extends Component<any, UploadState> {
     constructor(props) {
         super(props);
         this.state = INITIALSTATE
@@ -93,7 +92,7 @@ export class Upload extends React.Component<any, UploadState> {
             const file = this.state.file;
             this.setState({uploading: true});
             try {
-                const storageRef = this.props.api.api.data.storage.ref(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
+                const storageRef = this.props.api.data.storage.ref(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
                 const task = storageRef.put(file);
                 this.setState(function(prevState, props){
                     return {
@@ -116,7 +115,7 @@ export class Upload extends React.Component<any, UploadState> {
                         });
                         task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
                             //for now this is just putting a photo URL in the firestore entry for that user, but using firebase auth to update the current user's profile image should be implemented later
-                            this.props.api.api.data.users.updateById(this.props.userID, {
+                            this.props.api.data.users.updateById(this.props.userID, {
                                 photoURL: downloadURL
                             });
                         });
