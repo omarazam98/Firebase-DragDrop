@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Email Redirect has a valid snapshot 1`] = `
+<div>
+  Email has been sent to verify account. 
+  <br />
+  Already verified?
+  <button
+    onClick={[Function]}
+  >
+     Log In
+  </button>
+</div>
+`;
+
 exports[`has a valid snapshot 1`] = `
 <div>
   <h1>

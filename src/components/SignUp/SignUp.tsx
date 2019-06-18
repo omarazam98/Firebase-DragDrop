@@ -15,6 +15,7 @@ interface SignUpState {
     email: FormField;
     passwordOne: FormField;
     passwordTwo: FormField;
+    formError: Error | undefined;
 }
 
 const INITIAL_STATE: SignUpState = {
@@ -48,6 +49,7 @@ const INITIAL_STATE: SignUpState = {
         touched: false,
         errors: '',
     },
+    formError: undefined,
 };
 
 export class SignUp extends Component<any, SignUpState> {
@@ -124,7 +126,8 @@ export class SignUp extends Component<any, SignUpState> {
 
     handleSubmit(e) {
         e.preventDefault();
-        return this.props.api.auth.signup.createUserWithEmailAndPassword(this.state.email.value, this.state.passwordOne.value)
+        if(!this.hasErrors()) {
+            return this.props.api.auth.signup.createUserWithEmailAndPassword(this.state.email.value, this.state.passwordOne.value)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     if (user) {
@@ -148,10 +151,16 @@ export class SignUp extends Component<any, SignUpState> {
                         alert(errorMessage);
                     }
                 });
+        }else{
+            this.setState(function () {
+                return { formError: new Error('Invalid form inputs')}
+            });
+        }
     }
 
     hasErrors(): boolean {
         for (const key in this.state) {
+            if (key === 'formError') continue
             if (this.state[key].errors || this.state[key].value === '') {
                 return true;
             }
