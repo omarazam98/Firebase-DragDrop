@@ -6,7 +6,6 @@ import { shallow } from 'enzyme';
 let wrapper;
 
 const fakeAPI = {
-    api: {
         auth: {
             login: {
                 signIn: (state) => {
@@ -28,7 +27,6 @@ const fakeAPI = {
                     });
                 }
             }
-        }
     }
 };
 

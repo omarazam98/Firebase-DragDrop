@@ -1,4 +1,4 @@
-import Navigation from '../../components/Navigation';
+import  { Navigation }from '../../components/Navigation';
 import * as React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme/build';
 
@@ -10,5 +10,6 @@ const options = {
 test('Render the navigation', () => {
   const test = <Navigation />;
   const wrapper = shallow(test, options);
+  console.log(wrapper);
   expect(wrapper).toMatchSnapshot();
 });

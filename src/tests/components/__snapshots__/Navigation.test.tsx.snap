@@ -15,8 +15,21 @@ exports[`Render the navigation 1`] = `
     >
       <div>
         <div />
+        <Link
+          to="/login"
+        >
+          Log In
+          <br />
+        </Link>
       </div>
-      <div />
+      <div>
+        <Route
+          component={[Function]}
+          exact={true}
+          key="0"
+          path="/login"
+        />
+      </div>
     </SplitPane>
   </BrowserRouter>
 </div>

@@ -3,4 +3,5 @@ import {configure} from 'enzyme';
 const dotenv = require('dotenv');
 
 dotenv.config();
+
 configure({adapter: new Adapter()});
