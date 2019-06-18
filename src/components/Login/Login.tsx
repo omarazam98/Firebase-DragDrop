@@ -38,8 +38,8 @@ export class Login extends Component<any, LoginState> {
 
     handleSubmit(e) {
         e.preventDefault();
-        return this.props.api.api.auth.firebaseAuth.setPersistence(this.state.persistAuth ? 'local' : 'session').then(() => {
-            return this.props.api.api.auth.login.signIn(this.state.email, this.state.password)
+        return this.props.api.auth.firebaseAuth.setPersistence(this.state.persistAuth ? 'local' : 'session').then(() => {
+            return this.props.api.auth.login.signIn(this.state.email, this.state.password)
                 .then((userCredential) => {
                     if (userCredential.user.emailVerified) {
                         this.props.history.push('/dashboard');
