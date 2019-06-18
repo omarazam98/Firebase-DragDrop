@@ -39,11 +39,12 @@ const invalidState = {
     password: 'fedcba',
 };
 beforeEach(() => {
-    const wrapper = shallow(<Login />);
+    wrapper = shallow(<Login />);
 });
 
 test('has a valid snapshot', () => {
     expect(wrapper).toMatchSnapshot();
+    console.log(wrapper.debug());
 });
 
 test('redirects to dashboard after submit if email verified', () => {

@@ -1,3 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`has a valid snapshot 1`] = `undefined`;
+exports[`has a valid snapshot 1`] = `
+<div>
+  <h1>
+     Login Page 
+  </h1>
+  <form
+    onSubmit={[Function]}
+  >
+    <label
+      htmlFor="email"
+    >
+      Email: 
+    </label>
+     
+    <br />
+    <input
+      id="email"
+      name="email"
+      onChange={[Function]}
+      placeholder="Email Address"
+      type="email"
+      value=""
+    />
+    <br />
+    <label
+      htmlFor="password"
+    >
+      Password: 
+    </label>
+    <br />
+    <input
+      id="password"
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      type="password"
+      value=""
+    />
+    <br />
+    Stay Logged In?
+    <input
+      name="persistAuth"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <br />
+    <input
+      id="submitButton"
+      type="submit"
+      value="Log In"
+    />
+  </form>
+</div>
+`;
