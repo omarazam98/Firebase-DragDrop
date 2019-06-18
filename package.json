@@ -6,10 +6,9 @@
     "@types/node": "^12.0.2",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
-    "eslint": "^5.12.0",
+    "eslint": "^5.16",
     "firebase": "^6.1.1",
     "package.json": "^2.0.1",
-    "eslint": "^5.16",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
@@ -30,7 +29,7 @@
   },
   "jest": {
     "snapshotSerializers": [
-      "client/node_modules/enzyme-to-json/serializer"
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
     ]
   },
   "eslintConfig": {
@@ -46,6 +45,7 @@
   "devDependencies": {
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.2",
+    "enzyme-to-json": "^3.3.5",
     "redux-mock-store": "^1.5.3",
     "ts-jest": "^24.0.2",
     "tslint": "^5.16.0",

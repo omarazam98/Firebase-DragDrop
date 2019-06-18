@@ -178,7 +178,6 @@ export class SignUp extends Component<any, SignUpState> {
     }
 
     render() {
-        console.log(this.state);
         const disableButton = this.hasErrors();
         return (
             <div>
