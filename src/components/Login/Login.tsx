@@ -26,7 +26,7 @@ export class Login extends Component<any, LoginState> {
     }
 
     handleChange(e){
-        e.persist()
+        e.persist();
         if (Object.keys(this.state).includes(e.target.name)) {
             const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
             this.setState(function (prevState, props) {
@@ -34,13 +34,12 @@ export class Login extends Component<any, LoginState> {
                     [e.target.name]: value
                 } as Pick<LoginState, keyof LoginState>
             });
-        }
-        ;
+        };
     };
 
     handleSubmit(e) {
         e.preventDefault();
-        return this.props.api.auth.firebaseAuth.setPersistence(this.state.persistAuth ? 'local' : 'session').then(() => {
+        return this.props.api.auth.login.setPersistence(this.state.persistAuth ? 'local' : 'session').then(() => {
             return this.props.api.auth.login.signIn(this.state.email, this.state.password)
                 .then((userCredential) => {
                     if (userCredential.user.emailVerified) {
