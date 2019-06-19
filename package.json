@@ -6,6 +6,7 @@
     "@types/node": "^12.0.2",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
+    "@winwin/api-firebase": "git+https://mattiaslightstonewin:KjYjphywFAtHUqCXDBtJ@bitbucket.org/winwininc/winwin-api-firebase.git",
     "package.json": "^2.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
