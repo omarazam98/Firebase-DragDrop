@@ -22,5 +22,3 @@ yarn-error.log*
 #environment
 /.idea
 
-
-src/tests/components/SignUp/__snapshots__/
