@@ -14,7 +14,7 @@ export function Navigation(props) {
           {/* Link creates the object that a user can click on to go to another page */}
           <div>
             {links()}
-            <button id='signOut' onClick = {() => {props.api.auth.firebaseAuth.signOut();}}>Log Out</button>
+            <button id='signOut' onClick = {() => {props.api.auth.signOut();}}>Log Out</button>
           </div>
           {/* Route indicates what component should be shown, based on what is linked */}
           {/* Map routes from links to their components */}

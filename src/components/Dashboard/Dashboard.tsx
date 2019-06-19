@@ -2,7 +2,7 @@ import React from 'react';
 import {withAPI} from '@winwin/api-firebase';
 
 export function Dashboard(props) {
-    if (props.api.auth.firebaseAuth.currentUser) {
+    if (props.api.auth.currentUser) {
         return (
             <div>Dashboard</div>
         );
