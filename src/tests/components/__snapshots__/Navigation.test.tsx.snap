@@ -21,12 +21,6 @@ exports[`Render the navigation 1`] = `
           Sign Up
           <br />
         </Link>
-        <Link
-          to="/email"
-        >
-          Email Link
-          <br />
-        </Link>
       </div>
       <div>
         <Route
@@ -38,7 +32,7 @@ exports[`Render the navigation 1`] = `
         <Route
           component={[Function]}
           exact={true}
-          key="1"
+          key="0"
           path="/email"
         />
       </div>

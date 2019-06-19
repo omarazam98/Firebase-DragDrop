@@ -16,7 +16,7 @@ exports[`Email Redirect has a valid snapshot 1`] = `
 exports[`has a valid snapshot 1`] = `
 <div>
   <h1>
-     Sign Up Page 
+     Sign Up 
   </h1>
   <form
     onSubmit={[Function]}

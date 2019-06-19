@@ -37,13 +37,15 @@ import EmailRedirect from '../components/SignUp/EmailRedirect';
  *
 **/
 
-const ROUTES = [
+export const ROUTES = [
     {
         path: '/signup',
         exact: true,
         name: 'Sign Up',
         component: SignUp
     },
+];
+export const ANONYMOUS_ROUTES = [
     {
         path: '/email',
         exact: true,
@@ -51,5 +53,3 @@ const ROUTES = [
         component: EmailRedirect,
     },
 ];
-
-export default ROUTES;
