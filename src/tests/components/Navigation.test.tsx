@@ -1,6 +1,7 @@
 import  { Navigation }from '../../components/Navigation';
 import * as React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme/build';
+import mock = jest.mock;
 
 const options = {
   lifecycleExperimental: false,
@@ -23,6 +24,7 @@ test('Render the navigation', () => {
 test('Sign out button logs out user', () => {
   const test = <Navigation api={ mockAPI } />;
   const wrapper = shallow(test, options);
-  console.log(wrapper.find('#signOut').simulate('click'));
+  wrapper.find('#signOut').simulate('click');
+  expect(mockAPI.auth.firebaseAuth.signOut).toHaveBeenCalled();
 });
 
