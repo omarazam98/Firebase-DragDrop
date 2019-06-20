@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Dragdrop from "./Dragdrop";
 import './Upload.css';
-import { withAPI } from '@winwin/api-firebase';
+import {withAPI} from '@winwin/api-firebase';
 
 interface UploadState {
     uploading: boolean;
@@ -32,25 +32,27 @@ export class Upload extends Component<any, UploadState> {
      * Gets file from browse button and sets file state
      * @param {ChangeEvent<HTMLInputElement>} e : event from file browse button
      */
-    handleFileSelect(e){
-        this.setState(function(prevState, props){
+    handleFileSelect(e) {
+        this.setState(function (prevState, props) {
             return {
                 uploaded: false,
                 error: null
             }
         });
+        const uploader = document.getElementById("uploader") as HTMLProgressElement;
+        uploader.value = 0;
         const file = e.target.files[0];
         const ext = file.type //MIME type
         switch (ext.toLowerCase()) {
             case 'image/jpg':
             case 'image/jpeg':
             case 'image/png':
-                this.setState(function(prevState, props){
+                this.setState(function (prevState, props) {
                     return {file}
                 });
                 return;
         }
-        this.setState(function(prevState, props){
+        this.setState(function (prevState, props) {
             return {error: new Error("File type not accepted")}
         });
     }
@@ -65,6 +67,8 @@ export class Upload extends Component<any, UploadState> {
                 error: null
             }
         });
+        const uploader = document.getElementById("uploader") as HTMLProgressElement;
+        uploader.value = 0;
         const file = files[0];
         const ext = file.type; //MIME type
 
@@ -72,12 +76,12 @@ export class Upload extends Component<any, UploadState> {
             case 'image/jpg':
             case 'image/jpeg':
             case 'image/png':
-                this.setState(function(prevState, props){
+                this.setState(function (prevState, props) {
                     return {file}
                 });
                 return;
         }
-        this.setState(function(prevState, props){
+        this.setState(function (prevState, props) {
             return {error: new Error("File type not accepted")}
         });
     }
@@ -92,22 +96,22 @@ export class Upload extends Component<any, UploadState> {
             const file = this.state.file;
             this.setState({uploading: true});
             try {
-                const storageRef = this.props.api.data.storage.ref(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
+                const storageRef = this.props.api.data.storage.getReference(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
                 const task = storageRef.put(file);
-                this.setState(function(prevState, props){
+                this.setState(function (prevState, props) {
                     return {
                         uploading: true,
                     }
                 });
                 task.on('state_changed',
-                    function progress(snapshot){
-                        const uploader = document.getElementById("uploader") as HTMLProgressElement;
+                    function progress(snapshot) {
+                        uploader.style.visibility = 'visible'
                         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                         uploader.value = percentage;
                     }, function error(err: Error) {
                         console.log(err);
                     }, () => {
-                        this.setState(function(prevState, props){
+                        this.setState(function (prevState, props) {
                             return {
                                 uploaded: true,
                                 uploading: false,
@@ -120,18 +124,20 @@ export class Upload extends Component<any, UploadState> {
                             });
                         });
                     });
-            }catch(err){
-                this.setState(function(prevState, props){
+            } catch (err) {
+                this.setState(function (prevState, props) {
                     return {
                         uploading: false,
                         error: err
                     }
                 });
+                uploader.style.visibility = 'hidden';
+
             }
         }
     };
 
-    render(){
+    render() {
         return (
             <div>
                 <Dragdrop handleDrop={this.handleDropSelect}>
@@ -141,16 +147,16 @@ export class Upload extends Component<any, UploadState> {
                             <input type="file" id="fileButton" onChange={this.handleFileSelect}/>
                         </div>
                         <div>
-                            {this.state.uploading && <progress value="0" max="100" id="uploader">0%</progress>}
+                            {<progress value="0" max="100" id="uploader" style={{visibility: 'hidden'}}>0%</progress>}
                             {this.state.uploaded && <p id='checkmark' style={{display: "inline"}}>&#9989;</p>}
                         </div>
                         {this.state.file && <p>{this.state.file.name}</p>}
-                        {this.state.file && <button id ="uploadButton" onClick={this.uploadFile}>Upload</button>}
+                        {this.state.file && <button id="uploadButton" onClick={this.uploadFile}>Upload</button>}
                     </div>
                     <code>
                         {this.state.error ? <span className='error'>{this.state.error.message}</span> : null}
                     </code>
-            </Dragdrop>
+                </Dragdrop>
             </div>
         );
     }

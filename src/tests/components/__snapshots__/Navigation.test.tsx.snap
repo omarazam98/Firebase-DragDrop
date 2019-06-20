@@ -18,7 +18,8 @@ exports[`Render the navigation 1`] = `
       </div>
       <div>
         <Route
-          name="Upload document"
+          exact={true}
+          key="0"
           path="/upload"
           render={[Function]}
         />

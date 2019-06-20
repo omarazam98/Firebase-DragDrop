@@ -35,8 +35,15 @@ import React from 'react';
  *
 **/
 
-const ROUTES = [
+export const ROUTES = [
 
 ];
 
-export default ROUTES;
+export const ROUTES_WITH_PROPS = [
+    {
+        path: '/upload',
+        exact: true,
+        name: 'Upload',
+        render: <Upload uploadDirectory='profile_photos/' userID = 'sampleID'/>,
+    },
+];
