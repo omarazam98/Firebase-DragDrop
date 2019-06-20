@@ -9,9 +9,7 @@ const options = {
 
 const mockAPI = {
   auth: {
-    firebaseAuth: {
       signOut: jest.fn(),
-    }
   }
 };
 
@@ -25,6 +23,6 @@ test('Sign out button calls sign out', () => {
   const test = <Navigation api={ mockAPI } />;
   const wrapper = shallow(test, options);
   wrapper.find('#signOut').simulate('click');
-  expect(mockAPI.auth.firebaseAuth.signOut).toHaveBeenCalled();
+  expect(mockAPI.auth.signOut).toHaveBeenCalled();
 });
 

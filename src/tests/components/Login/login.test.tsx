@@ -51,8 +51,9 @@ beforeAll(function (){
                             resolve(userCredential);
                         }
                     });
-                }
+                },
             },
+            signOut: jest.fn(),
         }
     };
 })
