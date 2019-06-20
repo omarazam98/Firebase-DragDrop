@@ -5,17 +5,25 @@ import { shallow, dive } from 'enzyme';
 import requireAuth from '../../../components/Authorization/Authorization';
 
 let wrapper;
-let fakeAPI;
+let authedAPI;
+let unauthedAPI;
+let ChildComponent;
 
 beforeAll(function (){
-    fakeAPI = {
+    authedAPI = {
         auth: {
-        }
-    }
+            currentUser: true,
+        },
+    };
+    unauthedAPI = {
+        auth: {
+            currentUser: false,
+        },
+    };
 });
 
 beforeEach(() => {
-   // wrapper = dive(requireAuth(<h1>Test</h1>));
+    ChildComponent = requireAuth(() => {<h1> Test </h1>});
 });
 
 /*test('has a valid snapshot', () => {
@@ -23,7 +31,8 @@ beforeEach(() => {
 });*/
 
 test('Renders Component if logged in and verified', () => {
-    //console.log(wrapper);
+    wrapper = shallow(<ChildComponent api={authedAPI}/>);
+    console.log(wrapper.dive({ api: authedAPI}).debug())
 });
 
 test('Renders log in page if not logged in', () => {
