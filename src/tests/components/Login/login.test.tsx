@@ -30,6 +30,7 @@ beforeAll(function (){
     fakeAPI = {
         auth: {
             login: {
+                setPersistence: jest.fn().mockResolvedValue(undefined),
                 signIn: (email, password) => {
                     return new Promise((resolve, reject) => {
                         if (email === '' || password === '') {
@@ -52,9 +53,6 @@ beforeAll(function (){
                     });
                 }
             },
-            firebaseAuth: {
-                setPersistence: jest.fn().mockResolvedValue(undefined),
-            }
         }
     };
 })
