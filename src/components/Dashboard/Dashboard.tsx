@@ -1,5 +1,6 @@
 import React from 'react';
 import {withAPI} from '@winwin/api-firebase';
+import requireAuth from '../Authorization/Authorization';
 
 export function Dashboard(props) {
     if (props.api.auth.currentUser) {
@@ -13,4 +14,4 @@ export function Dashboard(props) {
     }
 }
 
-export default withAPI(Dashboard);
+export default requireAuth(withAPI(Dashboard));

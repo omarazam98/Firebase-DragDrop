@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './store/createStore';
 import Navigation from './components/Navigation';
 import {APIProvider} from '@winwin/api-firebase';
-import Authorization from './components/Authorization/Authorization';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -24,8 +23,6 @@ class App extends Component {
       // the connect function from react-redux
       <Provider store={store}>
         <APIProvider config={firebaseConfig}>
-            <Authorization/>
-
             <Navigation />
         { /*Put the main application in here. Probably the app router*/ }
         </APIProvider>

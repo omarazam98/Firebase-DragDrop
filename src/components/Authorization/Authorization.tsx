@@ -1,28 +1,28 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { withAPI } from '@winwin/api-firebase';
-import Dashboard from '../Dashboard/Dashboard';
 
-export class AuthenticatedComponent extends React.Component<any, any> {
-
-/*    componentWillMount() {
-        this.checkAuth();
-    }*/
-
- /*   checkAuth() {
-        if ( ! this.props.api.auth.currentUser) {
-            const location = this.props.location;
-            const redirect = location.pathname + location.search;
-
-            this.props.router.push(`/login?redirect=${redirect}`);
-        }
-    }*/
-
-    render() {
-        return this.props.api.auth.currentUser
-            ? <Dashboard {...this.props} /> : <h1> Need to Log in </h1> //<LogIn/>
-    }
-
+interface AuthState {
+    loggedIn: boolean;
 }
+export default function requireAuth(MyComponent) {
+    class AuthenticatedComponent extends React.Component<any, AuthState> {
+        constructor(props) {
+            super(props);
+            this.state = {loggedIn: props.api.auth.currentUser()};
+        };
 
-export default withAPI(AuthenticatedComponent);
+        componentDidMount() {
+            this.props.api.auth.firebaseAuth.onAuthStateChanged((user) => {
+                this.setState({loggedIn: user ? true : false});
+            });
+        }
+
+        render() {
+            console.log(this.state.loggedIn);
+            return this.state.loggedIn
+                ? <MyComponent {...this.props} />: <h1> Need to Log in </h1> //<LogIn/>
+        };
+    }
+    return withAPI(AuthenticatedComponent);
+}
