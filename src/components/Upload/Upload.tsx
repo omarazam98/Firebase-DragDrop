@@ -40,7 +40,7 @@ export class Upload extends Component<any, UploadState> {
             }
         });
         const uploader = document.getElementById("uploader") as HTMLProgressElement;
-        uploader.value = 0;
+        if(uploader) uploader.value = 0;
         const file = e.target.files[0];
         const ext = file.type //MIME type
         switch (ext.toLowerCase()) {
@@ -68,7 +68,7 @@ export class Upload extends Component<any, UploadState> {
             }
         });
         const uploader = document.getElementById("uploader") as HTMLProgressElement;
-        uploader.value = 0;
+        if(uploader) uploader.value = 0;
         const file = files[0];
         const ext = file.type; //MIME type
 
@@ -94,7 +94,8 @@ export class Upload extends Component<any, UploadState> {
     uploadFile(){
         if(this.state.file) {
             const file = this.state.file;
-            this.setState({uploading: true});
+            console.log(document)
+            const uploader = document.getElementById("uploader") as HTMLProgressElement;
             try {
                 const storageRef = this.props.api.data.storage.getReference(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
                 const task = storageRef.put(file);
@@ -105,7 +106,7 @@ export class Upload extends Component<any, UploadState> {
                 });
                 task.on('state_changed',
                     function progress(snapshot) {
-                        uploader.style.visibility = 'visible'
+                        if(uploader) uploader.style.visibility = 'visible';
                         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                         uploader.value = percentage;
                     }, function error(err: Error) {
@@ -131,9 +132,9 @@ export class Upload extends Component<any, UploadState> {
                         error: err
                     }
                 });
-                uploader.style.visibility = 'hidden';
-
+                if(uploader) uploader.style.visibility = 'visible';
             }
+            this.setState({uploading: false});
         }
     };
 
@@ -147,7 +148,7 @@ export class Upload extends Component<any, UploadState> {
                             <input type="file" id="fileButton" onChange={this.handleFileSelect}/>
                         </div>
                         <div>
-                            {<progress value="0" max="100" id="uploader" style={{visibility: 'hidden'}}>0%</progress>}
+                            <progress value="0" max="100" id="uploader" style={{visibility: 'hidden'}}>0%</progress>
                             {this.state.uploaded && <p id='checkmark' style={{display: "inline"}}>&#9989;</p>}
                         </div>
                         {this.state.file && <p>{this.state.file.name}</p>}

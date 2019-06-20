@@ -21,7 +21,20 @@ exports[`has a valid snapshot 1`] = `
           type="file"
         />
       </div>
-      <div />
+      <div>
+        <progress
+          id="uploader"
+          max="100"
+          style={
+            Object {
+              "visibility": "hidden",
+            }
+          }
+          value="0"
+        >
+          0%
+        </progress>
+      </div>
     </div>
     <code />
   </Dragdrop>
