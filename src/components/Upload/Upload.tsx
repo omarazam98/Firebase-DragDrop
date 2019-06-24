@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Dragdrop from "./Dragdrop";
 import './Upload.css';
-import {withAPI} from '@winwin/api-firebase';
+import { withAPI } from '@winwin/api-firebase';
 
 interface UploadState {
     uploading: boolean;
@@ -94,11 +94,11 @@ export class Upload extends Component<any, UploadState> {
     uploadFile(){
         if(this.state.file) {
             const file = this.state.file;
-            console.log(document)
             const uploader = document.getElementById("uploader") as HTMLProgressElement;
             try {
-                const storageRef = this.props.api.data.storage.getReference(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
+                const storageRef = this.props.api.storage.storageRef.get(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
                 const task = storageRef.put(file);
+                console.log(storageRef);
                 this.setState(function (prevState, props) {
                     return {
                         uploading: true,
@@ -132,7 +132,7 @@ export class Upload extends Component<any, UploadState> {
                         error: err
                     }
                 });
-                if(uploader) uploader.style.visibility = 'visible';
+                if(uploader) uploader.style.visibility = 'hidden';
             }
             this.setState({uploading: false});
         }

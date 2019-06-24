@@ -2,7 +2,7 @@ module.exports = {
   "roots": [
     "<rootDir>/src"
   ],
-  // "setupFilesAfterEnv": ["<rootDir>/src/tests/setupTests.js"],
+   "setupFilesAfterEnv": ["<rootDir>/src/tests/setupTests.js"],
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
