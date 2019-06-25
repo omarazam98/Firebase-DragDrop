@@ -39,5 +39,6 @@ test('Renders Component if logged in and verified', () => {
 
 test('Renders log in page if not logged in', () => {
     wrapper = shallow(<WrappedComponent api={unauthedAPI}/>);
-    console.log(wrapper.find('h1').length);
+    const wrapper2 = shallow(<AuthReqComponent/>);
+    expect(wrapper).toStrictEqual(wrapper2);
 });

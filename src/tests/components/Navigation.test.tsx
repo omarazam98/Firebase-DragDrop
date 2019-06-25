@@ -1,6 +1,6 @@
 import  { Navigation }from '../../components/Navigation';
 import * as React from 'react';
-import Enzyme, { shallow, render, mount } from 'enzyme/build';
+import { shallow, render, mount } from 'enzyme';
 import { Link } from 'react-router-dom';
 import Routes from '../../constants/routes';
 
@@ -8,6 +8,8 @@ const options = {
   lifecycleExperimental: false,
   disableLifecycleMethods: true,
 };
+
+const authedLinks = Routes.filter(route => !route.authRequired);
 
 const mockAPI = {
   auth: {
@@ -31,7 +33,7 @@ test('Sign out button calls sign out', () => {
 test('Only non auth required links render when not logged in', () => {
   const test = <Navigation api={mockAPI} />;
   const wrapper = shallow(test, options);
-  console.log(wrapper.find(Link).length);
+  expect(wrapper.find(Link).length).toBe(authedLinks.length);
 });
 
 test('All links render when logged in', () => {
