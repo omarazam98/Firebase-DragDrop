@@ -112,7 +112,7 @@ spec:
           sh("kubectl --namespace=${modifiedBranchName} apply -f k8s/services/")
           sh("kubectl --namespace=${modifiedBranchName} apply -f k8s/dev/")
           echo 'To access your environment run `kubectl proxy`'
-          echo "Then access your service via http://localhost:8001/api/v1/proxy/namespaces/${modifiedBranchName}/services/${feSvcName}:80/"
+          echo "Then access your service via http://localhost:8001/api/v1/proxy/namespaces/${modifiedBranchName}/services/${feSvcName}:5000/"
         }
       }     
     }

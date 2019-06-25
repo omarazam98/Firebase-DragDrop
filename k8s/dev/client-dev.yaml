@@ -27,4 +27,4 @@ spec:
           # port: 80
         ports:
           - name: client
-            containerPort: 3000
+            containerPort: 5000
