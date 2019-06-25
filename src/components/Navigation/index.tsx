@@ -15,8 +15,9 @@ export class Navigation extends React.Component<any, any>{
   constructor(props){
     super(props);
     this.state = {
-      loggedIn: props.api.auth.currentUser
+      loggedIn: false
     };
+    this.links = this.links.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,15 @@ export class Navigation extends React.Component<any, any>{
     this._isMounted = false;
   }
 
+  // iterate over all routes from routes.ts
+  // return a jsx expression containing links to all routes
+  links() {
+    // can't push JSX on an empty array, so init with a div
+    const allLinks = [<div />];
+    Routes.forEach((route:any) => (this.state.loggedIn || !route.authRequired) && allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
+    return allLinks;
+  }
+
   render(){
     return (
         <div>
@@ -39,7 +49,7 @@ export class Navigation extends React.Component<any, any>{
             <SplitPane split="vertical" minSize={50} defaultSize={100}>
               {/* Link creates the object that a user can click on to go to another page */}
               <div>
-                {links()}
+                {this.links()}
                 <button id='signOut' onClick={() => {this.props.api.auth.signOut();}}>Log Out</button>
               </div>
               {/* Route indicates what component should be shown, based on what is linked */}
@@ -59,14 +69,6 @@ export class Navigation extends React.Component<any, any>{
         </div>
     );
   }
-}
-// iterate over all routes from routes.ts
-// return a jsx expression containing links to all routes
-function links() {
-  // can't push JSX on an empty array, so init with a div
-  const allLinks = [<div />];
-  Routes.forEach((route:any) => allLinks.push(<Link to={route.path}  onClick={e => e.preventDefault()}>{route.name}<br /></Link>));
-  return allLinks;
 }
 
 export default withAPI(Navigation);
