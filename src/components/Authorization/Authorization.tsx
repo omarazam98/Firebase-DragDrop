@@ -32,7 +32,7 @@ export function withAuth(MyComponent) {
             if(this.state.loggedIn){
                 return this.props.api.auth.currentUser.emailVerified ? <MyComponent {...this.props} />: <EmailRedirect {...this.props}/>
             }else{
-                return <Login {...this.props} />
+                return (<><h1>Authorization Required</h1> <Login {...this.props} /></>)
             }
         }
     }
