@@ -45,7 +45,7 @@ export class Login extends Component<any, LoginState> {
                     if (userCredential.user.emailVerified) {
                         this.props.history.push('/dashboard');
                     } else {
-                        this.props.history.push('/emailverificationrequired');
+                        this.props.history.push('/emailverification');
                     }
                 }).catch((error) => {
                     this.setState(function(){
@@ -92,4 +92,4 @@ export class Login extends Component<any, LoginState> {
     };
 }
 
-export default withAPI(withRouter(Login))
+export default withAPI(Login);

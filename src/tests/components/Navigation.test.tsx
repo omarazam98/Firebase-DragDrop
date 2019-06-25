@@ -2,14 +2,14 @@ import  { Navigation }from '../../components/Navigation';
 import * as React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import { Link } from 'react-router-dom';
-import Routes from '../../constants/routes';
+import { ROUTES } from '../../constants/routes';
 
 const options = {
   lifecycleExperimental: false,
   disableLifecycleMethods: true,
 };
 
-const authedLinks = Routes.filter(route => !route.authRequired);
+const authedLinks = ROUTES.filter(route => !route.authRequired);
 
 const mockAPI = {
   auth: {
@@ -40,5 +40,5 @@ test('All links render when logged in', () => {
   const test = <Navigation api={mockAPI} />;
   const wrapper = shallow(test, options);
   wrapper.setState({loggedIn: true})
-  expect(wrapper.find(Link).length).toBe(Routes.length);
+  expect(wrapper.find(Link).length).toBe(ROUTES.length);
 });

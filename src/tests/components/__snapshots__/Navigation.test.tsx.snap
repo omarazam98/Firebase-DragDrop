@@ -41,6 +41,12 @@ exports[`Render the navigation 1`] = `
           key="1"
           path="/dashboard"
         />
+        <Route
+          component={[Function]}
+          exact={true}
+          key="0"
+          path="/emailverification"
+        />
       </div>
     </SplitPane>
   </BrowserRouter>

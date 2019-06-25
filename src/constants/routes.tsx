@@ -3,6 +3,7 @@
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import Login from '../components/Login/Login';
 import Dashboard from '../components/Dashboard/Dashboard';
+import EmailRedirect from '../components/EmailRedirect';
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
@@ -36,7 +37,7 @@ import Dashboard from '../components/Dashboard/Dashboard';
  *
 **/
 
-const ROUTES = [
+export const ROUTES = [
     {
         path: '/login',
         exact: true,
@@ -53,4 +54,12 @@ const ROUTES = [
     },
 ];
 
-export default ROUTES;
+export const ANONYMOUS_ROUTES = [
+    {
+        path: '/emailverification',
+        exact: true,
+        name: 'Email Link',
+        component: EmailRedirect,
+    },
+];
+

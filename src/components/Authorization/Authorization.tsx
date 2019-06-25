@@ -1,5 +1,8 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import EmailRedirect from '../EmailRedirect'
+import { Login } from '../Login/Login'
+import {withRouter} from 'react-router-dom';
+import { withAPI } from '@winwin/api-firebase';
 
 interface AuthState {
     loggedIn: boolean;
@@ -26,8 +29,11 @@ export function withAuth(MyComponent) {
         }
 
         render() {
-            return this.state.loggedIn
-                ? <MyComponent {...this.props} />: <h1>Authorization Required</h1>
+            if(this.state.loggedIn){
+                return this.props.api.auth.currentUser.emailVerified ? <MyComponent {...this.props} />: <EmailRedirect {...this.props}/>
+            }else{
+                return <Login {...this.props} />
+            }
         }
     }
 }
