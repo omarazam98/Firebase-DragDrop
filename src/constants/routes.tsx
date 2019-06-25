@@ -38,16 +38,18 @@ import Dashboard from '../components/Dashboard/Dashboard';
 
 const ROUTES = [
     {
-             path:'/login',
-             exact:true,
-             name:'Log In',
-             component: Login,
+        path: '/login',
+        exact: true,
+        name: 'Log In',
+        component: Login,
+        authRequired: false,
     },
     {
-        path:'/dashboard',
-        exact:true,
-        name:'Dashboard',
+        path: '/dashboard',
+        exact: true,
+        name: 'Dashboard',
         component: Dashboard,
+        authRequired: true,
     },
 ];
 
