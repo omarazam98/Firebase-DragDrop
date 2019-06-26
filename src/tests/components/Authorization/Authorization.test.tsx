@@ -13,25 +13,23 @@ let WrappedComponent;
 let TestComponent;
 
 beforeAll(function (){
+    const currentUserVerified = jest.fn().mockReturnValue({ emailVerified: true }).bind();
+    const currentUserUnverified = jest.fn().mockReturnValue({ emailVerified: false }).bind();
     authedAPI = {
         auth: {
-            currentUser: {
-                emailVerified: true,
-            },
+            currentUser: currentUserVerified,
             onAuthStateChanged: jest.fn(),
         },
     };
     unverifiedAPI = {
         auth: {
-            currentUser: {
-                emailVerified: false,
-            },
+            currentUser: currentUserUnverified,
             onAuthStateChanged: jest.fn(),
         },
     };
     unauthedAPI = {
         auth: {
-            currentUser: false,
+            currentUser: jest.fn(),
             onAuthStateChanged: jest.fn()
         },
     };
@@ -49,7 +47,6 @@ test('Renders Component if logged in and verified', () => {
 
 test('Renders email redirect if logged in and not email verified', () => {
     wrapper = shallow(<WrappedComponent api={unverifiedAPI}/> );
-    console.log()
     expect(wrapper.find(EmailRedirect).length).toBe(1);
 });
 
