@@ -1,5 +1,5 @@
 import React from 'react';
-import {withAPI} from '@winwin/api-firebase';
+import { withAPI } from '@winwin/api-firebase';
 
 export function Dashboard(props) {
     return (

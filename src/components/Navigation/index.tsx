@@ -3,7 +3,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Routes from '../../constants/routes';
-import {withAPI} from '@winwin/api-firebase';
+import { withAPI } from '@winwin/api-firebase';
 import SplitPane from 'react-split-pane';
 
 export function Navigation(props) {
