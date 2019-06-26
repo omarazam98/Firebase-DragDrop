@@ -24,14 +24,14 @@ export class Login extends Component<any, LoginState> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
+  handleChange(e) {//this will set the value of whatever input field has been changed
     e.persist();
     if (Object.keys(this.state).includes(e.target.name)) {
-      const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+      const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value; //checkbox ix weird, it uses checked rather than value
       this.setState((prevState, props) => {
         return {
           [e.target.name]: value,
-        } as Pick<LoginState, keyof LoginState>;
+        } as Pick<LoginState, keyof LoginState>; //we are using general keys (any input field can be passed) so this ensures it follows the format of the LoginState
       });
     }
   }
