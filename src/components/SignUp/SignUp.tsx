@@ -240,8 +240,8 @@ export class SignUp extends Component<any, SignUpState> {
                     <label htmlFor="phoneNumber">Phone Number: </label><br/>
                     <input name="phoneNumber" id='phoneNumber' onBlur={this.handleBlur} onFocus={this.handleFocus} onChange={this.handleChange}
                            type="tel" placeholder="Phone Number"
-                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>{this.state.phoneNumber.touched &&
-                <span> {this.state.phoneNumber.errors} </span>}<br/>
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+                           {this.state.phoneNumber.touched && <span> {this.state.phoneNumber.errors} </span>}<br/>
 
                     <label htmlFor="passwordOne">Password: </label><br/>
                     <input name="passwordOne" id="passwordOne" onBlur={this.handleBlur} onFocus={this.handleFocus}
