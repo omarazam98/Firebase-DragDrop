@@ -2,6 +2,7 @@
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import React from 'react';
+import PaymentCard from '../components/PaymentCard';
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
@@ -9,7 +10,7 @@ import React from 'react';
 // name will be the label of the link
 // component should be the page/component to be shown
 // To add a componenet page to the routes table/nav bar, you should import it here at the top of the file and add it to the routes object:
-/*** Example: 
+/*** Example:
  * import App from '../../App'
  *
  * const ROUTES = [
@@ -18,8 +19,8 @@ import React from 'react';
  *     exact:true,
  *     name:'Home',
  *     component: App,
- *  }, 
-/* Example routes with basic JSX elements as components
+ *  },
+ /* Example routes with basic JSX elements as components
  *  {
  *     path:'/example1',
  *     name:'Primary',
@@ -33,10 +34,15 @@ import React from 'react';
  *  },
  * ];
  *
-**/
+ **/
 
 const ROUTES = [
-  
+  {
+    path: '/payment',
+    exact: true,
+    name: 'Card',
+    component: PaymentCard,
+  },
 ];
 
 export default ROUTES;
