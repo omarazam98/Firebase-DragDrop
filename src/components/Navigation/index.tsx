@@ -7,7 +7,8 @@ import SplitPane from 'react-split-pane';
 import {withAPI} from '@winwin/api-firebase';
 
 interface NavState {
-  loggedIn: boolean
+  loggedIn: boolean;
+  emailVerified: boolean;
 }
 
 export class Navigation extends React.Component<any, any> {
@@ -16,7 +17,8 @@ export class Navigation extends React.Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      emailVerified: false,
     };
     this.links = this.links.bind(this);
   }
@@ -25,10 +27,16 @@ export class Navigation extends React.Component<any, any> {
     this._isMounted = true;
     this.props.api.auth.onAuthStateChanged((user) => {
       if (this._isMounted) {
-        this.setState({loggedIn: user ? true : false});
+        this.setState(() => {
+          return {
+            loggedIn: user ? true : false,
+            emailVerified: (user && user.emailVerified) ? true: false
+          }
+        })
       }
     });
   }
+
 
   componentWillUnmount() {
     this._isMounted = false;
@@ -37,7 +45,7 @@ export class Navigation extends React.Component<any, any> {
   links() {
     // can't push JSX on an empty array, so init with a div
     const allLinks = [<div/>];
-    NAVBAR_ROUTES.forEach((route: any) => (this.state.loggedIn || !route.authRequired) && allLinks.push(
+    NAVBAR_ROUTES.forEach((route: any) => ((this.state.loggedIn && this.state.emailVerified) || !route.authRequired) && allLinks.push(
       <Link to={route.path}>{route.name}<br/></Link>));
     return allLinks;
   }
