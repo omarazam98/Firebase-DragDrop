@@ -1,11 +1,15 @@
 import React from 'react';
 import './index.css';
+import { withAPI } from '@winwin/api-firebase';
 
 export class PaymentCard extends React.Component<any, any>{
   constructor(props){
     super(props);
   }
   render(){
+    if (this.props.api.auth.currentUser()) {
+      console.log(this.props.api.auth.currentUser())
+    }
     return(
       <div className='credit-card'>
         <div className='credit-card__logo'>Logo</div>
@@ -15,12 +19,11 @@ export class PaymentCard extends React.Component<any, any>{
         <div className='credit-card__info'>
           <div className='credit-card__info_name'>
             <div className='credit-card__info_label'>CARDHOLDER'S NAME</div>
-            <div>MATT SMITH</div>
+            <div>{this.props.api.auth.currentUser() && this.props.api.data.users.getName()}</div>
           </div>
 
           <div className='credit-card__info_expiry'>
-            <div className='credit-card__info_label'>VALID UP TO</div>
-            <div>06/2027</div>
+            <button>Change</button>
           </div>
         </div>
 
@@ -29,4 +32,4 @@ export class PaymentCard extends React.Component<any, any>{
   }
 }
 
-export default PaymentCard;
+export default withAPI(PaymentCard);
