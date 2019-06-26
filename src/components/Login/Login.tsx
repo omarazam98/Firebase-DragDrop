@@ -45,7 +45,7 @@ export class Login extends Component<any, LoginState> {
             if (userCredential.user.emailVerified) {
               this.props.history.push('/dashboard');
             } else {
-              this.props.history.push('/emailverificationrequired');
+              this.props.history.push('/email');
             }
           }).catch((error) => {
             this.setState(() => {
