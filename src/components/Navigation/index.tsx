@@ -2,7 +2,7 @@
 // If a new page is added, be sure to add the route to src/constants/routes
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { ROUTES, ANONYMOUS_ROUTES } from '../../constants/routes';
+import { ROUTES, NAVBAR_ROUTES } from '../../constants/routes';
 import SplitPane from 'react-split-pane';
 import { withAPI } from '@winwin/api-firebase';
 
@@ -16,15 +16,7 @@ export function Navigation(props) {
           {/* Route indicates what component should be shown, based on what is linked */}
           {/* Map routes from links to their components */}
           <div>
-          {ROUTES.map((route:any, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
-            />
-          ))}
-          {ANONYMOUS_ROUTES.map((route:any, index) => (
+          {NAVBAR_ROUTES.map((route:any, index) => (
               <Route
                   key={index}
                   path={route.path}

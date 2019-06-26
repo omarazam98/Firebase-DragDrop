@@ -37,7 +37,8 @@ import EmailRedirect from '../components/SignUp/EmailRedirect';
  *
 **/
 
-export const ROUTES = [
+/*These show up in the nav bar as links*/
+export const NAVBAR_ROUTES = [
     {
         path: '/signup',
         exact: true,
@@ -45,7 +46,10 @@ export const ROUTES = [
         component: SignUp
     },
 ];
-export const ANONYMOUS_ROUTES = [
+
+/*These are not rendered as links*/
+export const ROUTES = [
+  ...NAVBAR_ROUTES,
     {
         path: '/email',
         exact: true,
@@ -53,3 +57,5 @@ export const ANONYMOUS_ROUTES = [
         component: EmailRedirect,
     },
 ];
+
+
