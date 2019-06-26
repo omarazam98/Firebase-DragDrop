@@ -23,8 +23,8 @@ class App extends Component {
       // the connect function from react-redux
       <Provider store={store}>
         <APIProvider config={firebaseConfig}>
-            <Navigation />
-        { /*Put the main application in here. Probably the app router*/ }
+          <Navigation />
+          { /*Put the main application in here. Probably the app router*/ }
         </APIProvider>
       </Provider>
     );

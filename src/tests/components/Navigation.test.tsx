@@ -1,4 +1,4 @@
-import  { Navigation }from '../../components/Navigation';
+import { Navigation } from '../../components/Navigation';
 import * as React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import { Link } from 'react-router-dom';
