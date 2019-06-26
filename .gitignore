@@ -13,7 +13,11 @@
 
 # misc
 .DS_Store
+<<<<<<< refs/remotes/origin/integration
 .env*
+=======
+.env
+>>>>>>> Added sample card
 
 npm-debug.log*
 yarn-debug.log*
