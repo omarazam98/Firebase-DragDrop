@@ -2,7 +2,7 @@ def project = 'silent-vim-243301'
 def  appName = 'client'
 def  feSvcName = "${appName}-service"
 //slashes are invalid characters for image names, so we replace them with underscores
-def modifiedBranchName = env.BRANCH_NAME.replace("/", "_")
+def modifiedBranchName = env.BRANCH_NAME.replace("/", "--")
 def  imageTag = "gcr.io/${project}/${appName}:${modifiedBranchName}.${env.BUILD_NUMBER}"
 
 pipeline {
