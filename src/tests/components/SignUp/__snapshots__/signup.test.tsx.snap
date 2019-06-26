@@ -33,6 +33,7 @@ exports[`has a valid snapshot 1`] = `
       name="name"
       onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
       placeholder="Full Name"
       type="text"
       value=""
@@ -44,6 +45,7 @@ exports[`has a valid snapshot 1`] = `
       checked={false}
       name="class"
       onChange={[Function]}
+      onFocus={[Function]}
       type="radio"
       value="senior"
     />
@@ -52,6 +54,7 @@ exports[`has a valid snapshot 1`] = `
       checked={false}
       name="class"
       onChange={[Function]}
+      onFocus={[Function]}
       type="radio"
       value="student"
     />
@@ -69,11 +72,11 @@ exports[`has a valid snapshot 1`] = `
       name="email"
       onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
       placeholder="Email Address"
       type="email"
       value=""
     />
-     
     <br />
     <label
       htmlFor="phoneNumber"
@@ -86,10 +89,12 @@ exports[`has a valid snapshot 1`] = `
       name="phoneNumber"
       onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
       placeholder="Phone Number"
       type="tel"
     />
+     /*phone number needs to be XXX-XXX-XXXX*/
     <br />
     <label
       htmlFor="passwordOne"
@@ -102,6 +107,7 @@ exports[`has a valid snapshot 1`] = `
       name="passwordOne"
       onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
       placeholder="Password"
       type="password"
       value=""
@@ -120,6 +126,7 @@ exports[`has a valid snapshot 1`] = `
       name="passwordTwo"
       onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
       placeholder="Confirm Password"
       type="password"
       value=""
@@ -127,11 +134,12 @@ exports[`has a valid snapshot 1`] = `
      
     <br />
     <input
-      disabled={true}
       id="submitButton"
       type="submit"
       value="Sign Up"
     />
+     
+    <span />
   </form>
 </div>
 `;
