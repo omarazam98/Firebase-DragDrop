@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 import Enzyme, { shallow, render, mount } from 'enzyme/build';
 import Adapter from 'enzyme-adapter-react-16/build';
 // React 16 Enzyme adapter

@@ -2,9 +2,9 @@
 // If a new page is added, be sure to add the route to src/constants/routes
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Routes from '../../constants/routes';
-import {withAPI} from '@winwin/api-firebase';
+import { ROUTES, NAVBAR_ROUTES } from '../../constants/routes';
 import SplitPane from 'react-split-pane';
+import { withAPI } from '@winwin/api-firebase';
 
 export function Navigation(props) {
   return (
@@ -19,13 +19,13 @@ export function Navigation(props) {
           {/* Route indicates what component should be shown, based on what is linked */}
           {/* Map routes from links to their components */}
           <div>
-          {Routes.map((route:any, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
-            />
+          {ROUTES.map((route:any, index) => (
+              <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  component={route.component}
+              />
           ))}
           </div>
         </SplitPane>
@@ -38,7 +38,7 @@ export function Navigation(props) {
 function links() {
   // can't push JSX on an empty array, so init with a div
   const allLinks = [<div />];
-  Routes.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
+  NAVBAR_ROUTES.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
   return allLinks;
 }
 

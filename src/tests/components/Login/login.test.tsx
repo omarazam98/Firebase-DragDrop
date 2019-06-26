@@ -78,7 +78,7 @@ test('redirects to email verify after submit if email not verified', () => {
     const historyWrapper = shallow(<Login history={historyMock} api={fakeAPI}/>)
     historyWrapper.setState({email: testUsers.unverified.email, password: testUsers.unverified.password});
     historyWrapper.instance().handleSubmit(fakeEvent).then(()=>{
-        expect(historyMock.push.mock.calls[0]).toEqual([ '/emailverificationrequired' ]);
+        expect(historyMock.push.mock.calls[0]).toEqual([ '/email' ]);
     })
 });
 
