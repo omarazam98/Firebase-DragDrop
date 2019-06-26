@@ -42,11 +42,15 @@ export class PaymentCard extends React.Component<any,PaymentState>{
   }
 
   render(){
+    let mainPayment;
+    if(this.state.paymentMethods) {
+      mainPayment = this.state.paymentMethods.find(x => x.main);
+    }
     return(
       <div className='credit-card'>
-        <div className='credit-card__logo'>Win-Win</div>
+        <div className='credit-card__logo'>Win-Win Payment Method</div>
         <div className='credit-card__number'>
-          {this.state.paymentMethods && "XXXX XXXX XXXX " + this.state.paymentMethods[0].number}
+          {mainPayment && "XXXX XXXX XXXX " + mainPayment.number}
         </div>
 
         <div className='credit-card__info'>
