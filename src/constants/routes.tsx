@@ -40,12 +40,12 @@ import Dashboard from '../components/Dashboard/Dashboard';
 
 /*These show up in the nav bar as links*/
 export const NAVBAR_ROUTES = [
-    {
-        path: '/signup',
-        exact: true,
-        name: 'Sign Up',
-        component: SignUp
-    },
+  {
+      path: '/signup',
+      exact: true,
+      name: 'Sign Up',
+      component: SignUp
+  },
   {
     path: '/login',
     exact: true,
