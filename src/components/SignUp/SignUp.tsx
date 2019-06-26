@@ -216,8 +216,6 @@ export class SignUp extends Component<any, SignUpState> {
     }
 
     render() {
-        console.log(this.state)
-        const disableButton = this.hasErrors();
         return (
             <div>
                 <h1> Sign Up </h1>
@@ -258,7 +256,7 @@ export class SignUp extends Component<any, SignUpState> {
                 <span> {this.state.passwordTwo.errors} </span>} <br/>
 
                     <input id={'submitButton'} type="submit"
-                           value={'Sign Up'}></input> {this.state.formError && this.state.formError.message}
+                           value={'Sign Up'}></input> <span>{this.state.formError && this.state.formError.message}</span>
                 </form>
             </div>
         );
