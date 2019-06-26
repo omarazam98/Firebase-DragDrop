@@ -38,13 +38,21 @@ spec:
      }
   }
   stages {
-    stage('Test') {
+    stage('Install dependencies') {
       steps {
         container('node') {
           sh """
             ln -s `pwd` /app
             cd /app
             npm ci
+          """
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        container('node') {
+          sh """
             npm test -- --watchAll=false
           """
         }
