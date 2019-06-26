@@ -33,11 +33,6 @@ exports[`Render the navigation 1`] = `
           Dashboard
           <br />
         </Link>
-        <button
-          onClick={[Function]}
-        >
-          Log Out
-        </button>
       </div>
       <div>
         <Route
@@ -49,20 +44,20 @@ exports[`Render the navigation 1`] = `
         <Route
           component={[Function]}
           exact={true}
-          key="0"
-          path="/email"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="0"
+          key="1"
           path="/login"
         />
         <Route
           component={[Function]}
           exact={true}
-          key="1"
+          key="2"
           path="/dashboard"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          key="3"
+          path="/email"
         />
       </div>
     </SplitPane>
