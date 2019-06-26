@@ -85,17 +85,20 @@ export class SignUp extends Component<any, SignUpState> {
         });
     }
 
+    /*
+    * checks all inputs for specific errors
+    */
     validateInputs(name, value, valid) {
-        if (value === '') {
-            this.setState(function (prevState, props) {
+        if (value === '') { //field is empty (priority error)
+            this.setState(function (prevState, props) {//set the error state for this field
                 return {
                     [name]: {
                         ...prevState[name],
                         errors: 'field cannot be empty',
                     }
-                } as Pick<SignUpState, keyof SignUpState>
+                } as Pick<SignUpState, keyof SignUpState> //This is to ensure the general name keys are proper format for state
             });
-        } else if (name === 'passwordTwo' && this.state.passwordOne.value !== this.state.passwordTwo.value) {
+        } else if (name === 'passwordTwo' && this.state.passwordOne.value !== this.state.passwordTwo.value) { //passwords don't match
             this.setState(function (prevState, props) {
                 return {
                     passwordTwo: {
@@ -105,7 +108,7 @@ export class SignUp extends Component<any, SignUpState> {
                 } as Pick<SignUpState, keyof SignUpState>
             });
         } else if (!valid) {
-            this.setState(function (prevState, props) {
+            this.setState(function (prevState, props) { //this is the default validity check for html inputs
                 return {
                     [name]: {
                         ...prevState[name],
@@ -114,7 +117,7 @@ export class SignUp extends Component<any, SignUpState> {
                 } as Pick<SignUpState, keyof SignUpState>
             });
         } else {
-            this.setState(function (prevState) {
+            this.setState(function (prevState) { //if no other errors are found then clear the error field
                 return {
                     [name]: {
                         ...prevState[name],
@@ -212,7 +215,6 @@ export class SignUp extends Component<any, SignUpState> {
                 } as Pick<SignUpState, keyof SignUpState>
             });
         }
-
     }
 
     render() {
@@ -240,7 +242,7 @@ export class SignUp extends Component<any, SignUpState> {
                     <label htmlFor="phoneNumber">Phone Number: </label><br/>
                     <input name="phoneNumber" id='phoneNumber' onBlur={this.handleBlur} onFocus={this.handleFocus} onChange={this.handleChange}
                            type="tel" placeholder="Phone Number"
-                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/> /*phone number needs to be XXX-XXX-XXXX*/
                            {this.state.phoneNumber.touched && <span> {this.state.phoneNumber.errors} </span>}<br/>
 
                     <label htmlFor="passwordOne">Password: </label><br/>
