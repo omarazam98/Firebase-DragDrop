@@ -16,6 +16,12 @@ exports[`Render the navigation 1`] = `
       <div>
         <div />
         <Link
+          to="/signup"
+        >
+          Sign Up
+          <br />
+        </Link>
+        <Link
           to="/login"
         >
           Log In
@@ -34,6 +40,18 @@ exports[`Render the navigation 1`] = `
         </button>
       </div>
       <div>
+        <Route
+          component={[Function]}
+          exact={true}
+          key="0"
+          path="/signup"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          key="0"
+          path="/email"
+        />
         <Route
           component={[Function]}
           exact={true}
