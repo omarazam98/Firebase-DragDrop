@@ -16,7 +16,7 @@ export function Navigation(props) {
           {/* Route indicates what component should be shown, based on what is linked */}
           {/* Map routes from links to their components */}
           <div>
-          {NAVBAR_ROUTES.map((route:any, index) => (
+          {ROUTES.map((route:any, index) => (
               <Route
                   key={index}
                   path={route.path}
@@ -35,7 +35,7 @@ export function Navigation(props) {
 function links() {
   // can't push JSX on an empty array, so init with a div
   const allLinks = [<div />];
-  ROUTES.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
+  NAVBAR_ROUTES.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
   return allLinks;
 }
 
