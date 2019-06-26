@@ -11,10 +11,12 @@ let unverifiedAPI;
 let unauthedAPI;
 let WrappedComponent;
 let TestComponent;
+let currentUserVerified;
+let currentUserUnverified;
 
 beforeAll(function (){
-    const currentUserVerified = jest.fn().mockReturnValue({ emailVerified: true }).bind();
-    const currentUserUnverified = jest.fn().mockReturnValue({ emailVerified: false }).bind();
+    currentUserVerified = jest.fn().mockReturnValue({ emailVerified: true });
+    currentUserUnverified = jest.fn().mockReturnValue({ emailVerified: false });
     authedAPI = {
         auth: {
             currentUser: currentUserVerified,
