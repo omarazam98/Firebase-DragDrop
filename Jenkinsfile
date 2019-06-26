@@ -70,12 +70,10 @@ spec:
       when {branch 'integration'}
       steps {
         container('kubectl'){
-          sh """
-            sed -i.bak 's#gcr.io/${project}/${appName}:1.0.0#${imageTag}#' ./k8s/integration/*.yaml")
-            kubectl --namespace=integration apply -f k8s/services/
-            kubectl --namespace=integration apply -f k8s/integration/
-            echo http://`kubectl --namespace=integration get service/${feSvcName} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'` > ${feSvcName}
-          """
+          sh("sed -i.bak 's#gcr.io/${project}/${appName}:1.0.0#${imageTag}#' ./k8s/integration/*.yaml")
+          sh("kubectl --namespace=integration apply -f k8s/services/")
+          sh("kubectl --namespace=integration apply -f k8s/integration/")
+          sh("echo http://`kubectl --namespace=integration get service/${feSvcName} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'` > ${feSvcName}")
         }
       }
     }
@@ -116,14 +114,12 @@ spec:
       steps {
         container('kubectl') {
           // Create namespace if it doesn't exist
-          sh """
-            kubectl get ns ${modifiedBranchName} || kubectl create ns ${modifiedBranchName}
-            // Don't use public load balancing for development branches
-            sed -i.bak 's#LoadBalancer#ClusterIP#' ./k8s/services/client-service.yaml
-            sed -i.bak 's#gcr.io/${project}/${appName}:1.0.0#${imageTag}#' ./k8s/dev/*.yaml
-            kubectl --namespace=${modifiedBranchName} apply -f k8s/services/
-            kubectl --namespace=${modifiedBranchName} apply -f k8s/dev/
-          """
+          sh("kubectl get ns ${modifiedBranchName} || kubectl create ns ${modifiedBranchName}")
+          // Don't use public load balancing for development branches
+          sh("sed -i.bak 's#LoadBalancer#ClusterIP#' ./k8s/services/client-service.yaml")
+          sh("sed -i.bak 's#gcr.io/${project}/${appName}:1.0.0#${imageTag}#' ./k8s/dev/*.yaml")
+          sh("kubectl --namespace=${modifiedBranchName} apply -f k8s/services/")
+          sh("kubectl --namespace=${modifiedBranchName} apply -f k8s/dev/")
           echo 'To access your environment run `kubectl proxy`'
           echo "Then access your service via http://localhost:8001/api/v1/proxy/namespaces/${modifiedBranchName}/services/${feSvcName}:5000/"
         }
