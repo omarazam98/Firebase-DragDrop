@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SignUp } from '../../../components/SignUp/SignUp';
-import { EmailRedirect } from '../../../components/SignUp/EmailRedirect';
+import { EmailRedirect } from '../../../components/EmailRedirect';
 
 import {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16';

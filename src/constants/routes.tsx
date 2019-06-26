@@ -2,7 +2,6 @@
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import SignUp from '../components/SignUp/SignUp'
-import EmailRedirect from '../components/SignUp/EmailRedirect';
 import Login from '../components/Login/Login';
 import Dashboard from '../components/Dashboard/Dashboard';
 import EmailRedirect from '../components/EmailRedirect';
@@ -13,7 +12,7 @@ import EmailRedirect from '../components/EmailRedirect';
 // name will be the label of the link
 // component should be the page/component to be shown
 // To add a componenet page to the routes table/nav bar, you should import it here at the top of the file and add it to the routes object:
-/*** Example: 
+/*** Example:
  * import App from '../../App'
  *
  * const ROUTES = [
@@ -22,8 +21,8 @@ import EmailRedirect from '../components/EmailRedirect';
  *     exact:true,
  *     name:'Home',
  *     component: App,
- *  }, 
-/* Example routes with basic JSX elements as components
+ *  },
+ /* Example routes with basic JSX elements as components
  *  {
  *     path:'/example1',
  *     name:'Primary',
@@ -37,15 +36,15 @@ import EmailRedirect from '../components/EmailRedirect';
  *  },
  * ];
  *
-**/
+ **/
 
 /*These show up in the nav bar as links*/
 export const NAVBAR_ROUTES = [
   {
-      path: '/signup',
-      exact: true,
-      name: 'Sign Up',
-      component: SignUp
+    path: '/signup',
+    exact: true,
+    name: 'Sign Up',
+    component: SignUp
   },
   {
     path: '/login',
@@ -58,41 +57,17 @@ export const NAVBAR_ROUTES = [
     exact: true,
     name: 'Dashboard',
     component: Dashboard,
+    authRequired: true,
   },
 ];
 
 /*These are not rendered as links*/
 export const ROUTES = [
   ...NAVBAR_ROUTES,
-    {
-        path: '/email',
-        exact: true,
-        name: 'Email Link',
-        component: EmailRedirect,
-    },
-<<<<<<<
-    {
-        path: '/dashboard',
-        exact: true,
-        name: 'Dashboard',
-        component: Dashboard,
-        authRequired: true,
-    },
-=======
-
->>>>>>>
+  {
+    path: '/email',
+    exact: true,
+    name: 'Email Link',
+    component: EmailRedirect,
+  },
 ];
-
-<<<<<<<
-export const ANONYMOUS_ROUTES = [
-    {
-        path: '/emailverification',
-        exact: true,
-        name: 'Email Link',
-        component: EmailRedirect,
-    },
-];
-=======
-
->>>>>>>
-

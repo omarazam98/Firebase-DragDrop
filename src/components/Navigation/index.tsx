@@ -1,44 +1,14 @@
 // Main routing component.
 // If a new page is added, be sure to add the route to src/constants/routes
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { ROUTES, NAVBAR_ROUTES } from '../../constants/routes';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {ROUTES, NAVBAR_ROUTES} from '../../constants/routes';
 import SplitPane from 'react-split-pane';
-import { withAPI } from '@winwin/api-firebase';
+import {withAPI} from '@winwin/api-firebase';
 
-<<<<<<<
 interface NavState {
   loggedIn: boolean
-=======
-export function Navigation(props) {
-  return (
-    <div>
-      <Router>
-        <SplitPane split="vertical" minSize={50} defaultSize={100}>
-          {/* Link creates the object that a user can click on to go to another page */}
-          <div>
-            {links()}
-            <button id='signOut' onClick = {() => {props.api.auth.signOut();}}>Log Out</button>
-          </div>
-          {/* Route indicates what component should be shown, based on what is linked */}
-          {/* Map routes from links to their components */}
-          <div>
-          {ROUTES.map((route:any, index) => (
-              <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-              />
-          ))}
-          </div>
-        </SplitPane>
-      </Router>
-    </div>
-  );
->>>>>>>
 }
-<<<<<<<
 
 export class Navigation extends React.Component<any, any> {
   _isMounted: boolean = false;
@@ -64,12 +34,10 @@ export class Navigation extends React.Component<any, any> {
     this._isMounted = false;
   }
 
-  // iterate over all routes from routes.ts
-  // return a jsx expression containing links to all routes
   links() {
     // can't push JSX on an empty array, so init with a div
     const allLinks = [<div/>];
-    ROUTES.forEach((route: any) => (this.state.loggedIn || !route.authRequired) && allLinks.push(
+    NAVBAR_ROUTES.forEach((route: any) => (this.state.loggedIn || !route.authRequired) && allLinks.push(
       <Link to={route.path}>{route.name}<br/></Link>));
     return allLinks;
   }
@@ -82,23 +50,12 @@ export class Navigation extends React.Component<any, any> {
             {/* Link creates the object that a user can click on to go to another page */}
             <div>
               {this.links()}
-              <button id='signOut' onClick={() => {
-                this.props.api.auth.signOut();
-              }}>Log Out
-              </button>
+              <button id='signOut' onClick={() => {this.props.api.auth.signOut();}}>Log Out</button>
             </div>
             {/* Route indicates what component should be shown, based on what is linked */}
             {/* Map routes from links to their components */}
             <div>
-              {ROUTES.map((route: any, index) =>
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                />
-              )}
-              {ANONYMOUS_ROUTES.map((route: any, index) => (
+              {ROUTES.map((route: any, index) => (
                 <Route
                   key={index}
                   path={route.path}
@@ -112,15 +69,6 @@ export class Navigation extends React.Component<any, any> {
       </div>
     );
   }
-=======
-// iterate over all routes from routes.ts
-// return a jsx expression containing links to all routes
-function links() {
-  // can't push JSX on an empty array, so init with a div
-  const allLinks = [<div />];
-  NAVBAR_ROUTES.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
-  return allLinks;
->>>>>>>
 }
 
 export default withAPI(Navigation);
