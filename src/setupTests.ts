@@ -1,9 +1,4 @@
-const dotenv = require('dotenv');
-import Enzyme, { shallow, render, mount } from 'enzyme/build';
+import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16/build';
 // React 16 Enzyme adapter
-Enzyme.configure({ adapter: new Adapter() });
-// Make Enzyme functions available in all test files without importing
-global.shallow = shallow;
-global.render = render;
-global.mount = mount;
+configure({ adapter: new Adapter() });
