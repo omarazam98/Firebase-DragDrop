@@ -66,9 +66,9 @@ export class SignUp extends Component<any, SignUpState> {
     }
 
     handleChange(e) {
-        e.persist()
+        e.persist();
         if (Object.keys(this.state).includes(e.target.name)) {
-            this.updateField(e.target.name, e.target.value, e.target.checkValidity())
+            this.updateField(e.target.name, e.target.value, e.target.checkValidity());
         }
     };
 
@@ -77,11 +77,11 @@ export class SignUp extends Component<any, SignUpState> {
             return {
                 [name]: {
                     ...prevState[name],
-                    value
+                    value,
                 }
             } as Pick<SignUpState, keyof SignUpState>
         }, () => {
-            this.validateInputs(name, value, valid)
+            this.validateInputs(name, value, valid);
         });
     }
 
@@ -91,7 +91,7 @@ export class SignUp extends Component<any, SignUpState> {
                 return {
                     [name]: {
                         ...prevState[name],
-                        errors: 'field cannot be empty'
+                        errors: 'field cannot be empty',
                     }
                 } as Pick<SignUpState, keyof SignUpState>
             });
@@ -114,7 +114,7 @@ export class SignUp extends Component<any, SignUpState> {
                 } as Pick<SignUpState, keyof SignUpState>
             });
         } else {
-            this.setState(function (prevState, props) {
+            this.setState(function (prevState) {
                 return {
                     [name]: {
                         ...prevState[name],
@@ -122,7 +122,7 @@ export class SignUp extends Component<any, SignUpState> {
                     }
                 } as Pick<SignUpState, keyof SignUpState>
             });
-        };
+        }
     };
 
     handleSubmit(e) {
@@ -145,9 +145,9 @@ export class SignUp extends Component<any, SignUpState> {
                         });
                     }
                 }).catch(function (error) { //these error messages are coming from firestore and include anything we aren't already catching
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    if (errorCode == 'auth/weak-password') {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    if (errorCode === 'auth/weak-password') {
                         alert('The password is too weak.');
                     } else {
                         alert(errorMessage);
@@ -234,8 +234,8 @@ export class SignUp extends Component<any, SignUpState> {
                     <label htmlFor="email">Email: </label> <br/>
                     <input name="email" id="email" onBlur={this.handleBlur} onFocus={this.handleFocus} value={this.state.email.value}
                            onChange={this.handleChange} type="email"
-                           placeholder="Email Address"/> {this.state.email.touched &&
-                <span> {this.state.email.errors} </span>}<br/>
+                           placeholder="Email Address"/>
+                    {this.state.email.touched && <span>{this.state.email.errors}</span>}<br/>
 
                     <label htmlFor="phoneNumber">Phone Number: </label><br/>
                     <input name="phoneNumber" id='phoneNumber' onBlur={this.handleBlur} onFocus={this.handleFocus} onChange={this.handleChange}
@@ -246,14 +246,14 @@ export class SignUp extends Component<any, SignUpState> {
                     <label htmlFor="passwordOne">Password: </label><br/>
                     <input name="passwordOne" id="passwordOne" onBlur={this.handleBlur} onFocus={this.handleFocus}
                            value={this.state.passwordOne.value} onChange={this.handleChange} type="password"
-                           placeholder="Password"/>{this.state.passwordOne.touched &&
-                <span> {this.state.passwordOne.errors} </span>} <br/>
+                           placeholder="Password"/>
+                    {this.state.passwordOne.touched && <span> {this.state.passwordOne.errors} </span>} <br/>
 
                     <label htmlFor="passwordTwo">Confirm Password: </label> <br/>
                     <input name="passwordTwo" id="passwordTwo" onBlur={this.handleBlur} onFocus={this.handleFocus}
                            value={this.state.passwordTwo.value} onChange={this.handleChange} type="password"
-                           placeholder="Confirm Password"/>{this.state.passwordTwo.touched &&
-                <span> {this.state.passwordTwo.errors} </span>} <br/>
+                           placeholder="Confirm Password"/>
+                    {this.state.passwordTwo.touched && <span>{this.state.passwordTwo.errors}</span>} <br/>
 
                     <input id={'submitButton'} type="submit"
                            value={'Sign Up'}></input> <span>{this.state.formError && this.state.formError.message}</span>
