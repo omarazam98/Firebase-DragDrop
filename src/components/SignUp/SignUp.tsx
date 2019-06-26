@@ -202,7 +202,7 @@ export class SignUp extends Component<any, SignUpState> {
 
     handleFocus(e) { //
         e.persist();
-        if (Object.keys(this.state).includes(e.target.name)) {
+        if (Object.keys(this.state).includes(e.target.name) && e.target.type !== "radio") {
             this.setState(function (prevState, props) {
                 return {
                     [e.target.name]: {
@@ -216,6 +216,7 @@ export class SignUp extends Component<any, SignUpState> {
     }
 
     render() {
+        console.log(this.state)
         const disableButton = this.hasErrors();
         return (
             <div>
@@ -229,8 +230,8 @@ export class SignUp extends Component<any, SignUpState> {
                     <input type="radio" name="class" value="senior" checked={this.state.class.value === "senior"}
                            onChange={this.handleChange} onFocus={this.handleFocus}/>Senior
                     <input type="radio" name="class" value="student" checked={this.state.class.value === "student"}
-                           onChange={this.handleChange} onFocus={this.handleFocus}/>Student {this.state.name.touched &&
-                <span> {this.state.name.errors} </span>}<br/>
+                           onChange={this.handleChange} onFocus={this.handleFocus}/>Student {this.state.class.touched &&
+                <span> {this.state.class.errors} </span>}<br/>
 
                     <label htmlFor="email">Email: </label> <br/>
                     <input name="email" id="email" onBlur={this.handleBlur} onFocus={this.handleFocus} value={this.state.email.value}
