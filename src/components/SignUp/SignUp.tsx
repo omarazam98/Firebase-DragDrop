@@ -22,32 +22,32 @@ const INITIAL_STATE: SignUpState = {
     name: {
         value: '',
         touched: false,
-        errors: '',
+        errors: 'field cannot be empty',
     },
     phoneNumber: {
         value: '',
         touched: false,
-        errors: '',
+        errors: 'field cannot be empty',
     },
     class: {
         value: '',
         touched: false,
-        errors: '',
+        errors: 'value must be selected',
     },
     email: {
         value: '',
         touched: false,
-        errors: '',
+        errors: 'field cannot be empty',
     },
     passwordOne: {
         value: '',
         touched: false,
-        errors: '',
+        errors: 'field cannot be empty',
     },
     passwordTwo: {
         value: '',
         touched: false,
-        errors: '',
+        errors: 'field cannot be empty',
     },
     formError: undefined,
 };
@@ -60,6 +60,7 @@ export class SignUp extends Component<any, SignUpState> {
         this.validateInputs = this.validateInputs.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
         this.hasErrors = this.hasErrors.bind(this);
         this.updateField = this.updateField.bind(this);
     }
@@ -131,7 +132,7 @@ export class SignUp extends Component<any, SignUpState> {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     if (user) {
-                        user.sendEmailVerification();
+                        user.sendEmailVerification({url: "http://localhost:3000"});
                         this.props.history.push('/email'); //redirects to a new page saying that an email has been sent, and the account needs to be verified
                         user.updateProfile({displayName: this.state.name.value}).then(() => { //after creating the user in firebase auth, this also starts a user profile in the DB that will add the extra info (name, phonenumber, student or senior)
                             this.props.api.data.users.create(
@@ -156,6 +157,18 @@ export class SignUp extends Component<any, SignUpState> {
             this.setState(function () {
                 return { formError: new Error('Invalid form inputs')}
             });
+
+            for (const key in this.state) {
+                if (key === 'formError') continue
+                this.setState(function (prevState) {
+                    return {
+                        [key]: {
+                          ...prevState[key],
+                            touched: true,
+                        },
+                    }as Pick<SignUpState, keyof SignUpState>
+                })
+            }
         }
     }
 
@@ -187,6 +200,21 @@ export class SignUp extends Component<any, SignUpState> {
 
     }
 
+    handleFocus(e) { //
+        e.persist();
+        if (Object.keys(this.state).includes(e.target.name)) {
+            this.setState(function (prevState, props) {
+                return {
+                    [e.target.name]: {
+                        ...prevState[e.target.name],
+                        touched: false
+                    }
+                } as Pick<SignUpState, keyof SignUpState>
+            });
+        }
+
+    }
+
     render() {
         const disableButton = this.hasErrors();
         return (
@@ -194,41 +222,42 @@ export class SignUp extends Component<any, SignUpState> {
                 <h1> Sign Up </h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="name">Name: </label> <br/>
-                    <input name="name" id="name" onBlur={this.handleBlur} value={this.state.name.value}
+                    <input name="name" id="name" onBlur={this.handleBlur} onFocus={this.handleFocus} value={this.state.name.value}
                            onChange={this.handleChange} type="text" placeholder="Full Name"/> {this.state.name.touched &&
                 <span> {this.state.name.errors} </span>} <br/>
 
                     <input type="radio" name="class" value="senior" checked={this.state.class.value === "senior"}
-                           onChange={this.handleChange}/>Senior
+                           onChange={this.handleChange} onFocus={this.handleFocus}/>Senior
                     <input type="radio" name="class" value="student" checked={this.state.class.value === "student"}
-                           onChange={this.handleChange}/>Student <br/>
+                           onChange={this.handleChange} onFocus={this.handleFocus}/>Student {this.state.name.touched &&
+                <span> {this.state.name.errors} </span>}<br/>
 
                     <label htmlFor="email">Email: </label> <br/>
-                    <input name="email" id="email" onBlur={this.handleBlur} value={this.state.email.value}
+                    <input name="email" id="email" onBlur={this.handleBlur} onFocus={this.handleFocus} value={this.state.email.value}
                            onChange={this.handleChange} type="email"
                            placeholder="Email Address"/> {this.state.email.touched &&
                 <span> {this.state.email.errors} </span>}<br/>
 
                     <label htmlFor="phoneNumber">Phone Number: </label><br/>
-                    <input name="phoneNumber" id='phoneNumber' onBlur={this.handleBlur} onChange={this.handleChange}
+                    <input name="phoneNumber" id='phoneNumber' onBlur={this.handleBlur} onFocus={this.handleFocus} onChange={this.handleChange}
                            type="tel" placeholder="Phone Number"
                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>{this.state.phoneNumber.touched &&
                 <span> {this.state.phoneNumber.errors} </span>}<br/>
 
                     <label htmlFor="passwordOne">Password: </label><br/>
-                    <input name="passwordOne" id="passwordOne" onBlur={this.handleBlur}
+                    <input name="passwordOne" id="passwordOne" onBlur={this.handleBlur} onFocus={this.handleFocus}
                            value={this.state.passwordOne.value} onChange={this.handleChange} type="password"
                            placeholder="Password"/>{this.state.passwordOne.touched &&
                 <span> {this.state.passwordOne.errors} </span>} <br/>
 
                     <label htmlFor="passwordTwo">Confirm Password: </label> <br/>
-                    <input name="passwordTwo" id="passwordTwo" onBlur={this.handleBlur}
+                    <input name="passwordTwo" id="passwordTwo" onBlur={this.handleBlur} onFocus={this.handleFocus}
                            value={this.state.passwordTwo.value} onChange={this.handleChange} type="password"
                            placeholder="Confirm Password"/>{this.state.passwordTwo.touched &&
                 <span> {this.state.passwordTwo.errors} </span>} <br/>
 
-                    <input disabled={disableButton} id={'submitButton'} type="submit"
-                           value={'Sign Up'}></input>
+                    <input id={'submitButton'} type="submit"
+                           value={'Sign Up'}></input> {this.state.formError && this.state.formError.message}
                 </form>
             </div>
         );
