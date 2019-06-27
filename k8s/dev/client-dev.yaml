@@ -1,0 +1,30 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: client-dev
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: client
+      labels:
+        app: client
+        env: dev
+    spec:
+      containers:
+      - name: client
+        image: gcr.io/silent-vim-243301/client:1.0.0
+        resources:
+          limits:
+            # At the moment we are limiting our application to this much, we shouldn't have to deal with that much load on dev no matter what
+            memory: "500Mi"
+            cpu: "100m"
+        imagePullPolicy: Always
+          # TODO a readiness probe here would be a good touch
+          # readinessProbe:
+          # httpGet:
+          # path: /healthz
+          # port: 80
+        ports:
+          - name: client
+            containerPort: 5000

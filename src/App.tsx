@@ -21,12 +21,12 @@ class App extends Component {
     return (
       // The provider allows all of its descendant elements to access the redux store through
       // the connect function from react-redux
-      <APIProvider config={firebaseConfig}>
-        <Provider store={store}>
-          <Navigation/>
-          { /*Put the main application in here. Probably the app router*/}
-        </Provider>
-      </APIProvider>
+      <Provider store={store}>
+        <APIProvider config={firebaseConfig}>
+          <Navigation />
+          { /*Put the main application in here. Probably the app router*/ }
+        </APIProvider>
+      </Provider>
     );
   }
 }

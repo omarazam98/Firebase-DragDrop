@@ -2,6 +2,10 @@
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import PaymentCard from '../components/PaymentCard';
+import SignUp from '../components/SignUp/SignUp'
+import EmailRedirect from '../components/SignUp/EmailRedirect';
+import Login from '../components/Login/Login';
+import Dashboard from '../components/Dashboard/Dashboard';
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
@@ -35,7 +39,26 @@ import PaymentCard from '../components/PaymentCard';
  *
  **/
 
-const ROUTES = [
+/*These show up in the nav bar as links*/
+export const NAVBAR_ROUTES = [
+  {
+      path: '/signup',
+      exact: true,
+      name: 'Sign Up',
+      component: SignUp
+  },
+  {
+    path: '/login',
+    exact: true,
+    name: 'Log In',
+    component: Login,
+  },
+  {
+    path: '/dashboard',
+    exact: true,
+    name: 'Dashboard',
+    component: Dashboard,
+  },
   {
     path: '/payment',
     exact: true,
@@ -44,4 +67,15 @@ const ROUTES = [
   },
 ];
 
-export default ROUTES;
+/*These are not rendered as links*/
+export const ROUTES = [
+  ...NAVBAR_ROUTES,
+    {
+        path: '/email',
+        exact: true,
+        name: 'Email Link',
+        component: EmailRedirect,
+    },
+];
+
+

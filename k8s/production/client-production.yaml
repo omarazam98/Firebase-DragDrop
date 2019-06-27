@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: client-production
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: client
+      labels:
+        app: client
+        env: production
+    spec:
+      containers:
+      - name: client
+        image: gcr.io/silent-vim-243301/client:1.0.0
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "100m"
+        imagePullPolicy: Always
+          # TODO a readiness probe here would be a good touch
+          # readinessProbe:
+          # httpGet:
+          # path: /healthz
+          # port: 80
+        ports:
+          - name: client
+            containerPort: 5000
