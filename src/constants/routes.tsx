@@ -1,10 +1,7 @@
 // places routes in this file
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
-import React from 'react';
 import PaymentCard from '../components/PaymentCard';
-import Login from '../components/Login';
-import SignUp from '../components/Login/SignUp';
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
@@ -44,18 +41,6 @@ const ROUTES = [
     exact: true,
     name: 'Card',
     component: PaymentCard,
-  },
-  {
-    path: '/login',
-    exact: true,
-    name: 'login',
-    component: Login,
-  },
-  {
-    path: '/signup',
-    exact: true,
-    name: 'sign up',
-    component: SignUp,
   },
 ];
 
