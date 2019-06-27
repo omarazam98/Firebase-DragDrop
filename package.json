@@ -16,6 +16,7 @@
     "react-split-pane": "^0.1.87",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "serve": "^11.0.2",
     "typescript": "^3.4.5"
   },
   "scripts": {
