@@ -6,11 +6,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY . .
 
-RUN npm ci
+RUN npm install
 
 RUN npm run build
-
-RUN npm install -g serve
 
 EXPOSE 5000
 
