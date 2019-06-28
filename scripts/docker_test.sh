@@ -1,3 +1,4 @@
+docker build -t random_name .
 docker run \
   -it\
   -p 5000:5000\
