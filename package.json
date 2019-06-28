@@ -23,6 +23,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "react-scripts test",
+    "test:ci": "npm test -- --watchAll=false --ci --reporters=default --reporters=jest-junit ",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "storybook": "start-storybook -p 9009 -s public",
