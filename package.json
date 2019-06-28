@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "npm run build:env && react-scripts start",
-    "serve": "NODE_ENV=production npm run build:env && cp public/client-env.js build/public && serve -s build",
+    "serve": "NODE_ENV=production npm run build:env && cp public/client-env.js build/client-env.js && serve -s build",
     "build": "react-scripts build",
     "build:env": "node scripts/client-env.js DIR='./public'",
     "eject": "react-scripts eject",
