@@ -6,7 +6,7 @@ import { ROUTES, NAVBAR_ROUTES } from '../../constants/routes';
 import SplitPane from 'react-split-pane';
 import { withAPI } from '@winwin/api-firebase';
 
-export function Navigation(props) {
+export const Navigation = (props) => {
   return (
     <div>
       <Router>
@@ -14,7 +14,7 @@ export function Navigation(props) {
           {/* Link creates the object that a user can click on to go to another page */}
           <div>
             {links()}
-            <button id='signOut' onClick = {() => {props.api.auth.signOut();}}>Log Out</button>
+            <button id="signOut" onClick = {() => { props.api.auth.signOut(); }}>Log Out</button>
           </div>
           {/* Route indicates what component should be shown, based on what is linked */}
           {/* Map routes from links to their components */}
@@ -32,13 +32,15 @@ export function Navigation(props) {
       </Router>
     </div>
   );
-}
+};
 // iterate over all routes from routes.ts
 // return a jsx expression containing links to all routes
 function links() {
   // can't push JSX on an empty array, so init with a div
   const allLinks = [<div />];
-  NAVBAR_ROUTES.forEach((route:any) => allLinks.push(<Link to={route.path}>{route.name}<br /></Link>));
+  NAVBAR_ROUTES.forEach((route:any) => (
+    allLinks.push(<Link to={route.path}>{route.name}<br /></Link>)
+  ));
   return allLinks;
 }
 

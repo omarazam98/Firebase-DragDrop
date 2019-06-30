@@ -18,7 +18,7 @@ export const fetchStudentMatchByStudentAndSenior = (
   studentId:string,
   seniorId:string,
 ):Promise<MatchType> => {
-  throw 'Method not implemented'
+  throw 'Method not implemented';
 };
 
 export const fetchMatchesByStudent = (
@@ -39,4 +39,4 @@ export const updateMatchByStudentAndSenior = (
   updates:object,
 ):Promise<void> => {
   throw 'Method not implemented';
-}
+};
