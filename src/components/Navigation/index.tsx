@@ -12,7 +12,7 @@ interface NavState {
 }
 
 export class Navigation extends React.Component<any, any> {
-  isMounted: boolean = false;
+  _isMounted: boolean = false;
 
   constructor(props) {
     super(props);
@@ -24,9 +24,9 @@ export class Navigation extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    this.isMounted = true;
+    this._isMounted = true;
     this.props.api.auth.onAuthStateChanged((user) => {
-      if (this.isMounted) {
+      if (this._isMounted) {
         this.setState(() => {
           return {
             loggedIn: user ? true : false,
@@ -39,7 +39,7 @@ export class Navigation extends React.Component<any, any> {
 
 
   componentWillUnmount() {
-    this.isMounted = false;
+    this._isMounted = false;
   }
 
   links() {

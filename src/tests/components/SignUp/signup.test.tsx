@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { SignUp } from '../../../components/SignUp/SignUp';
 import { EmailRedirect } from '../../../components/EmailRedirect';
-
+import { shallow } from 'enzyme';
 let wrapper;
 let historyMock;
 let mockEvent;

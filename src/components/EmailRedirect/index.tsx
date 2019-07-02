@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 
 export function EmailRedirect(props) {
   const handleClick = () => props.history.push('/login');

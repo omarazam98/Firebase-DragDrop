@@ -8,7 +8,7 @@ interface AuthState {
 
 export const withAuth = (MyComponent) => {
   return class AuthenticatedComponent extends React.Component<any, AuthState> {
-    isMounted: boolean = false;
+    _isMounted: boolean = false;
 
     constructor(props) {
       super(props);
@@ -16,16 +16,16 @@ export const withAuth = (MyComponent) => {
     }
 
     componentDidMount() {
-      this.isMounted = true;
+      this._isMounted = true;
       this.props.api.auth.onAuthStateChanged((user) => {
-        if (this.isMounted) {
+        if (this._isMounted) {
           this.setState({ loggedIn: user ? true : false });
         }
       });
     }
 
     componentWillUnmount() {
-      this.isMounted = false;
+      this._isMounted = false;
     }
 
     render() {
