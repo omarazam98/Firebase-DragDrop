@@ -35,6 +35,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: sonarqube
+    image: newtmitch/sonar-scanner:latest
+    command:
+    - cat
+    tty: true
 """
      }
   }
@@ -49,6 +54,17 @@ spec:
           """
         }
       }
+    }
+	stage('Sonarqube Scan') {
+        steps {
+            container('sonarqube') {
+                sh "ln -s `pwd` /app"
+                sh "npm install typescript"
+                withCredentials([string(credentialsId:'sonarqube', variable:'login')]) {
+                    sh "sonar-scanner -Dsonar.host.url=http://35.193.231.227:9000 -Dsonar.login=${login} -Dsonar.projectName=WinWinClient -Dsonar.projectKey=WWC -Dsonar.language=ts -Dsonar.projectBaseDir=/app -Dsonar.sources=/app/src"
+                }
+            }
+        }
     }
     stage('Test') {
       steps {
