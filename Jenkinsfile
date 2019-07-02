@@ -54,8 +54,13 @@ spec:
       steps {
         container('node') {
           sh """
-            npm test -- --watchAll=false
+            npm run test:ci
           """
+        }
+      }
+      post {
+        always {
+          junit '**.xml'
         }
       }
     }
