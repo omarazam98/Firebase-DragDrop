@@ -1,10 +1,10 @@
 // Main routing component.
 // If a new page is added, be sure to add the route to src/constants/routes
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import {ROUTES, NAVBAR_ROUTES} from '../../constants/routes';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { ROUTES, NAVBAR_ROUTES } from '../../constants/routes';
 import SplitPane from 'react-split-pane';
-import {withAPI} from '@winwin/api-firebase';
+import { withAPI } from '@winwin/api-firebase';
 
 interface NavState {
   loggedIn: boolean;
@@ -12,7 +12,7 @@ interface NavState {
 }
 
 export class Navigation extends React.Component<any, any> {
-  _isMounted: boolean = false;
+  isMounted: boolean = false;
 
   constructor(props) {
     super(props);
@@ -24,9 +24,9 @@ export class Navigation extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    this._isMounted = true;
+    this.isMounted = true;
     this.props.api.auth.onAuthStateChanged((user) => {
-      if (this._isMounted) {
+      if (this.isMounted) {
         this.setState(() => {
           return {
             loggedIn: user ? true : false,
@@ -39,7 +39,7 @@ export class Navigation extends React.Component<any, any> {
 
 
   componentWillUnmount() {
-    this._isMounted = false;
+    this.isMounted = false;
   }
 
   links() {
