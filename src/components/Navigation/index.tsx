@@ -2,7 +2,7 @@
 // If a new page is added, be sure to add the route to src/constants/routes
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { ROUTES, NAVBAR_ROUTES } from '../../constants/routes';
+import { ROUTES, NAVBAR_ROUTES, RouteType } from '../../constants/routes';
 import SplitPane from 'react-split-pane';
 import { withAPI } from '@winwin/api-firebase';
 
@@ -10,8 +10,10 @@ interface NavState {
   loggedIn: boolean;
   emailVerified: boolean;
 }
-
-export class Navigation extends React.Component<any, any> {
+interface NavProps {
+  api: any
+}
+export class Navigation extends React.Component<NavProps, NavState> {
   _isMounted: boolean = false;
 
   constructor(props) {
@@ -63,7 +65,7 @@ export class Navigation extends React.Component<any, any> {
             {/* Route indicates what component should be shown, based on what is linked */}
             {/* Map routes from links to their components */}
             <div>
-              {ROUTES.map((route: any, index) => (
+              {ROUTES.map((route: RouteType, index) => (
                 <Route
                   key={index}
                   path={route.path}

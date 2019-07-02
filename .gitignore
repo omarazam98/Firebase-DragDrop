@@ -22,3 +22,5 @@ yarn-error.log*
 #environment
 /.idea
 
+
+public/client-env\.js
