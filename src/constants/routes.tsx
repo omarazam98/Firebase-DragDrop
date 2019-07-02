@@ -1,7 +1,7 @@
 // places routes in this file
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
-import SignUp from '../components/SignUp/SignUp'
+import SignUp from '../components/SignUp/SignUp';
 import Login from '../components/Login/Login';
 import Dashboard from '../components/Dashboard/Dashboard';
 import EmailRedirect from '../components/EmailRedirect';
