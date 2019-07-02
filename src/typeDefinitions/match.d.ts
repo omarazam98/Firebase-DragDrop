@@ -1,5 +1,5 @@
-type MatchType = 
-  StudentMatchType 
+type MatchType =
+  StudentMatchType
   | SeniorMatchType;
 
 type StudentMatchType = {
@@ -12,7 +12,7 @@ type StudentMatchType = {
   match_state: 'pending' | 'accepted' | 'rejected';
   school: string;
   program: string;
-}
+};
 
 type SeniorMatchType = {
   person_id: string;
@@ -23,7 +23,7 @@ type SeniorMatchType = {
   photo: string;
   match_state: 'pending' | 'accepted' | 'rejected';
   rent: number;
-}
+};
 
 type MatchesActionType =
   { type: '@@INIT' }

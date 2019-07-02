@@ -36,13 +36,12 @@ export const startSetMatches = (api, type:'student' | 'senior', id:string) => {
       return api.fetchMatchesByStudent(id).then((matches) => {
         dispatch(setMatches(matches));
       });
-    } else if (type === 'senior') {
+    } if (type === 'senior') {
       return api.fetchMatchesBySenior(id).then((matches) => {
         dispatch(setMatches(matches));
       });
-    } else {
-      throw `${type} type of match search is invalid`;
     }
+    throw `${type} type of match search is invalid`;
   };
 };
 

@@ -3,7 +3,7 @@ import './styles/App.css';
 import { Provider } from 'react-redux';
 import { store } from './store/createStore';
 import Navigation from './components/Navigation';
-import {APIProvider} from '@winwin/api-firebase';
+import { APIProvider } from '@winwin/api-firebase';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
