@@ -18,9 +18,21 @@ const mockAPI = {
   }
 };
 
-test('Render the navigation', () => {
-  const test = <Navigation />;
+test('Render the navigation unauthed', () => {
+  const test = <Navigation api={ mockAPI } />;
   const wrapper = shallow(test, options);
+  expect(wrapper).toMatchSnapshot();
+});
+
+test('Render the navigation authed', () => {
+  const test = <Navigation api={ mockAPI } />;
+  const wrapper = shallow(test, options);
+  wrapper.setState(() => {
+    return {
+      loggedIn: true,
+      emailVerified: true,
+    }
+  });
   expect(wrapper).toMatchSnapshot();
 });
 
@@ -32,13 +44,13 @@ test('Sign out button calls sign out', () => {
 });
 
 test('Only non auth required links render when not logged in', () => {
-  const test = <Navigation api={mockAPI} />;
+  const test = <Navigation api={ mockAPI } />;
   const wrapper = shallow(test, options);
   expect(wrapper.find(Link).length).toBe(NAVBAR_ROUTES.length - authedLinks.length);
 });
 
 test('All links render when logged in and verified', () => {
-  const test = <Navigation api={mockAPI} />;
+  const test = <Navigation api={ mockAPI } />;
   const wrapper = shallow(test, options);
   wrapper.setState({loggedIn: true, emailVerified: true})
   expect(wrapper.find(Link).length).toBe(NAVBAR_ROUTES.length);
