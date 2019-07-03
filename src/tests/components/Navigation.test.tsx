@@ -39,6 +39,11 @@ test('Render the navigation authed', () => {
 test('Sign out button calls sign out', () => {
   const test = <Navigation api={ mockAPI } />;
   const wrapper = shallow(test, options);
+  wrapper.setState(() => {
+    return {
+      loggedIn: true,
+    }
+  });
   wrapper.find('#signOut').simulate('click');
   expect(mockAPI.auth.signOut).toHaveBeenCalled();
 });

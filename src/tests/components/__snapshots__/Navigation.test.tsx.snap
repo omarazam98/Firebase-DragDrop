@@ -98,12 +98,6 @@ exports[`Render the navigation unauthed 1`] = `
           Log In
           <br />
         </Link>
-        <button
-          id="signOut"
-          onClick={[Function]}
-        >
-          Log Out
-        </button>
       </div>
       <div>
         <Route
