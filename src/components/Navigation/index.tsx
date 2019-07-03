@@ -60,7 +60,7 @@ export class Navigation extends React.Component<NavProps, NavState> {
             {/* Link creates the object that a user can click on to go to another page */}
             <div>
               {this.links()}
-              <button id='signOut' onClick={() => {this.props.api.auth.signOut();}}>Log Out</button>
+              {this.state.loggedIn && <button id='signOut' onClick={() => {this.props.api.auth.signOut();}}>Log Out</button>}
             </div>
             {/* Route indicates what component should be shown, based on what is linked */}
             {/* Map routes from links to their components */}
