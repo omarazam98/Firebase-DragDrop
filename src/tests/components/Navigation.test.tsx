@@ -9,8 +9,8 @@ const options = {
 
 const mockAPI = {
   auth: {
-      signOut: jest.fn(),
-  }
+    signOut: jest.fn(),
+  },
 };
 
 test('Render the navigation', () => {
@@ -25,4 +25,3 @@ test('Sign out button calls sign out', () => {
   wrapper.find('#signOut').simulate('click');
   expect(mockAPI.auth.signOut).toHaveBeenCalled();
 });
-

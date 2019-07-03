@@ -2,7 +2,7 @@ def project = 'silent-vim-243301'
 def  appName = 'client'
 def  feSvcName = "${appName}-service"
 //slashes are invalid characters for image names, so we replace them with underscores
-def modifiedBranchName = env.BRANCH_NAME.replace("/", "--")
+def modifiedBranchName = env.BRANCH_NAME.replace("/", "--").toLowerCase()
 def  imageTag = "gcr.io/${project}/${appName}:${modifiedBranchName}.${env.BUILD_NUMBER}"
 
 pipeline {
@@ -54,8 +54,13 @@ spec:
       steps {
         container('node') {
           sh """
-            npm test -- --watchAll=false
+            npm run test:ci
           """
+        }
+      }
+      post {
+        always {
+          junit '**.xml'
         }
       }
     }

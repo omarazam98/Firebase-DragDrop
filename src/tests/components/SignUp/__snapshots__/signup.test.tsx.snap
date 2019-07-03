@@ -58,7 +58,8 @@ exports[`has a valid snapshot 1`] = `
       type="radio"
       value="student"
     />
-    Student 
+    Student
+     
     <br />
     <label
       htmlFor="email"

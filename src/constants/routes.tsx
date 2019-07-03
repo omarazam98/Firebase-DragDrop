@@ -2,7 +2,7 @@
 // each page/component should have a route
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import PaymentCard from '../components/PaymentCard';
-import SignUp from '../components/SignUp/SignUp'
+import SignUp from '../components/SignUp/SignUp';
 import EmailRedirect from '../components/SignUp/EmailRedirect';
 import Login from '../components/Login/Login';
 import Dashboard from '../components/Dashboard/Dashboard';
@@ -12,7 +12,8 @@ import Dashboard from '../components/Dashboard/Dashboard';
 // exact is if the route is to the exact path
 // name will be the label of the link
 // component should be the page/component to be shown
-// To add a componenet page to the routes table/nav bar, you should import it here at the top of the file and add it to the routes object:
+// To add a componenet page to the routes table/nav bar, you should import
+// it here at the top of the file and add it to the routes object:
 /*** Example:
  * import App from '../../App'
  *
@@ -23,7 +24,7 @@ import Dashboard from '../components/Dashboard/Dashboard';
  *     name:'Home',
  *     component: App,
  *  },
- /* Example routes with basic JSX elements as components
+/* Example routes with basic JSX elements as components
  *  {
  *     path:'/example1',
  *     name:'Primary',
@@ -42,10 +43,10 @@ import Dashboard from '../components/Dashboard/Dashboard';
 /*These show up in the nav bar as links*/
 export const NAVBAR_ROUTES = [
   {
-      path: '/signup',
-      exact: true,
-      name: 'Sign Up',
-      component: SignUp
+    path: '/signup',
+    exact: true,
+    name: 'Sign Up',
+    component: SignUp,
   },
   {
     path: '/login',
@@ -70,12 +71,10 @@ export const NAVBAR_ROUTES = [
 /*These are not rendered as links*/
 export const ROUTES = [
   ...NAVBAR_ROUTES,
-    {
-        path: '/email',
-        exact: true,
-        name: 'Email Link',
-        component: EmailRedirect,
-    },
+  {
+    path: '/email',
+    exact: true,
+    name: 'Email Link',
+    component: EmailRedirect,
+  },
 ];
-
-
