@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import EmailRedirect from '../EmailRedirect';
 import { Login } from '../Login/Login';
 
@@ -34,7 +34,7 @@ export const withAuth = (MyComponent) => {
           this.props.api.auth.currentUser().emailVerified) ?
           <MyComponent {...this.props} /> : <EmailRedirect {...this.props} />;
       }
-      return (<><h1>Authorization Required</h1> <Login {...this.props} /></>);
+      return (<Fragment><h1>Authorization Required</h1> <Login {...this.props} /></Fragment>);
 
     }
   };

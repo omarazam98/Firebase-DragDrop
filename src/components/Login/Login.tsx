@@ -28,7 +28,6 @@ export class Login extends Component<any, LoginState> {
   handleChange(e) {
     e.persist();
     if (Object.keys(this.state).includes(e.target.name)) {
-      // checkbox ix weird, it uses checked rather than value
       const value = e.target.type === 'checkbox' ?
         e.target.checked : e.target.value;
       this.setState((prevState, props) => {
