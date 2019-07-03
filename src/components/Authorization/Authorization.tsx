@@ -5,9 +5,11 @@ import { Login } from '../Login/Login';
 interface AuthState {
   loggedIn: boolean;
 }
-
+interface AuthProps {
+  api: any
+}
 export const withAuth = (MyComponent) => {
-  return class AuthenticatedComponent extends React.Component<any, AuthState> {
+  return class AuthenticatedComponent extends React.Component<AuthProps, AuthState> {
     _isMounted: boolean = false;
 
     constructor(props) {
