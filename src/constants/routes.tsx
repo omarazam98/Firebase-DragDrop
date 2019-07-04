@@ -11,7 +11,7 @@ import EmailRedirect from '../components/EmailRedirect';
 // exact is if the route is to the exact path
 // name will be the label of the link
 // component should be the page/component to be shown
-// To add a componenet page to the routes table/nav bar, you should import
+// To add a component page to the routes table/nav bar, you should import
 // it here at the top of the file and add it to the routes object:
 /*** Example:
  * import App from '../../App'

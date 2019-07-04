@@ -65,7 +65,7 @@ export class Navigation extends React.Component<NavProps, NavState> {
     return (
       <div>
         <Router>
-          <SplitPane split="vertical" minSize={50} defaultSize={100}>
+          <SplitPane split="vertical" minSize={50} defaultSize={100} style={{ overflow:'auto' }}>
             {/* Link creates the object that a user can click on to go to another page */}
             <div>
               {this.links()}
