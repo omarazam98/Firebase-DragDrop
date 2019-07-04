@@ -6,9 +6,19 @@ exports[`Email Redirect has a valid snapshot 1`] = `
   <br />
   Already verified?
   <button
+    id="redirect"
     onClick={[Function]}
   >
      Log In
+  </button>
+   
+  <br />
+  Didn't receive the email?
+  <button
+    id="resend"
+    onClick={[Function]}
+  >
+     Send Again
   </button>
 </div>
 `;

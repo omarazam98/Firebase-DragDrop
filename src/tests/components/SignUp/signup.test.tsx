@@ -45,6 +45,7 @@ beforeAll(() => {
   };
   mockAPI = {
     auth: {
+      currentUser: jest.fn().mockReturnValue({ sendEmailVerification: jest.fn() }),
       signup: {
         createUserWithEmailAndPassword: () => {
           return new Promise((resolve, reject) => {
@@ -95,7 +96,13 @@ test('Email Redirect has a valid snapshot', () => {
 });
 
 test('Email Redirect redirects to login after button click', () => {
-  const emailWrapper = shallow(<EmailRedirect history={historyMock} />);
-  emailWrapper.find('button').simulate('click');
+  const emailWrapper = shallow(<EmailRedirect history={historyMock} api={mockAPI}/>);
+  emailWrapper.find('#redirect').simulate('click');
   expect(historyMock.push.mock.calls[0]).toEqual(['/login']);
+});
+
+test('Email Redirect resend email button calls sendEmailVerification', () => {
+  const emailWrapper = shallow(<EmailRedirect history={historyMock} api={mockAPI}/>);
+  emailWrapper.find('#resend').simulate('click');
+  expect(mockAPI.auth.currentUser().sendEmailVerification).toHaveBeenCalled();
 });
