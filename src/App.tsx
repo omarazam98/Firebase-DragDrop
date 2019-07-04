@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './styles/App.css';
-import {Provider} from 'react-redux';
-import {store} from './store/createStore';
+import { Provider } from 'react-redux';
+import { store } from './store/createStore';
 import Navigation from './components/Navigation';
 import { APIProvider } from '@winwin/api-firebase';
 
