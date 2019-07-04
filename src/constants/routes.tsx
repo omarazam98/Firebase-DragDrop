@@ -3,9 +3,9 @@
 // e.g. winwinhomesharing.org/signup would have the route 'signup'
 import PaymentCard from '../components/PaymentCard';
 import SignUp from '../components/SignUp/SignUp';
-import EmailRedirect from '../components/SignUp/EmailRedirect';
 import Login from '../components/Login/Login';
 import Dashboard from '../components/Dashboard/Dashboard';
+import EmailRedirect from '../components/EmailRedirect';
 
 // to add a new page, simply add another element to the array below
 // path is the path to the page
@@ -40,25 +40,36 @@ import Dashboard from '../components/Dashboard/Dashboard';
  *
  **/
 
+export interface RouteType {
+  path: string;
+  exact: boolean;
+  name: string;
+  component: React.Component<any, any> | React.FC<any>;
+  authRequired: boolean;
+}
+
 /*These show up in the nav bar as links*/
-export const NAVBAR_ROUTES = [
+export const NAVBAR_ROUTES: RouteType[] = [
   {
     path: '/signup',
     exact: true,
     name: 'Sign Up',
     component: SignUp,
+    authRequired: false,
   },
   {
     path: '/login',
     exact: true,
     name: 'Log In',
     component: Login,
+    authRequired: false,
   },
   {
     path: '/dashboard',
     exact: true,
     name: 'Dashboard',
     component: Dashboard,
+    authRequired: true,
   },
   {
     path: '/payment',
@@ -69,12 +80,13 @@ export const NAVBAR_ROUTES = [
 ];
 
 /*These are not rendered as links*/
-export const ROUTES = [
+export const ROUTES: RouteType[] = [
   ...NAVBAR_ROUTES,
   {
     path: '/email',
     exact: true,
     name: 'Email Link',
     component: EmailRedirect,
+    authRequired: false,
   },
 ];

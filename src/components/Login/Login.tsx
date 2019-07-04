@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withAPI } from '@winwin/api-firebase';
-import { withRouter } from 'react-router-dom';
 
 interface LoginState {
   email: string;
@@ -29,7 +28,6 @@ export class Login extends Component<any, LoginState> {
   handleChange(e) {
     e.persist();
     if (Object.keys(this.state).includes(e.target.name)) {
-      // checkbox ix weird, it uses checked rather than value
       const value = e.target.type === 'checkbox' ?
         e.target.checked : e.target.value;
       this.setState((prevState, props) => {
@@ -65,36 +63,36 @@ export class Login extends Component<any, LoginState> {
   render() {
     return (
       <div>
-          <h1> Login Page </h1>
-          <form onSubmit={this.handleSubmit}>
+        <h1> Login Page </h1>
+        <form onSubmit={this.handleSubmit}>
 
-              <label htmlFor="email">Email: </label> <br/>
-              <input name="email" id="email"
-                     value={this.state.email}
-                     onChange={this.handleChange}
-                     type="email"
-                     placeholder="Email Address"/><br/>
+          <label htmlFor="email">Email: </label> <br/>
+          <input name="email" id="email"
+                 value={this.state.email}
+                 onChange={this.handleChange}
+                 type="email"
+                 placeholder="Email Address"/><br/>
 
-              <label htmlFor="password">Password: </label><br/>
-              <input name="password"
-                     id="password"
-                     value={this.state.password}
-                     onChange={this.handleChange}
-                     type="password"
-                     placeholder="Password"/><br/>
-              Stay Logged In?
-              <input
-                  name="persistAuth"
-                  type="checkbox"
-                  onChange={this.handleChange} /><br/>
+          <label htmlFor="password">Password: </label><br/>
+          <input name="password"
+                 id="password"
+                 value={this.state.password}
+                 onChange={this.handleChange}
+                 type="password"
+                 placeholder="Password"/><br/>
+          Stay Logged In?
+          <input
+            name="persistAuth"
+            type="checkbox"
+            onChange={this.handleChange}/><br/>
 
-              <input id={'submitButton'}
-                     type="submit"
-                     value={'Log In'} />
-          </form>
+          <input id={'submitButton'}
+                 type="submit"
+                 value={'Log In'}/>
+        </form>
       </div>
     );
   }
 }
 
-export default withAPI(withRouter(Login));
+export default withAPI(Login);
