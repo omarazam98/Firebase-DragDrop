@@ -39,7 +39,7 @@ const ROUTES = [
   {
     path: '/payment',
     exact: true,
-    name: 'Card',
+    name: 'My Wallet',
     component: PaymentCard,
   },
 ];
