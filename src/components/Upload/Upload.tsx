@@ -96,9 +96,8 @@ export class Upload extends Component<any, UploadState> {
             const file = this.state.file;
             const uploader = document.getElementById("uploader") as HTMLProgressElement;
             try {
-                const storageRef = this.props.api.storage.storageRef.get(this.props.uploadDirectory + this.props.userID); //uploading directory will be specified as a prop when rendering component
+                const storageRef = this.props.api.storage.storageRef.get('test/' + this.props.api.auth.currentUser().uid); //uploading directory will be specified as a prop when rendering component
                 const task = storageRef.put(file);
-                console.log(storageRef);
                 this.setState(function (prevState, props) {
                     return {
                         uploading: true,
@@ -120,7 +119,7 @@ export class Upload extends Component<any, UploadState> {
                         });
                         task.snapshot.ref.getDownloadURL().then((downloadURL: String) => {
                             //for now this is just putting a photo URL in the firestore entry for that user, but using firebase auth to update the current user's profile image should be implemented later
-                            this.props.api.data.users.updateById(this.props.userID, {
+                            this.props.api.data.users.updateById(this.props.api.auth.currentUser().uid, {
                                 photoURL: downloadURL
                             });
                         });
