@@ -49,7 +49,7 @@ test('Renders Component if logged in and verified', () => {
 
 test('Renders email redirect if logged in and not email verified', () => {
   wrapper = shallow(<WrappedComponent api={unverifiedAPI}/>);
-  expect(wrapper.find(EmailRedirect).length).toBe(1);
+  expect(wrapper.dive().dive().find(EmailRedirect).length).toBe(1);
 });
 
 test('Renders log in page if not logged in', () => {
