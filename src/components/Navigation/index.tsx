@@ -9,45 +9,54 @@ import { withAPI } from '@winwin/api-firebase';
 interface NavState {
   loggedIn: boolean;
   emailVerified: boolean;
+  isMounted: boolean;
 }
 interface NavProps {
-  api: any
+  api: any;
 }
 export class Navigation extends React.Component<NavProps, NavState> {
-  _isMounted: boolean = false;
 
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
       emailVerified: false,
+      isMounted: false,
     };
     this.links = this.links.bind(this);
   }
 
   componentDidMount() {
-    this._isMounted = true;
+    this.setState(() => {
+      return {
+        isMounted: true,
+      };
+    });
     this.props.api.auth.onAuthStateChanged((user) => {
-      if (this._isMounted) {
+      if (this.state.isMounted) {
         this.setState(() => {
           return {
             loggedIn: user ? true : false,
-            emailVerified: (user && user.emailVerified) ? true: false
-          }
-        })
+            emailVerified: (user && user.emailVerified) ? true : false,
+          };
+        });
       }
     });
   }
 
-
   componentWillUnmount() {
-    this._isMounted = false;
+    this.setState(() => {
+      return {
+        isMounted: false,
+      };
+    });
   }
 
   links() {
     // can't push JSX on an empty array, so init with a div
     const allLinks = [<div/>];
-    NAVBAR_ROUTES.forEach((route: any) => ((this.state.loggedIn && this.state.emailVerified) || !route.authRequired) && allLinks.push(
+    NAVBAR_ROUTES.forEach((route: any) =>
+      ((this.state.loggedIn && this.state.emailVerified) || !route.authRequired) && allLinks.push(
       <Link to={route.path}>{route.name}<br/></Link>));
     return allLinks;
   }
@@ -60,7 +69,9 @@ export class Navigation extends React.Component<NavProps, NavState> {
             {/* Link creates the object that a user can click on to go to another page */}
             <div>
               {this.links()}
-              {this.state.loggedIn && <button id='signOut' onClick={() => {this.props.api.auth.signOut();}}>Log Out</button>}
+              {this.state.loggedIn && <button id="signOut" onClick={() => {
+                this.props.api.auth.signOut();
+              }}>Log Out</button> }
             </div>
             {/* Route indicates what component should be shown, based on what is linked */}
             {/* Map routes from links to their components */}

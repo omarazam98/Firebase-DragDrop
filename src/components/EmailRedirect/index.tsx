@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function EmailRedirect(props) {
+export const EmailRedirect = (props) => {
   const handleClick = () => props.history.push('/login');
   return (
     <div>
@@ -9,5 +9,5 @@ export function EmailRedirect(props) {
       <button onClick={handleClick}> Log In</button>
     </div>
   );
-}
+};
 export default EmailRedirect;

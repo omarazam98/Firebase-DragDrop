@@ -4,30 +4,41 @@ import { Login } from '../Login/Login';
 
 interface AuthState {
   loggedIn: boolean;
+  isMounted: boolean;
 }
 interface AuthProps {
-  api: any
+  api: any;
 }
 export const withAuth = (MyComponent) => {
   return class AuthenticatedComponent extends React.Component<AuthProps, AuthState> {
-    _isMounted: boolean = false;
 
     constructor(props) {
       super(props);
-      this.state = { loggedIn: props.api.auth.currentUser() };
+      this.state = {
+        loggedIn: props.api.auth.currentUser(),
+        isMounted: true,
+      };
     }
 
     componentDidMount() {
-      this._isMounted = true;
+      this.setState(() => {
+        return {
+          isMounted: true,
+        };
+      });
       this.props.api.auth.onAuthStateChanged((user) => {
-        if (this._isMounted) {
+        if (this.state.isMounted) {
           this.setState({ loggedIn: user ? true : false });
         }
       });
     }
 
     componentWillUnmount() {
-      this._isMounted = false;
+      this.setState(() => {
+        return {
+          isMounted: false,
+        };
+      });
     }
 
     render() {

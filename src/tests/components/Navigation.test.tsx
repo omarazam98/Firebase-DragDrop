@@ -15,7 +15,7 @@ const mockAPI = {
   auth: {
     signOut: jest.fn(),
     currentUser: jest.fn(),
-  }
+  },
 };
 
 test('Render the navigation unauthed', () => {
@@ -31,7 +31,7 @@ test('Render the navigation authed', () => {
     return {
       loggedIn: true,
       emailVerified: true,
-    }
+    };
   });
   expect(wrapper).toMatchSnapshot();
 });
@@ -42,7 +42,7 @@ test('Sign out button calls sign out', () => {
   wrapper.setState(() => {
     return {
       loggedIn: true,
-    }
+    };
   });
   wrapper.find('#signOut').simulate('click');
   expect(mockAPI.auth.signOut).toHaveBeenCalled();
@@ -57,6 +57,6 @@ test('Only non auth required links render when not logged in', () => {
 test('All links render when logged in and verified', () => {
   const test = <Navigation api={ mockAPI } />;
   const wrapper = shallow(test, options);
-  wrapper.setState({loggedIn: true, emailVerified: true})
+  wrapper.setState({ loggedIn: true, emailVerified: true });
   expect(wrapper.find(Link).length).toBe(NAVBAR_ROUTES.length);
 });
