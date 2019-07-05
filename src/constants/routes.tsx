@@ -41,6 +41,7 @@ const ROUTES = [
     exact: true,
     name: 'My Wallet',
     component: PaymentCard,
+    authRequired: false,
   },
 ];
 
