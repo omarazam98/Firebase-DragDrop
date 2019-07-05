@@ -1,6 +1,8 @@
 import React from 'react';
 import { withAPI } from '@winwin/api-firebase';
 import withAuth from '../Authorization/Authorization';
+import { Login } from '../Login/Login';
+import EmailRedirect from '../EmailRedirect';
 
 export const Dashboard = (props) => {
   return <div>
@@ -73,4 +75,4 @@ export const Dashboard = (props) => {
   </div>;
 };
 
-export default withAPI(withAuth(Dashboard));
+export default withAPI(withAuth(Dashboard, EmailRedirect, Login));
