@@ -65,12 +65,6 @@ exports[`Render the navigation authed 1`] = `
           key="3"
           path="/email"
         />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="4"
-          path="/upload"
-        />
       </div>
     </SplitPane>
   </BrowserRouter>
@@ -129,12 +123,6 @@ exports[`Render the navigation unauthed 1`] = `
           exact={true}
           key="3"
           path="/email"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="4"
-          path="/upload"
         />
       </div>
     </SplitPane>
