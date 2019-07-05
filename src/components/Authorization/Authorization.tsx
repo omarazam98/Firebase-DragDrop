@@ -9,7 +9,7 @@ interface AuthState {
 interface AuthProps {
   api: any;
 }
-export const withAuth = (MyComponent) => {
+export const withAuth = (Authed, EmailVerRequired, Unauthed) => {
   return class AuthenticatedComponent extends React.Component<AuthProps, AuthState> {
 
     constructor(props) {
@@ -45,10 +45,9 @@ export const withAuth = (MyComponent) => {
       if (this.state.loggedIn) {
         return (this.props.api.auth.currentUser() &&
           this.props.api.auth.currentUser().emailVerified) ?
-          <MyComponent {...this.props} /> : <EmailRedirect {...this.props} />;
+          <Authed {...this.props} /> : <EmailVerRequired {...this.props} />;
       }
-      return (<Fragment><h1>Authorization Required</h1> <Login {...this.props} /></Fragment>);
-
+      return (<Fragment><h1>Authorization Required</h1> <Unauthed {...this.props} /></Fragment>);
     }
   };
 };
