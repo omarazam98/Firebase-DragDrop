@@ -135,7 +135,9 @@ interface UserType {
   displayName: string;
   uid: string;
 }
-
+interface PaymentProps {
+  api: any;
+}
 interface PaymentState {
   paymentMethod: PaymentMethods | undefined;
   user: UserType | undefined;
@@ -145,13 +147,13 @@ const INITIAL_STATE = {
   user: undefined,
 };
 
-export class PaymentCard extends React.Component<any, PaymentState>{
+export class PaymentCard extends React.Component<PaymentProps, PaymentState>{
   constructor(props) {
     super(props);
     this.state = INITIAL_STATE;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const user = this.props.api.auth.currentUser();
     if (user) {
       this.props.api.data.users.getPaymentMethods(user.uid).then((payments) => {
@@ -170,7 +172,7 @@ export class PaymentCard extends React.Component<any, PaymentState>{
       <div className="credit-card">
         <div className="credit-card__logo">Win-Win Payment Method</div>
         <div className="credit-card__number">
-          {this.state.paymentMethod && 'XXXX XXXX XXXX ' + this.state.paymentMethod.number}
+          {this.state.paymentMethod && `XXXX XXXX XXXX ${this.state.paymentMethod.number}`}
         </div>
 
         <div className="credit-card__info">
