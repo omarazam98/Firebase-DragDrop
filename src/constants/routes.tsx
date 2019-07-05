@@ -83,11 +83,4 @@ export const ROUTES: RouteType[] = [
     component: EmailRedirect,
     authRequired: false,
   },
-  {
-    path: '/upload',
-    exact: true,
-    name: 'Upload',
-    component: Upload,
-    authRequired: false,
-  },
 ];
