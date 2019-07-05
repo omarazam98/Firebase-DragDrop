@@ -33,12 +33,6 @@ exports[`Render the navigation authed 1`] = `
           Dashboard
           <br />
         </Link>
-        <Link
-          to="/payment"
-        >
-          My Wallet
-          <br />
-        </Link>
         <button
           id="signOut"
           onClick={[Function]}
@@ -69,12 +63,6 @@ exports[`Render the navigation authed 1`] = `
           component={[Function]}
           exact={true}
           key="3"
-          path="/payment"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="4"
           path="/email"
         />
       </div>
