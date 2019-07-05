@@ -76,6 +76,7 @@ export const NAVBAR_ROUTES: RouteType[] = [
     exact: true,
     name: 'My Wallet',
     component: PaymentCard,
+    authRequired: false,
   },
 ];
 
