@@ -71,13 +71,6 @@ export const NAVBAR_ROUTES: RouteType[] = [
     component: Dashboard,
     authRequired: true,
   },
-  {
-    path: '/payment',
-    exact: true,
-    name: 'My Wallet',
-    component: PaymentCard,
-    authRequired: false,
-  },
 ];
 
 /*These are not rendered as links*/
