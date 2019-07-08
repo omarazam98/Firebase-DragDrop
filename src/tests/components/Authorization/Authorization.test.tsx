@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Login } from '../../../components/Login/Login';
-import { EmailRedirect } from '../../../components/EmailRedirect';
+import EmailRedirect from '../../../components/EmailRedirect';
 import { shallow, dive } from 'enzyme';
 import { withAuth } from '../../../components/Authorization/Authorization';
 
@@ -49,7 +49,7 @@ test('Renders Component if logged in and verified', () => {
 
 test('Renders email redirect if logged in and not email verified', () => {
   wrapper = shallow(<WrappedComponent api={unverifiedAPI}/>);
-  expect(wrapper.dive().dive().find(EmailRedirect).length).toBe(1);
+  expect(wrapper.find(EmailRedirect).length).toBe(1);
 });
 
 test('Renders log in page if not logged in', () => {
