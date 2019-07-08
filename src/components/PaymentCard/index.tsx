@@ -7,10 +7,6 @@ interface PaymentMethods {
   number: number;
 }
 
-interface UserType {
-  displayName: string;
-  uid: string;
-}
 interface PaymentProps {
   api: any;
 }
