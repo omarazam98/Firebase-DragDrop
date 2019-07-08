@@ -42,16 +42,16 @@ describe('Dragdrop child components test', () => {
   });
 });
 
-describe('handleDragIn and handleDragOut', () => {
+describe('handleDragEnter and handleDragExit', () => {
   it('drag in should set dragging to true', () => {
     wrapper = shallow(<Dragdrop><div/></Dragdrop>, options);
-    wrapper.instance().handleDragIn(mockEvent);
+    wrapper.instance().handleDragEnter(mockEvent);
     expect(wrapper.state('dragging')).toBeTruthy();
   });
 
-  it('drag out should set dragging to false', () => {
-    wrapper.instance().handleDragOut(mockEvent);
-    expect(wrapper.state('dragging')).toBeFalsy();
+  it('drag out should set draggingFile to false', () => {
+    wrapper.instance().handleDragExit(mockEvent);
+    expect(wrapper.state('draggingFile')).toBeFalsy();
   });
 });
 
@@ -60,7 +60,7 @@ describe('handleDrop', () => {
     wrapper = shallow(<Dragdrop handleDrop={mockDrop}><div/></Dragdrop>, options);
     wrapper.setState({ dragging: true });
     wrapper.instance().handleDrop(mockEvent);
-    expect(wrapper.state('dragging')).toEqual(false);
+    expect(wrapper.state('draggingFile')).toEqual(false);
     expect(mockDrop).toHaveBeenCalled();
   });
 });

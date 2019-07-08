@@ -4,7 +4,6 @@
 import SignUp from '../components/SignUp/SignUp';
 import Login from '../components/Login/Login';
 import Dashboard from '../components/Dashboard/Dashboard';
-import Upload from '../components/Upload/Upload';
 import EmailRedirect from '../components/EmailRedirect';
 
 // to add a new page, simply add another element to the array below
