@@ -3,7 +3,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { ROUTES, NAVBAR_ROUTES, RouteType } from '../../constants/routes';
-import SplitPane from 'react-split-pane';
 import { withAPI } from '@winwin/api-firebase';
 import { Paper } from '@material-ui/core';
 import { withStyles, Theme } from '@material-ui/core/styles';
@@ -12,12 +11,13 @@ import NavigationBar from './NavigationBar';
 const styles = (theme: Theme) => ({
   root: {
     display: 'flex',
-  },
-  paper: {
-    marginRight: theme.spacing(2),
+    position: 'fixed',
+    marginRight: theme.spacing(5),
   },
   content: {
-    paddingLeft: theme.spacing(6),
+    // currently nav bar is at width of 14
+    marginLeft: theme.spacing(16),
+    overflow: 'auto',
   },
 });
 
@@ -39,7 +39,6 @@ export class Navigation extends React.Component<NavProps, NavState> {
       emailVerified: false,
       isMounted: false,
     };
-    this.links = this.links.bind(this);
   }
 
   componentDidMount() {
@@ -68,46 +67,36 @@ export class Navigation extends React.Component<NavProps, NavState> {
     });
   }
 
-  links() {
-    // can't push JSX on an empty array, so init with a div
-    const allLinks = [<div/>];
-    NAVBAR_ROUTES.forEach((route: any) =>
-      ((this.state.loggedIn && this.state.emailVerified) || !route.authRequired) && allLinks.push(
-      <Link to={route.path}>{route.name}<br/></Link>));
-    return allLinks;
-  }
-
   render() {
     const classes = this.props.classes;
     return (
       <div>
         <Router>
-          <SplitPane split="vertical" minSize={50} defaultSize={100} style={{ overflow:'auto' }}>
-            {/* Link creates the object that a user can click on to go to another page */}
-            <div className={classes.root}>
-              <Paper className={classes.paper}>
-                <NavigationBar routesList={NAVBAR_ROUTES}/>
-                <button id="signOut"
-                        onClick = {() => { this.props.api.auth.signOut(); }}>Log Out</button>
-              </Paper>
-            </div>
-            {/* Route indicates what component should be shown, based on what is linked */}
-            {/* Map routes from links to their components */}
-            <div className={classes.content}>
-              {ROUTES.map((route: RouteType, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                />
-              ))}
-            </div>
-          </SplitPane>
+          {/* Link creates the object that a user can click on to go to another page */}
+          <div className={classes.root}>
+            <Paper>
+              <NavigationBar routesList={NAVBAR_ROUTES}/>
+              <button id="signOut"
+                      onClick = {() => { this.props.api.auth.signOut(); }}>Log Out</button>
+            </Paper>
+          </div>
+          {/* Route indicates what component should be shown, based on what is linked */}
+          {/* Map routes from links to their components */}
+          <div className={classes.content}>
+            {ROUTES.map((route: RouteType, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
+              />
+            ))}
+          </div>
         </Router>
       </div>
     );
   }
 }
 
+// @ts-ignore
 export default withAPI(withStyles(styles)(Navigation));
