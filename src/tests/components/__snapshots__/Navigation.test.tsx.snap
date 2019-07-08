@@ -3,70 +3,69 @@
 exports[`Render the navigation authed 1`] = `
 <div>
   <BrowserRouter>
-    <SplitPane
-      allowResize={true}
-      defaultSize={100}
-      minSize={50}
-      pane1ClassName=""
-      pane2ClassName=""
-      paneClassName=""
-      primary="first"
-      split="vertical"
-    >
-      <div>
-        <div />
-        <Link
-          to="/signup"
-        >
-          Sign Up
-          <br />
-        </Link>
-        <Link
-          to="/login"
-        >
-          Log In
-          <br />
-        </Link>
-        <Link
-          to="/dashboard"
-        >
-          Dashboard
-          <br />
-        </Link>
+    <div>
+      <WithStyles(ForwardRef(Paper))>
+        <withRouter(NavigationBar)
+          routesList={
+            Array [
+              Object {
+                "authRequired": false,
+                "component": [Function],
+                "exact": true,
+                "name": "Sign Up",
+                "path": "/signup",
+              },
+              Object {
+                "authRequired": false,
+                "component": [Function],
+                "exact": true,
+                "name": "Log In",
+                "path": "/login",
+              },
+              Object {
+                "authRequired": true,
+                "component": [Function],
+                "exact": true,
+                "name": "Dashboard",
+                "path": "/dashboard",
+              },
+            ]
+          }
+        />
         <button
           id="signOut"
           onClick={[Function]}
         >
           Log Out
         </button>
-      </div>
-      <div>
-        <Route
-          component={[Function]}
-          exact={true}
-          key="0"
-          path="/signup"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="1"
-          path="/login"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="2"
-          path="/dashboard"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="3"
-          path="/email"
-        />
-      </div>
-    </SplitPane>
+      </WithStyles(ForwardRef(Paper))>
+    </div>
+    <div>
+      <Route
+        component={[Function]}
+        exact={true}
+        key="0"
+        path="/signup"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        key="1"
+        path="/login"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        key="2"
+        path="/dashboard"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        key="3"
+        path="/email"
+      />
+    </div>
   </BrowserRouter>
 </div>
 `;
@@ -74,58 +73,69 @@ exports[`Render the navigation authed 1`] = `
 exports[`Render the navigation unauthed 1`] = `
 <div>
   <BrowserRouter>
-    <SplitPane
-      allowResize={true}
-      defaultSize={100}
-      minSize={50}
-      pane1ClassName=""
-      pane2ClassName=""
-      paneClassName=""
-      primary="first"
-      split="vertical"
-    >
-      <div>
-        <div />
-        <Link
-          to="/signup"
+    <div>
+      <WithStyles(ForwardRef(Paper))>
+        <withRouter(NavigationBar)
+          routesList={
+            Array [
+              Object {
+                "authRequired": false,
+                "component": [Function],
+                "exact": true,
+                "name": "Sign Up",
+                "path": "/signup",
+              },
+              Object {
+                "authRequired": false,
+                "component": [Function],
+                "exact": true,
+                "name": "Log In",
+                "path": "/login",
+              },
+              Object {
+                "authRequired": true,
+                "component": [Function],
+                "exact": true,
+                "name": "Dashboard",
+                "path": "/dashboard",
+              },
+            ]
+          }
+        />
+        <button
+          id="signOut"
+          onClick={[Function]}
         >
-          Sign Up
-          <br />
-        </Link>
-        <Link
-          to="/login"
-        >
-          Log In
-          <br />
-        </Link>
-      </div>
-      <div>
-        <Route
-          component={[Function]}
-          exact={true}
-          key="0"
-          path="/signup"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="1"
-          path="/login"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="2"
-          path="/dashboard"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          key="3"
-          path="/email"
-        />
-      </div>
-    </SplitPane>
+          Log Out
+        </button>
+      </WithStyles(ForwardRef(Paper))>
+    </div>
+    <div>
+      <Route
+        component={[Function]}
+        exact={true}
+        key="0"
+        path="/signup"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        key="1"
+        path="/login"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        key="2"
+        path="/dashboard"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        key="3"
+        path="/email"
+      />
+    </div>
   </BrowserRouter>
 </div>
 `;

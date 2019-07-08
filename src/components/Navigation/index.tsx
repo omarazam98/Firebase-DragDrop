@@ -7,16 +7,17 @@ import { withAPI } from '@winwin/api-firebase';
 import { Paper } from '@material-ui/core';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import NavigationBar from './NavigationBar';
+import { createStyles } from '@material-ui/styles';
 
-const styles = (theme: Theme) => ({
+export const styles = ({ palette, spacing }: Theme) => createStyles({
   root: {
     display: 'flex',
     position: 'fixed',
-    marginRight: theme.spacing(5),
+    marginRight: spacing(5),
   },
   content: {
     // currently nav bar is at width of 14
-    marginLeft: theme.spacing(16),
+    marginLeft: spacing(16),
     overflow: 'auto',
   },
 });
@@ -77,7 +78,10 @@ export class Navigation extends React.Component<NavProps, NavState> {
             <Paper>
               <NavigationBar routesList={NAVBAR_ROUTES}/>
               <button id="signOut"
-                      onClick = {() => { this.props.api.auth.signOut(); }}>Log Out</button>
+                      onClick={() => {
+                        this.props.api.auth.signOut();
+                      }}>Log Out
+              </button>
             </Paper>
           </div>
           {/* Route indicates what component should be shown, based on what is linked */}
@@ -98,5 +102,4 @@ export class Navigation extends React.Component<NavProps, NavState> {
   }
 }
 
-// @ts-ignore
 export default withAPI(withStyles(styles)(Navigation));
