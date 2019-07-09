@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< refs/remotes/origin/integration
 import { withAPI } from '@winwin/api-firebase';
 import { Card } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -122,70 +121,10 @@ export class PaymentCard extends React.Component<PaymentProps, PaymentState>{
             <Button className={this.props.classes.changeButton} variant="contained">Change</Button>
           </CardActions>
         </Card>
-=======
-import './index.css';
-import { withAPI } from '@winwin/api-firebase';
-
-interface PaymentMethods {
-  type: string;
-  number: number;
-}
-
-interface PaymentProps {
-  api: any;
-}
-interface PaymentState {
-  paymentMethod: PaymentMethods | undefined;
-  user: UserType | undefined;
-}
-const INITIAL_STATE = {
-  paymentMethod: undefined,
-  user: undefined,
-};
-
-export class PaymentCard extends React.Component<PaymentProps, PaymentState>{
-  constructor(props) {
-    super(props);
-    this.state = INITIAL_STATE;
-  }
-
-  componentDidMount() {
-    const user = this.props.api.auth.currentUser();
-    if (user) {
-      this.props.api.data.users.getPaymentMethods(user.uid).then((payments) => {
-        this.setState(() => {
-          return {
-            user,
-            paymentMethod: payments,
-          };
-        });
-      });
-    }
-  }
-
-  render() {
-    return(
-      <div className="credit-card">
-        <div className="credit-card__logo">Win-Win Payment Method</div>
-        <div className="credit-card__number">
-          {this.state.paymentMethod && `XXXX XXXX XXXX ${this.state.paymentMethod.number}`}
-        </div>
-
-        <div className="credit-card__info">
-          <div className="credit-card__info_name">
-            <div className="credit-card__info_label">CARDHOLDER'S NAME</div>
-            <div>{this.state.user && this.state.user.displayName}</div>
-          </div>
-
-          <div className="credit-card__info_expiry">
-            <button>Change</button>
-          </div>
-        </div>
-
->>>>>>> Added sample card
       </div>
     );
   }
 }
 
-export default withAPI(PaymentCard);
+export const PaymentWithStyle = withStyles(styles)(PaymentCard);
+export default (withAPI(PaymentWithStyle));
