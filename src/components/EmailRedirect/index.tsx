@@ -4,7 +4,9 @@ import { withAPI } from '@winwin/api-firebase';
 export const EmailRedirect = (props) => {
   const handleClick = () => props.history.push('/login');
   const handleSendClick = () => {
-    props.api.auth.currentUser().sendEmailVerification({ url: 'http://localhost:3000' });
+    const redirect = window['_env_'].NODE_ENV === 'production' ? 'http://www.winwinhomesharing.com'
+      : window['_env_'].REACT_APP_EMAIL_REDIRECT || 'http://integration.scoutmastersforever.com';
+    props.api.auth.currentUser().sendEmailVerification({ url: redirect });
   };
 
   return (

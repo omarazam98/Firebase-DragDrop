@@ -151,7 +151,11 @@ export class SignUp extends Component<any, SignUpState> {
         .then((userCredential) => {
           const user = userCredential.user;
           if (user) {
-            user.sendEmailVerification({ url: 'http://localhost:3000' });
+            const redirect = window['_env_'].NODE_ENV === 'production'
+              ? 'http://www.winwinhomesharing.com'
+              : window['_env_'].REACT_APP_EMAIL_REDIRECT
+              || 'http://integration.scoutmastersforever.com';
+            user.sendEmailVerification({ url: redirect });
             // redirects to a new page saying that an email has been sent,
             // and the account needs to be verified
             this.props.history.push('/email');

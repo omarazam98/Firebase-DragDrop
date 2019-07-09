@@ -10,6 +10,11 @@ let mockAPI;
 let mockValidState;
 
 beforeAll(() => {
+  window['_env_'] = {
+    NODE_ENV: 'test',
+    REACT_APP_EMAIL_REDIRECT: 'http://localhost:3000',
+  };
+
   mockEvent = { preventDefault: () => {} };
   mockValidState = {
     name: {
