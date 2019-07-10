@@ -25,10 +25,11 @@ const NavigationBar: React.FC<NavigationBarProps> = (props) => {
   useStyles();
   return (
     <MenuList>
-      {props.routesList.map((route: any) => {
+      {props.routesList.map((route: any, key: number) => {
         return (
           <MenuItem component={Link} to={route.path}
-                    selected={props.location.pathname === route.path}>
+                    selected={props.location.pathname === route.path}
+                    key={key}>
             {route.name}<br/>
           </MenuItem>
         );

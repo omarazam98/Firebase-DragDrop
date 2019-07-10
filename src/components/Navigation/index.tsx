@@ -25,7 +25,6 @@ export const styles = ({ palette, spacing }: Theme) => createStyles({
 interface NavState {
   loggedIn: boolean;
   emailVerified: boolean;
-  isMounted: boolean;
 }
 interface NavProps {
   api: any;
@@ -38,33 +37,17 @@ export class Navigation extends React.Component<NavProps, NavState> {
     this.state = {
       loggedIn: false,
       emailVerified: false,
-      isMounted: false,
     };
   }
 
   componentDidMount() {
-    this.setState(() => {
-      return {
-        isMounted: true,
-      };
-    });
     this.props.api.auth.onAuthStateChanged((user) => {
-      if (this.state.isMounted) {
-        this.setState((prevState) => {
-          return {
-            loggedIn: user ? true : false,
-            emailVerified: (user && user.emailVerified) ? true : false,
-          };
-        });
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this.setState(() => {
-      return {
-        isMounted: false,
-      };
+      this.setState((prevState) => {
+        return {
+          loggedIn: user ? true : false,
+          emailVerified: (user && user.emailVerified) ? true : false,
+        };
+      });
     });
   }
 
@@ -76,7 +59,7 @@ export class Navigation extends React.Component<NavProps, NavState> {
           {/* Link creates the object that a user can click on to go to another page */}
           <div className={classes.root}>
             <Paper>
-              <NavigationBar routesList={this.state.loggedIn
+              <NavigationBar routesList={this.state.loggedIn && this.state.emailVerified
                 ? NAVBAR_ROUTES
                 : NAVBAR_ROUTES.filter(route => !route.authRequired)}/>
               {this.state.loggedIn && <button id="signOut"
