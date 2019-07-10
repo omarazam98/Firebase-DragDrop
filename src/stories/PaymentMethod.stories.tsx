@@ -1,13 +1,8 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { Button } from '@storybook/react/demo';
 import { PaymentWithStyle as PaymentCard } from '../components/PaymentCard';
 
-const classes = {
-
-}
 const validAPI = {
   auth: {
     currentUser: () => {
@@ -52,10 +47,10 @@ const noUserAPI = {
 
 storiesOf('Payment Method', module)
   .add('with valid methods', () => (
-    <PaymentCard classes={{}} api={ validAPI }/>
+    <PaymentCard api={ validAPI }/>
   ))
   .add('with no payment methods', () => (
-  <PaymentCard classes={{}} api={ noMethodsAPI }/>
+  <PaymentCard api={ noMethodsAPI }/>
   )).add('with no user', () => (
-  <PaymentCard classes={{}} api={ noUserAPI }/>
+  <PaymentCard api={ noUserAPI }/>
   ));
