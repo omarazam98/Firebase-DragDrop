@@ -92,22 +92,9 @@ exports[`Render the navigation unauthed 1`] = `
                 "name": "Log In",
                 "path": "/login",
               },
-              Object {
-                "authRequired": true,
-                "component": [Function],
-                "exact": true,
-                "name": "Dashboard",
-                "path": "/dashboard",
-              },
             ]
           }
         />
-        <button
-          id="signOut"
-          onClick={[Function]}
-        >
-          Log Out
-        </button>
       </WithStyles(ForwardRef(Paper))>
     </div>
     <div>

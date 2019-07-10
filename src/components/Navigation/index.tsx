@@ -76,12 +76,14 @@ export class Navigation extends React.Component<NavProps, NavState> {
           {/* Link creates the object that a user can click on to go to another page */}
           <div className={classes.root}>
             <Paper>
-              <NavigationBar routesList={NAVBAR_ROUTES}/>
-              <button id="signOut"
+              <NavigationBar routesList={this.state.loggedIn
+                ? NAVBAR_ROUTES
+                : NAVBAR_ROUTES.filter(route => !route.authRequired)}/>
+              {this.state.loggedIn && <button id="signOut"
                       onClick={() => {
                         this.props.api.auth.signOut();
                       }}>Log Out
-              </button>
+              </button>}
             </Paper>
           </div>
           {/* Route indicates what component should be shown, based on what is linked */}

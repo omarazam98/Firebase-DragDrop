@@ -15,6 +15,7 @@ const mockAPI = {
   auth: {
     signOut: jest.fn(),
     currentUser: jest.fn(),
+    onAuthStateChanged: jest.fn()
   },
 };
 
