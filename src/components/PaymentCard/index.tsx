@@ -104,14 +104,14 @@ export class PaymentCard extends React.Component<PaymentProps, PaymentState>{
               <Typography className={this.props.classes.title} color="textPrimary">
                 Win-Win Payment Method
               </Typography>
-              <Typography className={this.props.classes.number} color="textPrimary">
+              <Typography className={this.props.classes.number} id="payment" color="textPrimary">
                 {this.state.paymentMethod && `XXXX XXXX XXXX ${this.state.paymentMethod.number}`}
               </Typography>
             <div className={this.props.classes.info}>
               <Typography className={this.props.classes.label} color="textPrimary">
                 CARDHOLDER'S NAME
               </Typography>
-              <Typography className={this.props.classes.name} color="textPrimary">
+              <Typography className={this.props.classes.name} id="userName" color="textPrimary">
                 {this.state.user && this.state.user.displayName}
               </Typography>
             </div>
