@@ -21,7 +21,7 @@ interface NavigationBarProps {
   routesList: any;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = (props) => {
+export const NavigationBar: React.FC<NavigationBarProps> = (props) => {
   useStyles();
   return (
     <MenuList>

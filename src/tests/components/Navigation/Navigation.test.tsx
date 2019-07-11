@@ -1,7 +1,7 @@
-import { Navigation, styles } from '../../components/Navigation';
+import { Navigation, styles } from '../../../components/Navigation';
 import * as React from 'react';
 import { shallow, mount } from 'enzyme';
-import { NAVBAR_ROUTES } from '../../constants/routes';
+import { NAVBAR_ROUTES } from '../../../constants/routes';
 import { MenuItem } from '@material-ui/core';
 
 const options = {
