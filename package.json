@@ -38,6 +38,9 @@
       "<rootDir>/node_modules/enzyme-to-json/serializer"
     ]
   },
+  "jest-junit": {
+    "suiteNameTemplate": "{filename}"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
