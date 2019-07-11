@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render the payment card 1`] = `
+<div>
+  <WithStyles(ForwardRef(Card))
+    className={
+      Object {
+        "backgroundImage": "linear-gradient(25deg, #0f509e, #1399cd)",
+        "borderRadius": "15px",
+        "boxShadow": "0 0 20px rgba(0, 0, 0, 0.5)",
+        "color": "white",
+        "height": "32vw",
+        "maxHeight": "250px",
+        "maxWidth": "400px",
+        "padding": "25px",
+        "position": "relative",
+        "width": "50vw",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(CardContent))>
+      <WithStyles(ForwardRef(Typography))
+        className={
+          Object {
+            "fontSize": 14,
+          }
+        }
+        color="textPrimary"
+      >
+        Win-Win Payment Method
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        className={
+          Object {
+            "display": "flex",
+            "fontFamily": "\\"Arial\\", sans-serif",
+            "fontSize": "2em",
+            "position": "absolute",
+            "top": "40%",
+          }
+        }
+        color="textPrimary"
+      />
+      <div
+        className={
+          Object {
+            "bottom": "1vw",
+            "position": "absolute",
+          }
+        }
+      >
+        <WithStyles(ForwardRef(Typography))
+          className={
+            Object {
+              "fontSize": "1em",
+            }
+          }
+          color="textPrimary"
+        >
+          CARDHOLDER'S NAME
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          className={
+            Object {
+              "display": "flex",
+              "fontFamily": "\\"Arial\\", sans-serif",
+              "fontSize": "2em",
+              "justifyContent": "space-between",
+            }
+          }
+          color="textPrimary"
+        />
+      </div>
+    </WithStyles(ForwardRef(CardContent))>
+    <WithStyles(ForwardRef(CardActions))>
+      <WithStyles(ForwardRef(Button))
+        className={
+          Object {
+            "bottom": "1vw",
+            "position": "absolute",
+            "right": "1vw",
+            "variant": "contained",
+          }
+        }
+        variant="contained"
+      >
+        Change
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(CardActions))>
+  </WithStyles(ForwardRef(Card))>
+</div>
+`;
