@@ -108,20 +108,6 @@ exports[`All links render when logged in and verified 1`] = `
                   routesList={
                     Array [
                       Object {
-                        "authRequired": false,
-                        "component": [Function],
-                        "exact": true,
-                        "name": "Sign Up",
-                        "path": "/signup",
-                      },
-                      Object {
-                        "authRequired": false,
-                        "component": [Function],
-                        "exact": true,
-                        "name": "Log In",
-                        "path": "/login",
-                      },
-                      Object {
                         "authRequired": true,
                         "component": [Function],
                         "exact": true,
@@ -171,20 +157,6 @@ exports[`All links render when logged in and verified 1`] = `
                     routesList={
                       Array [
                         Object {
-                          "authRequired": false,
-                          "component": [Function],
-                          "exact": true,
-                          "name": "Sign Up",
-                          "path": "/signup",
-                        },
-                        Object {
-                          "authRequired": false,
-                          "component": [Function],
-                          "exact": true,
-                          "name": "Log In",
-                          "path": "/login",
-                        },
-                        Object {
                           "authRequired": true,
                           "component": [Function],
                           "exact": true,
@@ -222,322 +194,6 @@ exports[`All links render when logged in and verified 1`] = `
                             <WithStyles(ForwardRef(MenuItem))
                               component={[Function]}
                               key="0"
-                              selected={false}
-                              to="/signup"
-                            >
-                              <ForwardRef(MenuItem)
-                                classes={
-                                  Object {
-                                    "gutters": "MuiMenuItem-gutters",
-                                    "root": "MuiMenuItem-root",
-                                    "selected": "Mui-selected",
-                                  }
-                                }
-                                component={[Function]}
-                                selected={false}
-                                to="/signup"
-                              >
-                                <WithStyles(ForwardRef(ListItem))
-                                  button={true}
-                                  className="MuiMenuItem-root MuiMenuItem-gutters"
-                                  component={[Function]}
-                                  disableGutters={false}
-                                  role="menuitem"
-                                  selected={false}
-                                  tabIndex={-1}
-                                  to="/signup"
-                                >
-                                  <ForwardRef(ListItem)
-                                    button={true}
-                                    className="MuiMenuItem-root MuiMenuItem-gutters"
-                                    classes={
-                                      Object {
-                                        "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
-                                        "button": "MuiListItem-button",
-                                        "container": "MuiListItem-container",
-                                        "dense": "MuiListItem-dense",
-                                        "disabled": "Mui-disabled",
-                                        "divider": "MuiListItem-divider",
-                                        "focusVisible": "Mui-focusVisible",
-                                        "gutters": "MuiListItem-gutters",
-                                        "root": "MuiListItem-root",
-                                        "secondaryAction": "MuiListItem-secondaryAction",
-                                        "selected": "Mui-selected",
-                                      }
-                                    }
-                                    component={[Function]}
-                                    disableGutters={false}
-                                    role="menuitem"
-                                    selected={false}
-                                    tabIndex={-1}
-                                    to="/signup"
-                                  >
-                                    <WithStyles(ForwardRef(ButtonBase))
-                                      className="MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                      component={[Function]}
-                                      disabled={false}
-                                      focusVisibleClassName="Mui-focusVisible"
-                                      role="menuitem"
-                                      tabIndex={-1}
-                                      to="/signup"
-                                    >
-                                      <ForwardRef(ButtonBase)
-                                        className="MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                        classes={
-                                          Object {
-                                            "disabled": "Mui-disabled",
-                                            "focusVisible": "Mui-focusVisible",
-                                            "root": "MuiButtonBase-root",
-                                          }
-                                        }
-                                        component={[Function]}
-                                        disabled={false}
-                                        focusVisibleClassName="Mui-focusVisible"
-                                        role="menuitem"
-                                        tabIndex={-1}
-                                        to="/signup"
-                                      >
-                                        <Link
-                                          aria-disabled={false}
-                                          className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                          onBlur={[Function]}
-                                          onDragLeave={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
-                                          onKeyUp={[Function]}
-                                          onMouseDown={[Function]}
-                                          onMouseLeave={[Function]}
-                                          onMouseUp={[Function]}
-                                          onTouchEnd={[Function]}
-                                          onTouchMove={[Function]}
-                                          onTouchStart={[Function]}
-                                          role="menuitem"
-                                          tabIndex={-1}
-                                          to="/signup"
-                                        >
-                                          <a
-                                            aria-disabled={false}
-                                            className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                            href="/signup"
-                                            onBlur={[Function]}
-                                            onClick={[Function]}
-                                            onDragLeave={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            onKeyUp={[Function]}
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            onTouchEnd={[Function]}
-                                            onTouchMove={[Function]}
-                                            onTouchStart={[Function]}
-                                            role="menuitem"
-                                            tabIndex={-1}
-                                          >
-                                            Sign Up
-                                            <br
-                                              key=".1"
-                                            />
-                                            <NoSsr>
-                                              <WithStyles(TouchRipple)
-                                                center={false}
-                                              >
-                                                <TouchRipple
-                                                  center={false}
-                                                  classes={
-                                                    Object {
-                                                      "child": "MuiTouchRipple-child",
-                                                      "childLeaving": "MuiTouchRipple-childLeaving",
-                                                      "childPulsate": "MuiTouchRipple-childPulsate",
-                                                      "ripple": "MuiTouchRipple-ripple",
-                                                      "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                                      "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                                      "root": "MuiTouchRipple-root",
-                                                    }
-                                                  }
-                                                >
-                                                  <span
-                                                    className="MuiTouchRipple-root"
-                                                  >
-                                                    <TransitionGroup
-                                                      childFactory={[Function]}
-                                                      component={null}
-                                                      enter={true}
-                                                      exit={true}
-                                                    />
-                                                  </span>
-                                                </TouchRipple>
-                                              </WithStyles(TouchRipple)>
-                                            </NoSsr>
-                                          </a>
-                                        </Link>
-                                      </ForwardRef(ButtonBase)>
-                                    </WithStyles(ForwardRef(ButtonBase))>
-                                  </ForwardRef(ListItem)>
-                                </WithStyles(ForwardRef(ListItem))>
-                              </ForwardRef(MenuItem)>
-                            </WithStyles(ForwardRef(MenuItem))>
-                            <WithStyles(ForwardRef(MenuItem))
-                              component={[Function]}
-                              key="1"
-                              selected={false}
-                              to="/login"
-                            >
-                              <ForwardRef(MenuItem)
-                                classes={
-                                  Object {
-                                    "gutters": "MuiMenuItem-gutters",
-                                    "root": "MuiMenuItem-root",
-                                    "selected": "Mui-selected",
-                                  }
-                                }
-                                component={[Function]}
-                                selected={false}
-                                to="/login"
-                              >
-                                <WithStyles(ForwardRef(ListItem))
-                                  button={true}
-                                  className="MuiMenuItem-root MuiMenuItem-gutters"
-                                  component={[Function]}
-                                  disableGutters={false}
-                                  role="menuitem"
-                                  selected={false}
-                                  tabIndex={-1}
-                                  to="/login"
-                                >
-                                  <ForwardRef(ListItem)
-                                    button={true}
-                                    className="MuiMenuItem-root MuiMenuItem-gutters"
-                                    classes={
-                                      Object {
-                                        "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
-                                        "button": "MuiListItem-button",
-                                        "container": "MuiListItem-container",
-                                        "dense": "MuiListItem-dense",
-                                        "disabled": "Mui-disabled",
-                                        "divider": "MuiListItem-divider",
-                                        "focusVisible": "Mui-focusVisible",
-                                        "gutters": "MuiListItem-gutters",
-                                        "root": "MuiListItem-root",
-                                        "secondaryAction": "MuiListItem-secondaryAction",
-                                        "selected": "Mui-selected",
-                                      }
-                                    }
-                                    component={[Function]}
-                                    disableGutters={false}
-                                    role="menuitem"
-                                    selected={false}
-                                    tabIndex={-1}
-                                    to="/login"
-                                  >
-                                    <WithStyles(ForwardRef(ButtonBase))
-                                      className="MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                      component={[Function]}
-                                      disabled={false}
-                                      focusVisibleClassName="Mui-focusVisible"
-                                      role="menuitem"
-                                      tabIndex={-1}
-                                      to="/login"
-                                    >
-                                      <ForwardRef(ButtonBase)
-                                        className="MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                        classes={
-                                          Object {
-                                            "disabled": "Mui-disabled",
-                                            "focusVisible": "Mui-focusVisible",
-                                            "root": "MuiButtonBase-root",
-                                          }
-                                        }
-                                        component={[Function]}
-                                        disabled={false}
-                                        focusVisibleClassName="Mui-focusVisible"
-                                        role="menuitem"
-                                        tabIndex={-1}
-                                        to="/login"
-                                      >
-                                        <Link
-                                          aria-disabled={false}
-                                          className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                          onBlur={[Function]}
-                                          onDragLeave={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
-                                          onKeyUp={[Function]}
-                                          onMouseDown={[Function]}
-                                          onMouseLeave={[Function]}
-                                          onMouseUp={[Function]}
-                                          onTouchEnd={[Function]}
-                                          onTouchMove={[Function]}
-                                          onTouchStart={[Function]}
-                                          role="menuitem"
-                                          tabIndex={-1}
-                                          to="/login"
-                                        >
-                                          <a
-                                            aria-disabled={false}
-                                            className="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                                            href="/login"
-                                            onBlur={[Function]}
-                                            onClick={[Function]}
-                                            onDragLeave={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            onKeyUp={[Function]}
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            onTouchEnd={[Function]}
-                                            onTouchMove={[Function]}
-                                            onTouchStart={[Function]}
-                                            role="menuitem"
-                                            tabIndex={-1}
-                                          >
-                                            Log In
-                                            <br
-                                              key=".1"
-                                            />
-                                            <NoSsr>
-                                              <WithStyles(TouchRipple)
-                                                center={false}
-                                              >
-                                                <TouchRipple
-                                                  center={false}
-                                                  classes={
-                                                    Object {
-                                                      "child": "MuiTouchRipple-child",
-                                                      "childLeaving": "MuiTouchRipple-childLeaving",
-                                                      "childPulsate": "MuiTouchRipple-childPulsate",
-                                                      "ripple": "MuiTouchRipple-ripple",
-                                                      "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                                      "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                                      "root": "MuiTouchRipple-root",
-                                                    }
-                                                  }
-                                                >
-                                                  <span
-                                                    className="MuiTouchRipple-root"
-                                                  >
-                                                    <TransitionGroup
-                                                      childFactory={[Function]}
-                                                      component={null}
-                                                      enter={true}
-                                                      exit={true}
-                                                    />
-                                                  </span>
-                                                </TouchRipple>
-                                              </WithStyles(TouchRipple)>
-                                            </NoSsr>
-                                          </a>
-                                        </Link>
-                                      </ForwardRef(ButtonBase)>
-                                    </WithStyles(ForwardRef(ButtonBase))>
-                                  </ForwardRef(ListItem)>
-                                </WithStyles(ForwardRef(ListItem))>
-                              </ForwardRef(MenuItem)>
-                            </WithStyles(ForwardRef(MenuItem))>
-                            <WithStyles(ForwardRef(MenuItem))
-                              component={[Function]}
-                              key="2"
                               selected={false}
                               to="/dashboard"
                             >
@@ -654,7 +310,37 @@ exports[`All links render when logged in and verified 1`] = `
                                             <br
                                               key=".1"
                                             />
-                                            <NoSsr />
+                                            <NoSsr>
+                                              <WithStyles(TouchRipple)
+                                                center={false}
+                                              >
+                                                <TouchRipple
+                                                  center={false}
+                                                  classes={
+                                                    Object {
+                                                      "child": "MuiTouchRipple-child",
+                                                      "childLeaving": "MuiTouchRipple-childLeaving",
+                                                      "childPulsate": "MuiTouchRipple-childPulsate",
+                                                      "ripple": "MuiTouchRipple-ripple",
+                                                      "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                                      "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                                      "root": "MuiTouchRipple-root",
+                                                    }
+                                                  }
+                                                >
+                                                  <span
+                                                    className="MuiTouchRipple-root"
+                                                  >
+                                                    <TransitionGroup
+                                                      childFactory={[Function]}
+                                                      component={null}
+                                                      enter={true}
+                                                      exit={true}
+                                                    />
+                                                  </span>
+                                                </TouchRipple>
+                                              </WithStyles(TouchRipple)>
+                                            </NoSsr>
                                           </a>
                                         </Link>
                                       </ForwardRef(ButtonBase)>
@@ -1275,20 +961,6 @@ exports[`Render the navigation authed 1`] = `
         <withRouter(NavigationBar)
           routesList={
             Array [
-              Object {
-                "authRequired": false,
-                "component": [Function],
-                "exact": true,
-                "name": "Sign Up",
-                "path": "/signup",
-              },
-              Object {
-                "authRequired": false,
-                "component": [Function],
-                "exact": true,
-                "name": "Log In",
-                "path": "/login",
-              },
               Object {
                 "authRequired": true,
                 "component": [Function],
