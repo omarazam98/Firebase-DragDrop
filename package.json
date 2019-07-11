@@ -39,7 +39,8 @@
     ]
   },
   "jest-junit": {
-    "suiteNameTemplate": "{filename}"
+    "suiteNameTemplate": "{filepath}",
+    "classNameTemplate": "{filename}"
   },
   "browserslist": [
     ">0.2%",
