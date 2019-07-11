@@ -1,9 +1,8 @@
 import { Navigation, styles } from '../../components/Navigation';
 import * as React from 'react';
-import { shallow, render, mount } from 'enzyme';
-import { Link } from 'react-router-dom';
+import { shallow, mount } from 'enzyme';
 import { NAVBAR_ROUTES } from '../../constants/routes';
-import { withStyles, MenuItem } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 
 const options = {
   lifecycleExperimental: false,
@@ -15,7 +14,7 @@ const mockAPI = {
   auth: {
     signOut: jest.fn(),
     currentUser: jest.fn(),
-    onAuthStateChanged: jest.fn()
+    onAuthStateChanged: jest.fn(),
   },
 };
 
@@ -52,6 +51,7 @@ test('Sign out button calls sign out', () => {
 test('Only non auth required links render when not logged in', () => {
   const test = <Navigation api={ mockAPI } classes={styles} />;
   const wrapper = mount(test, options);
+  expect(wrapper).toMatchSnapshot();
   expect(wrapper.find(MenuItem).length).toBe(NAVBAR_ROUTES.length - authedLinks.length);
 });
 
@@ -59,5 +59,6 @@ test('All links render when logged in and verified', () => {
   const test = <Navigation api={ mockAPI } classes={styles} />;
   const wrapper = mount(test, options);
   wrapper.setState({ loggedIn: true, emailVerified: true });
+  expect(wrapper).toMatchSnapshot();
   expect(wrapper.find(MenuItem).length).toBe(NAVBAR_ROUTES.length);
 });
