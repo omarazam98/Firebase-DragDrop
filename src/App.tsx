@@ -13,7 +13,7 @@ const firebaseConfig = {
   storageBucket: window['_env_'].REACT_APP_STORAGE_BUCKET,
   messagingSenderId: window['_env_'].REACT_APP_MESSAGING_SENDER_ID,
   appId: window['_env_'].REACT_APP_APP_ID,
-}
+};
 
 class App extends Component {
   render() {
