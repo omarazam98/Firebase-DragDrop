@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-import EmailRedirect from '../EmailRedirect';
-import { Login } from '../Login/Login';
 
 interface AuthState {
   loggedIn: boolean;

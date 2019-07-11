@@ -60,7 +60,9 @@ export class Navigation extends React.Component<NavProps, NavState> {
           <div className={classes.root}>
             <Paper>
               <NavigationBar routesList={this.state.loggedIn && this.state.emailVerified
-                ? NAVBAR_ROUTES
+                ? NAVBAR_ROUTES.filter((route) => {
+                  return (route.name !== 'Log In' && route.name !== 'Sign Up');
+                })
                 : NAVBAR_ROUTES.filter(route => !route.authRequired)}/>
               {this.state.loggedIn && <button id="signOut"
                       onClick={() => {
