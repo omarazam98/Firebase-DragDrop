@@ -9,7 +9,12 @@ const options = {
   disableLifecycleMethods: true,
 };
 
-const authedLinks = NAVBAR_ROUTES.filter(route => route.authRequired);
+const authRequiredLinks = NAVBAR_ROUTES.filter(route => route.authRequired );
+
+const loggedInLinks = NAVBAR_ROUTES.filter((route) => {
+  return (route.authRequired && route.name !== 'Log In' && route.name !== 'Sign Up');
+});
+
 const mockAPI = {
   auth: {
     signOut: jest.fn(),
@@ -52,7 +57,7 @@ test('Only non auth required links render when not logged in', () => {
   const test = <Navigation api={ mockAPI } classes={styles} />;
   const wrapper = mount(test, options);
   expect(wrapper).toMatchSnapshot();
-  expect(wrapper.find(MenuItem).length).toBe(NAVBAR_ROUTES.length - authedLinks.length);
+  expect(wrapper.find(MenuItem).length).toBe(NAVBAR_ROUTES.length - authRequiredLinks.length);
 });
 
 test('All links render when logged in and verified', () => {
@@ -60,5 +65,5 @@ test('All links render when logged in and verified', () => {
   const wrapper = mount(test, options);
   wrapper.setState({ loggedIn: true, emailVerified: true });
   expect(wrapper).toMatchSnapshot();
-  expect(wrapper.find(MenuItem).length).toBe(NAVBAR_ROUTES.length);
+  expect(wrapper.find(MenuItem).length).toBe(loggedInLinks.length);
 });
