@@ -9,7 +9,7 @@ const options = {
   disableLifecycleMethods: true,
 };
 
-const authRequiredLinks = NAVBAR_ROUTES.filter(route => route.authRequired );
+const authRequiredLinks = NAVBAR_ROUTES.filter(route => route.authRequired);
 
 const loggedInLinks = NAVBAR_ROUTES.filter((route) => {
   return (route.authRequired && route.name !== 'Log In' && route.name !== 'Sign Up');
