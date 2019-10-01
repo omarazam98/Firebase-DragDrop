@@ -2,13 +2,13 @@ import * as React from 'react';
 import './DragDrop.css';
 
 interface DragdropState {
-  draggingFile: boolean;
   dragging: boolean;
+  dragCounter: number;
 }
 
 const INITIAL_STATE: DragdropState = {
-  draggingFile: false,
   dragging: false,
+  dragCounter: 0,
 };
 
 class Dragdrop extends React.Component<any, DragdropState> {
@@ -16,8 +16,8 @@ class Dragdrop extends React.Component<any, DragdropState> {
     super(props);
     this.state = INITIAL_STATE;
     this.handleDrag = this.handleDrag.bind(this);
-    this.handleDragEnter = this.handleDragEnter.bind(this);
-    this.handleDragExit = this.handleDragExit.bind(this);
+    this.handleDragIn = this.handleDragIn.bind(this);
+    this.handleDragOut = this.handleDragOut.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
   }
 
@@ -27,33 +27,57 @@ class Dragdrop extends React.Component<any, DragdropState> {
     e.stopPropagation();
   }
 
-  handleDragEnter(e) {
+  /*handleDragIn(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.setState((prevState, props) => {
-      return { dragging: true };
-    });
-    // Only change the state of dragging if user is dragging a file
+    // Only change state if there's a file
     if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
-      this.setState((prevState, props) => {
-        return { draggingFile: true };
+      this.setState(() => {
+        return {
+          dragging: true,
+          dropped: true,
+        };
       });
     }
   }
 
-  handleDragExit(e) {
+  handleDragOut(e) {
+    e.preventDefault();
+    if (!this.state.dropped) {
+      this.setState(() => {
+        return {dragging: false};
+      })
+    }
+  }*/
+
+  handleDragIn(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.setState(
-      (prevState, props) => {
-        return { dragging: false };
-      },
-      () => {
-        if (!this.state.dragging) {
-          this.setState((prevState, props) => ({ draggingFile: false }));
-        }
+    this.setState((prevState, props) => {
+      return {dragCounter: (prevState.dragCounter + 1)}
+    });
+    // Only change the state of dragging if user is dragging a file
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+      this.setState((prevState, props) => {
+        return {dragging: true}
       });
-  }
+    }
+  };
+
+  handleDragOut(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState(function (prevState, props) {
+      return {dragCounter: (prevState.dragCounter - 1)} // when cursor on drag area the counter == 1, this changes the state
+    }, () =>{
+      if (this.state.dragCounter === 0) { // cursor leaves, counter == 0 dragging is set to false
+        this.setState(function (prevState, props) {
+          return {dragging: false}
+        });
+      }
+    });
+
+  };
 
   handleDrop(e) {
     e.preventDefault();
@@ -61,8 +85,8 @@ class Dragdrop extends React.Component<any, DragdropState> {
     // when file is dropped dragging is done
     this.setState(() => {
       return {
-        draggingFile: false,
-      };
+        dragging: false,
+      }
     });
     // passes files to handleDrop method in props
     this.props.handleDrop(e.dataTransfer.files);
@@ -71,8 +95,8 @@ class Dragdrop extends React.Component<any, DragdropState> {
   componentDidMount() {
     const div = document.getElementById('dropZone');
     if (div) {
-      div.addEventListener('dragenter', this.handleDragEnter);
-      div.addEventListener('DragExit', this.handleDragExit);
+      div.addEventListener('dragenter', this.handleDragIn);
+      div.addEventListener('dragleave', this.handleDragOut);
       div.addEventListener('dragover', this.handleDrag);
       div.addEventListener('drop', this.handleDrop);
     }
@@ -81,8 +105,8 @@ class Dragdrop extends React.Component<any, DragdropState> {
   componentWillUnmount() {
     const div = document.getElementById('dropZone');
     if (div) {
-      div.removeEventListener('dragenter', this.handleDragEnter);
-      div.removeEventListener('DragExit', this.handleDragExit);
+      div.removeEventListener('dragenter', this.handleDragIn);
+      div.removeEventListener('dragleave', this.handleDragOut);
       div.removeEventListener('dragover', this.handleDrag);
       div.removeEventListener('drop', this.handleDrop);
     }
@@ -91,7 +115,7 @@ class Dragdrop extends React.Component<any, DragdropState> {
   render() {
     return (
       <div id = "dropZone">
-        {this.state.draggingFile &&
+        {this.state.dragging &&
         <div id="dropGuide">
             <div id="dropHelpLabel">
                 DROP HERE

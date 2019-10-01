@@ -17,23 +17,19 @@ const mockAPI = {
   data: {
     users: {
       getPaymentMethods: () => {
-        return Promise.resolve({ type: 'visa', number: 1010 });
+        return Promise.resolve({type: 'visa', number: 1010});
       },
     },
   },
-  storage: {
+  storage : {
     storageRef: {
-      get: () => {
-        return {
-          put: () => {
-            return {
-              on: action('Upload Begun'),
-            };
-          },
-        };
-      },
-    },
-  },
+      get: () => {return {
+      put: () => {return {
+        on: action('Upload Begun')
+      }}
+      }}
+    }
+  }
 };
 
 storiesOf('Upload', module)
