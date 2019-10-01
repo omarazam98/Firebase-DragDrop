@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import { Provider } from 'react-redux';
-import { store } from './store/createStore';
-import Navigation from './components/Navigation';
+import Upload from './components/Upload/Upload';
 import { APIProvider } from '@winwin/api-firebase';
 
 const firebaseConfig = {
@@ -18,14 +16,9 @@ const firebaseConfig = {
 class App extends Component {
   render() {
     return (
-      // The provider allows all of its descendant elements to access the redux store through
-      // the connect function from react-redux
-      <Provider store={store}>
         <APIProvider config={firebaseConfig}>
-          <Navigation />
-          { /*Put the main application in here. Probably the app router*/ }
+          <Upload />
         </APIProvider>
-      </Provider>
     );
   }
 }

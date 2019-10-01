@@ -172,5 +172,3 @@ export class Upload extends Component<any, UploadState> {
 }
 
 export default withAPI(Upload);
-
-export default Upload;
