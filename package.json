@@ -17,7 +17,7 @@
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^7.0.1",
     "react-redux": "^7.0.3",
-    "react-router-dom": "^5.0.1",
+    "react-router-dom": "^7.5.2",
     "react-scripts": "3.0.1",
     "react-split-pane": "^0.1.87",
     "redux": "^4.0.1",
